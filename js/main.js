@@ -1,15 +1,15 @@
-// main.js
+// js/main.js
 document.addEventListener("DOMContentLoaded", function() {
     
-    // Load Header
-    fetch("header.html")
+    // Fetch Header from the 'pages' folder
+    fetch("pages/header.html")
         .then(response => response.text())
         .then(data => {
             document.querySelector("header").innerHTML = data;
         });
 
-    // Load Footer
-    fetch("footer.html")
+    // Fetch Footer from the 'pages' folder
+    fetch("pages/footer.html")
         .then(response => response.text())
         .then(data => {
             document.querySelector("footer").innerHTML = data;
