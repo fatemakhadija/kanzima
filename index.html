@@ -11,37 +11,37 @@
 <body>
 
     <div id="preloader">
-        <div class="needle-loader"></div>
-        <p style="color: #C5A059; margin-top: 20px; font-family: 'Cinzel', serif;">Weaving Luxury...</p>
+        <svg class="needle-svg" viewBox="0 0 24 100" fill="none" stroke="#C5A059" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5 C 15 5 15 15 12 15 C 9 15 9 5 12 5 Z" />
+            <path d="M12 15 L 12 95" />
+        </svg>
+        <p style="color: #C5A059; margin-top: 20px; font-family: 'Cinzel', serif; letter-spacing: 2px;">WEAVING LEGACY...</p>
     </div>
 
     <header></header>
-
     <div id="banner-container"></div>
 
-    <div class="thread-container" style="height: 1500px;"> <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-            <path id="scroll-thread" d="M 50% 0 Q 55% 200, 50% 400 T 50% 800 T 50% 1200" />
+    <div class="thread-container" id="thread-wrapper">
+        <svg id="thread-svg" width="100%" height="100%" preserveAspectRatio="none">
+            <path id="scroll-thread" d="" />
         </svg>
     </div>
 
     <section class="content-section">
         <div class="content-box">
-            <h2 style="color: #C5A059; font-family: 'Cinzel', serif; margin-bottom: 20px;">The Art of Zardozi</h2>
-            <p style="color: #E6DCCA;">
-                At Kanzima Couture, we do not just make dresses; we craft legacies. 
-                Using the ancient art of Zardozi, every thread is hand-woven with precision, 
-                blending real gold wires with the finest silk to create masterpieces for your special day.
-            </p>
+            <h2>The Art of Zardozi</h2>
+            <p>At Kanzima Couture, we do not just make dresses; we craft legacies. 
+               Using the ancient art of Zardozi, every thread is hand-woven with precision.</p>
         </div>
     </section>
 
-    <section class="content-section" style="background: #050505;">
-        <div class="content-box">
-            <h2 style="color: #C5A059; font-family: 'Cinzel', serif; margin-bottom: 20px;">Our Process</h2>
-            <p style="color: #E6DCCA; margin-bottom: 20px;">
-                From the first sketch to the final stitch, perfection is our only standard.
-            </p>
-            <img src="images/banner-3.jpg" alt="Work in Progress" style="width: 100%; border: 1px solid #8C6E42;">
+    <section class="content-section" style="background: #080808; height: 800px;"> <div class="content-box">
+            <h2>Our Process</h2>
+            <p>From the first sketch to the final stitch, perfection is our only standard.</p>
+            <br>
+            <div style="width:100%; height:300px; background:#111; border:1px solid #333; display:flex; align-items:center; justify-content:center;">
+                <p style="color:#555;">[ Process Image Here ]</p>
+            </div>
         </div>
     </section>
 
@@ -51,26 +51,81 @@
     <script src="js/particles-config.js"></script>
 
     <script>
-        // Remove Preloader when page is fully loaded
-        window.addEventListener("load", function() {
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // --- A. Preloader Logic ---
             const preloader = document.getElementById("preloader");
-            preloader.style.opacity = "0";
-            setTimeout(() => { preloader.style.display = "none"; }, 500);
-        });
+            window.addEventListener("load", function() {
+                setTimeout(() => {
+                    preloader.style.opacity = "0";
+                    setTimeout(() => { preloader.style.display = "none"; }, 500);
+                }, 1500); // Wait 1.5s so user sees the animation
+            });
 
-        // Scroll Thread Logic
-        window.addEventListener("scroll", function() {
-            const thread = document.getElementById("scroll-thread");
-            const maxScroll = document.body.scrollHeight - window.innerHeight;
-            const scrollPercentage = window.scrollY / maxScroll;
+            // --- B. Thread Scroll Logic ---
+            const threadPath = document.getElementById("scroll-thread");
+            const threadWrapper = document.getElementById("thread-wrapper");
             
-            // Draw the line based on how far we scrolled
-            const drawLength = 2000 * scrollPercentage; // 2000 is the path length
-            
-            // This makes the line appear to "stitch" downwards
-            thread.style.strokeDashoffset = 2000 - (drawLength * 1.5); 
+            function setupThread() {
+                // 1. Calculate the total scrollable height below the banner
+                const bannerHeight = window.innerHeight; // The banner is 100vh
+                const totalPageHeight = document.body.scrollHeight;
+                const threadHeight = totalPageHeight - bannerHeight;
+
+                // 2. Set SVG container to match that height
+                threadWrapper.style.height = threadHeight + "px";
+
+                // 3. Draw a wavy line (Sine Wave) dynamically based on height
+                // M = Move to (Top Center), Q = Quadratic Curve
+                // We create a wavy line down the center (50%)
+                const width = window.innerWidth;
+                const center = width / 2;
+                
+                // Construct path: Straight line down with slight curves
+                // M (Start) -> L (Line to bottom)
+                // A simple straight line is cleaner for Zari work themes
+                const pathString = `M ${center} 0 L ${center} ${threadHeight}`;
+                
+                threadPath.setAttribute("d", pathString);
+
+                // 4. Setup Dash Offset (This hides the line initially)
+                const pathLength = threadPath.getTotalLength();
+                threadPath.style.strokeDasharray = pathLength;
+                threadPath.style.strokeDashoffset = pathLength;
+                
+                return pathLength;
+            }
+
+            // Initialize
+            let pathLength = setupThread();
+
+            // Recalculate if window resizes
+            window.addEventListener("resize", () => {
+                pathLength = setupThread();
+            });
+
+            // 5. Sync Scroll to Draw Line
+            window.addEventListener("scroll", () => {
+                // Calculate how far we have scrolled relative to the thread area
+                const scrollY = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                // We want the thread to start drawing ONLY when we scroll past the banner
+                if (scrollY > windowHeight) {
+                    const scrolledPastBanner = scrollY - windowHeight;
+                    const totalThreadDistance = document.body.scrollHeight - windowHeight * 2; // Approximate buffer
+                    
+                    // Percentage 0 to 1
+                    let percentage = scrolledPastBanner / totalThreadDistance;
+                    if (percentage > 1) percentage = 1;
+                    if (percentage < 0) percentage = 0;
+
+                    // Draw the line
+                    const drawLength = pathLength * percentage;
+                    threadPath.style.strokeDashoffset = pathLength - drawLength;
+                }
+            });
         });
     </script>
-
 </body>
 </html>
