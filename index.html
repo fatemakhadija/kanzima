@@ -6,20 +6,71 @@
     <title>Home | KANZIMA COUTURE</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+
+    <div id="preloader">
+        <div class="needle-loader"></div>
+        <p style="color: #C5A059; margin-top: 20px; font-family: 'Cinzel', serif;">Weaving Luxury...</p>
+    </div>
 
     <header></header>
 
     <div id="banner-container"></div>
 
+    <div class="thread-container" style="height: 1500px;"> <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <path id="scroll-thread" d="M 50% 0 Q 55% 200, 50% 400 T 50% 800 T 50% 1200" />
+        </svg>
+    </div>
+
+    <section class="content-section">
+        <div class="content-box">
+            <h2 style="color: #C5A059; font-family: 'Cinzel', serif; margin-bottom: 20px;">The Art of Zardozi</h2>
+            <p style="color: #E6DCCA;">
+                At Kanzima Couture, we do not just make dresses; we craft legacies. 
+                Using the ancient art of Zardozi, every thread is hand-woven with precision, 
+                blending real gold wires with the finest silk to create masterpieces for your special day.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section" style="background: #050505;">
+        <div class="content-box">
+            <h2 style="color: #C5A059; font-family: 'Cinzel', serif; margin-bottom: 20px;">Our Process</h2>
+            <p style="color: #E6DCCA; margin-bottom: 20px;">
+                From the first sketch to the final stitch, perfection is our only standard.
+            </p>
+            <img src="images/banner-3.jpg" alt="Work in Progress" style="width: 100%; border: 1px solid #8C6E42;">
+        </div>
+    </section>
+
     <footer></footer>
 
     <script src="js/main.js"></script>
-    
     <script src="js/particles-config.js"></script>
+
+    <script>
+        // Remove Preloader when page is fully loaded
+        window.addEventListener("load", function() {
+            const preloader = document.getElementById("preloader");
+            preloader.style.opacity = "0";
+            setTimeout(() => { preloader.style.display = "none"; }, 500);
+        });
+
+        // Scroll Thread Logic
+        window.addEventListener("scroll", function() {
+            const thread = document.getElementById("scroll-thread");
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollPercentage = window.scrollY / maxScroll;
+            
+            // Draw the line based on how far we scrolled
+            const drawLength = 2000 * scrollPercentage; // 2000 is the path length
+            
+            // This makes the line appear to "stitch" downwards
+            thread.style.strokeDashoffset = 2000 - (drawLength * 1.5); 
+        });
+    </script>
 
 </body>
 </html>
