@@ -200,3 +200,75 @@ footer {
     .hero-content p { font-size: 1rem; }
 }
 
+/* --- PRELOADER (Needle Animation) --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.needle-loader {
+    width: 80px;
+    height: 80px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--primary-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- SCROLLING THREAD ANIMATION --- */
+/* The Container for the SVG Line */
+.thread-container {
+    position: absolute;
+    top: 100vh; /* Start right below the banner */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* The Line itself */
+#scroll-thread {
+    stroke: var(--primary-gold);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 2000; /* Long enough to cover page */
+    stroke-dashoffset: 2000; /* Hidden initially */
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+/* --- NEW CONTENT SECTIONS --- */
+.content-section {
+    position: relative;
+    padding: 100px 5%;
+    text-align: center;
+    background: #0a0a0a;
+    z-index: 1; /* Above the thread line */
+}
+
+.content-box {
+    background: rgba(20, 20, 20, 0.8);
+    border: 1px solid var(--accent-bronze);
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
