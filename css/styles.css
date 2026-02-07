@@ -1,0 +1,84 @@
+/* --- styles.css --- */
+:root {
+    --bg-color: #0a0a0a;
+    --primary-gold: #C5A059;
+    --text-light: #E6DCCA;
+    --accent-bronze: #8C6E42;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: 'Lato', sans-serif;
+    padding-top: 100px; /* Space for fixed header */
+}
+
+/* Header Styles */
+header {
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 15px 5%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--accent-bronze);
+    box-sizing: border-box; /* Fixes width issues */
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-gold);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-k {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--primary-gold), var(--accent-bronze));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-light);
+    transition: 0.3s;
+    font-family: 'Cinzel', serif;
+}
+
+nav a:hover {
+    color: var(--primary-gold);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid var(--accent-bronze);
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Common Page Styles */
+.container {
+    padding: 20px 5%;
+    min-height: 60vh;
+}
