@@ -489,44 +489,62 @@ footer {
     .filter-sticky-bar { overflow-x: auto; white-space: nowrap; justify-content: flex-start; }
 }
 
-/* --- NEW CONTACT PAGE LAYOUT (Map Hero) --- */
+/* --- FIX FOR CONTACT PAGE --- */
 
-/* The Map takes the place of the Hero Banner */
+/* 1. Push the map down so the Header doesn't cover it */
 .map-hero {
     width: 100%;
-    height: 60vh; /* Takes 60% of the screen height */
+    height: 50vh; /* Reduced height for better mobile view */
     position: relative;
     overflow: hidden;
-    border-bottom: 2px solid #C5A059; /* Gold border separating map from body */
+    margin-top: 85px; /* CRITICAL FIX: Pushes map below the header */
+    border-bottom: 2px solid #C5A059;
 }
 
 .map-hero iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) invert(92%) contrast(83%); /* Royal Dark Filter */
+    /* Removed the dark filter so the map is clearer, as requested */
     border: 0;
 }
 
-/* Container to center the floating card */
-.contact-overlay-container {
-    position: relative;
-    margin-top: -100px; /* Pulls the card UP over the map */
-    z-index: 10;
-    padding-bottom: 50px;
-    padding-left: 20px;
-    padding-right: 20px;
+/* 2. The Transparent Link Layer (For clicking the map) */
+.map-link-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 10; /* Sits on top */
+    background: transparent;
+    cursor: pointer;
 }
 
-/* Mobile Adjustment */
+/* 3. The Card Container */
+.contact-overlay-container {
+    position: relative;
+    margin-top: -60px; /* Slight overlap looks classy, not messy */
+    z-index: 20; /* Sits above the map overlay */
+    padding-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Mobile Adjustments */
 @media (max-width: 768px) {
     .map-hero {
-        height: 50vh; /* Smaller map on phone */
+        height: 45vh; /* Even smaller on phone so you see the card immediately */
+        margin-top: 80px; /* Adjust for mobile header height */
     }
+    
     .contact-overlay-container {
-        margin-top: -50px; /* Less overlap on phone */
+        margin-top: -40px; /* Less overlap on phone */
+    }
+    
+    .card {
+        padding: 40px 20px !important; /* More space inside the card */
     }
 }
+
 
 /* --- CLICKABLE MAP OVERLAY --- */
 .map-hero {
