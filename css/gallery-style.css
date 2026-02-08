@@ -55,23 +55,12 @@
     border-bottom: 1px solid #222;
 }
 
-.lux-btn {
-    background: transparent;
-    border: 1px solid #333;
-    color: #888;
-    padding: 12px 30px;
+/* IMPORTANT: I removed the .lux-btn code from here.
+   Now it will use the correct "Rolling" style from styles.css.
+   We only keep the margin for spacing.
+*/
+.filter-sticky-bar .lux-btn {
     margin: 0 10px;
-    font-family: 'Cinzel', serif;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.lux-btn:hover, .lux-btn.active {
-    border-color: #C5A059;
-    color: #0a0a0a;
-    background: #C5A059;
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4);
 }
 
 /* --- 3. EDITORIAL SHOWCASE (The Zig-Zag) --- */
@@ -100,6 +89,7 @@
 .art-image {
     width: 50%;
     position: relative;
+    cursor: pointer; /* Indicates clickable */
 }
 
 .img-frame {
@@ -119,6 +109,21 @@
 
 .art-piece:hover .img-frame img {
     transform: scale(1.1); /* Smooth slow zoom */
+}
+
+/* Shine Effect */
+.shine {
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(197,160,89,0.2) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+
+.art-piece:hover .shine {
+    left: 150%;
+    transition: 0.7s;
 }
 
 /* TEXT STYLING */
@@ -150,20 +155,8 @@
     margin-bottom: 40px;
 }
 
-.inquire-btn {
-    background: transparent;
-    color: #C5A059;
-    border: 1px solid #C5A059;
-    padding: 15px 40px;
-    font-family: 'Cinzel', serif;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.inquire-btn:hover {
-    background: #C5A059;
-    color: #000;
-}
+/* REMOVED .inquire-btn class to prevent conflicts. 
+   We use .lux-btn everywhere now. */
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
