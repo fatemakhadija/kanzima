@@ -190,103 +190,173 @@ nav a:hover, nav a.active {
 /* =========================================
    5. ART DECO CARD (LUXURY BOXES)
    ========================================= */
-.card {
+/* =========================================
+   MUGHAL ROYAL CARD (Intricate Frame)
+   ========================================= */
+.royal-card {
     position: relative;
     width: 100%;
     max-width: 600px;
     margin: 60px auto;
-    padding: 60px 30px;
-    background-color: #050505;
-    border: 1px solid rgba(197, 160, 89, 0.4);
-    text-align: center;
-    transition: transform 0.3s ease;
+    padding: 3px; /* Space for the outer gold ring */
+    background: linear-gradient(135deg, #C5A059 0%, #8C6E42 100%); /* Gold Gradient Border */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-.card:hover {
-    transform: translateY(-5px);
+.royal-card-inner {
+    background-color: #080808; /* Deep Black Inside */
+    padding: 60px 40px;
+    position: relative;
+    /* The Inner Frame Line */
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    outline: 1px solid rgba(197, 160, 89, 0.3);
+    outline-offset: -10px; /* Creates the double-line effect */
 }
 
-.card h2 {
+/* --- THE 4 CORNER ORNAMENTS (The "Stepped" Look) --- */
+.mughal-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #C5A059;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+/* Top Left */
+.mughal-corner.top-left {
+    top: 10px; left: 10px;
+    border-right: none; border-bottom: none;
+}
+.mughal-corner.top-left::after {
+    content: ''; position: absolute; top: 8px; left: 8px;
+    width: 100%; height: 100%;
+    border-top: 1px solid #C5A059; border-left: 1px solid #C5A059;
+}
+
+/* Top Right */
+.mughal-corner.top-right {
+    top: 10px; right: 10px;
+    border-left: none; border-bottom: none;
+}
+.mughal-corner.top-right::after {
+    content: ''; position: absolute; top: 8px; right: 8px;
+    width: 100%; height: 100%;
+    border-top: 1px solid #C5A059; border-right: 1px solid #C5A059;
+}
+
+/* Bottom Left */
+.mughal-corner.bottom-left {
+    bottom: 10px; left: 10px;
+    border-right: none; border-top: none;
+}
+.mughal-corner.bottom-left::after {
+    content: ''; position: absolute; bottom: 8px; left: 8px;
+    width: 100%; height: 100%;
+    border-bottom: 1px solid #C5A059; border-left: 1px solid #C5A059;
+}
+
+/* Bottom Right */
+.mughal-corner.bottom-right {
+    bottom: 10px; right: 10px;
+    border-left: none; border-top: none;
+}
+.mughal-corner.bottom-right::after {
+    content: ''; position: absolute; bottom: 8px; right: 8px;
+    width: 100%; height: 100%;
+    border-bottom: 1px solid #C5A059; border-right: 1px solid #C5A059;
+}
+
+/* Hover Effect: Corners Glow */
+.royal-card:hover .mughal-corner {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(197,160,89,0.5);
+}
+
+/* --- TYPOGRAPHY & DIVIDER --- */
+.royal-card h1, .royal-card h2 {
+    font-family: 'Cinzel', serif;
+    color: #C5A059;
     font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: var(--primary-gold);
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.card-divider {
-    width: 60px; height: 1px;
-    background: var(--primary-gold);
-    margin: 0 auto 30px;
+/* Traditional Ornamental Divider */
+.mughal-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0 30px 0;
+}
+.mughal-divider::before, .mughal-divider::after {
+    content: '';
+    height: 1px; width: 60px;
+    background: linear-gradient(to right, transparent, #C5A059, transparent);
+}
+.mughal-divider span {
+    color: #C5A059;
+    font-size: 1.5rem;
+    padding: 0 15px;
+    font-family: serif; /* Looks like a diamond/floral mark */
 }
 
-.card p {
+/* Content Text */
+.royal-card p, .royal-card a, .royal-card span {
     font-family: 'Lato', sans-serif;
-    color: var(--text-light);
+    color: #E6DCCA;
     font-size: 1.1rem;
     line-height: 1.8;
-    margin-bottom: 40px;
 }
 
-/* Offset Corners */
-.corner {
-    position: absolute;
-    width: 24px; height: 24px;
-    border: 2px solid var(--primary-gold);
-    transition: all 0.4s ease;
-    z-index: 2;
-}
-
-.corner.top.left { top: -8px; left: -8px; border-right: none; border-bottom: none; }
-.corner.top.right { top: -8px; right: -8px; border-left: none; border-bottom: none; }
-.corner.bottom.left { bottom: -8px; left: -8px; border-right: none; border-top: none; }
-.corner.bottom.right { bottom: -8px; right: -8px; border-left: none; border-top: none; }
-
-.card:hover .corner {
-    width: 35px; height: 35px;
-    border-color: #fff;
-}
-
-/* Diamond Tip Button */
-.art-deco-btn {
-    position: relative;
+/* --- THE DIAMOND BUTTON (Exact Replica) --- */
+.diamond-btn-container {
     display: inline-block;
-    height: 45px;
-    line-height: 45px;
-    padding: 0 40px;
-    background: transparent;
-    color: var(--primary-gold);
-    font-family: 'Cinzel', serif;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    border: none;
-    border-top: 1px solid var(--primary-gold);
-    border-bottom: 1px solid var(--primary-gold);
-    transition: all 0.3s ease;
+    position: relative;
+    margin-top: 30px;
+    padding: 0 20px;
 }
 
-.art-deco-btn span.left, .art-deco-btn span.right {
+.diamond-btn {
+    background: transparent;
+    border: none;
+    border-top: 1px solid #C5A059;
+    border-bottom: 1px solid #C5A059;
+    color: #C5A059;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    padding: 12px 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.4s;
+}
+
+/* The Hollow Diamonds on the sides */
+.diamond-btn-container::before, .diamond-btn-container::after {
+    content: '';
     position: absolute;
     top: 50%;
-    width: 10px; height: 10px;
-    background: #050505;
-    border: 1px solid var(--primary-gold);
+    width: 12px; height: 12px;
+    border: 1px solid #C5A059;
     transform: translateY(-50%) rotate(45deg);
-    transition: all 0.3s ease;
+    transition: 0.4s;
 }
+.diamond-btn-container::before { left: 0; }
+.diamond-btn-container::after { right: 0; }
 
-.art-deco-btn span.left { left: -6px; border-right: none; border-top: none; }
-.art-deco-btn span.right { right: -6px; border-left: none; border-bottom: none; }
-
-.art-deco-btn:hover {
-    color: #fff;
+/* Button Hover */
+.diamond-btn:hover {
     background: rgba(197, 160, 89, 0.1);
-}
-
-.art-deco-btn:hover span.left, .art-deco-btn:hover span.right {
-    background: var(--primary-gold);
+    color: #fff;
     border-color: #fff;
 }
+.diamond-btn-container:hover::before, .diamond-btn-container:hover::after {
+    background: #C5A059;
+    border-color: #fff;
+}
+
 
 /* =========================================
    6. ANIMATIONS & EFFECTS
