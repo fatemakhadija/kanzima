@@ -266,71 +266,78 @@ body {
     z-index: 10;
 }
 
-/* --- THE "ROLLING GOLD" LUXURY BUTTON --- */
+
+/* --- FIXED: ROLLING GOLD BUTTON --- */
 .lux-btn {
     position: relative;
     display: inline-block;
-    padding: 15px 40px;
+    /* CHANGE 1: Remove padding from container so overflow works */
+    padding: 0; 
     background: transparent;
-    border: 1px solid rgba(197, 160, 89, 0.3); /* Faint Gold Border */
+    border: 1px solid rgba(197, 160, 89, 0.3);
     color: #C5A059;
     font-family: 'Cinzel', serif;
     font-size: 0.9rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: none;
-    overflow: hidden; /* Hides the rolling text */
+    overflow: hidden; /* This now correctly cuts off the second text */
     cursor: pointer;
     transition: all 0.5s ease;
 }
 
-/* 1. The Text Container (Holds both lines) */
+/* 1. The Text Container */
 .btn-content {
     display: block;
     position: relative;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* "Expo" Ease for snappy feel */
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* 2. The Two Lines of Text */
+/* 2. Primary Text (Visible) */
 .btn-text-primary {
     display: block;
+    /* CHANGE 2: Add padding here to give the button its size */
+    padding: 15px 40px; 
 }
 
+/* 3. Secondary Text (Hidden Below) */
 .btn-text-secondary {
     display: block;
     position: absolute;
-    top: 100%; /* Sits just below the visible area */
+    top: 100%; /* Sits exactly below the primary text */
     left: 0;
     width: 100%;
-    color: #000; /* Text turns black on hover */
+    /* CHANGE 3: Add matching padding so it looks identical */
+    padding: 15px 40px; 
+    color: #000; /* Black text for contrast */
 }
 
-/* 3. The Background Fill (slides up) */
+/* 4. The Gold Background Fill */
 .lux-btn::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: #C5A059; /* Gold Background */
-    transform: scaleY(0); /* Hidden vertically */
+    background: #C5A059;
+    transform: scaleY(0);
     transform-origin: bottom;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     z-index: -1;
 }
 
-/* --- HOVER ACTIONS --- */
-.lux-btn:hover {
+/* --- HOVER & ACTIVE STATES --- */
+.lux-btn:hover, .lux-btn.active {
     border-color: #C5A059;
-    box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); /* Glow */
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
 }
 
-/* Slide the text up */
-.lux-btn:hover .btn-content {
+/* Active/Hover: Slide Text Up */
+.lux-btn:hover .btn-content, .lux-btn.active .btn-content {
     transform: translateY(-100%);
 }
 
-/* Slide the gold background up */
-.lux-btn:hover::before {
+/* Active/Hover: Slide Gold Background Up */
+.lux-btn:hover::before, .lux-btn.active::before {
     transform: scaleY(1);
 }
 
