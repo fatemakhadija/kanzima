@@ -7,9 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/styles.css">
     
     <style>
@@ -19,36 +17,45 @@
             gap: 15px;
         }
         
-        /* Each image takes up half the space */
         .image-pair img {
             width: 50%;
-            height: 400px; /* Fixed height for uniformity */
+            height: 400px;
             object-fit: cover;
             border: 1px solid #C5A059;
             transition: transform 0.5s ease;
         }
 
-        /* Hover effect: One grows, one shrinks slightly */
         .image-pair:hover img:hover {
             transform: scale(1.05);
             z-index: 2;
         }
 
-        /* Mobile Fix for Image Pairs */
+        /* Mobile Fixes */
         @media (max-width: 768px) {
             .image-pair {
-                flex-direction: column; /* Stack on phone */
+                flex-direction: column; 
             }
             .image-pair img {
                 width: 100%;
                 height: 300px;
             }
         }
+
+        /* DESKTOP ZIG-ZAG FIX 
+           This ensures Step 2 Images appear on the LEFT on desktop,
+           even though they are second in the code.
+        */
+        @media (min-width: 769px) {
+            .swap-desktop div:nth-child(1) { order: 2; } /* Text goes Right */
+            .swap-desktop div:nth-child(2) { order: 1; } /* Image goes Left */
+        }
     </style>
 </head>
 <body>
 
-    <header></header> <img src="images/thread-needle.gif" class="floating-needle" alt="Sewing Animation">
+    <header></header>
+
+    <img src="images/thread-needle.gif" class="floating-needle" alt="Sewing Animation">
 
     <div class="page-header" style="background-image: url('images/process-3.jpg'); height: 50vh;">
         <div class="hero-overlay"></div>
@@ -84,17 +91,17 @@
     </section>
 
     <section class="content-section">
-        <div class="grid-2" style="margin-top:100px;" data-aos="fade-left">
+        <div class="grid-2 swap-desktop" style="margin-top:100px;" data-aos="fade-left">
             
-            <div class="image-pair">
-                 <img src="images/process-2-1.jpg" alt="Tracing Process">
-                <img src="images/process-2.jpg" alt="Fabric Selection">
-            </div>
-
             <div>
                 <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">02</h1>
                 <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Tracing</h2>
                 <p>The design is transferred onto the fabric using traditional methods. We select the finest silks and velvets, ensuring the foundation is as royal as the embroidery itself.</p>
+            </div>
+
+            <div class="image-pair">
+                <img src="images/process-2-1.jpg" alt="Tracing Process">
+                <img src="images/process-2.jpg" alt="Fabric Selection">
             </div>
         </div>
     </section>
@@ -108,21 +115,22 @@
             </div>
             
             <div>
-                 <img src="images/process-3.jpg" alt="Zardozi Embroidery" style="width:100%; height: 500px; object-fit: cover; border: 1px solid #C5A059;">
+                <img src="images/process-3.jpg" alt="Zardozi Embroidery" style="width:100%; height: 500px; object-fit: cover; border: 1px solid #C5A059;">
             </div>
         </div>
     </section>
 
     <section class="content-section" style="padding-bottom: 100px;">
-        <div class="grid-2" style="margin-top:100px;" data-aos="fade-left">
-            <div style="width:100%; height:400px; background: #111; border: 1px solid #333; display: flex; align-items: center; justify-content: center;">
-                <p style="color: #666; font-family: 'Cinzel', serif;">Final Fitting Image Coming Soon</p>
-            </div>
-
+        <div class="grid-2 swap-desktop" style="margin-top:100px;" data-aos="fade-left">
+            
             <div>
                 <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">04</h1>
                 <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Grand Reveal</h2>
                 <p>The pieces are stitched together, lined with comfort, and fitted to perfection. The result is not just a dress, but a piece of art ready for your special day.</p>
+            </div>
+
+            <div style="width:100%; height:400px; background: #111; border: 1px solid #333; display: flex; align-items: center; justify-content: center;">
+                <p style="color: #666; font-family: 'Cinzel', serif;">Final Fitting Image Coming Soon</p>
             </div>
         </div>
     </section>
@@ -134,7 +142,6 @@
     <script>
         AOS.init();
 
-        // SCROLL REVEAL SCRIPT
         window.addEventListener('scroll', revealStory);
         function revealStory() {
             var reveals = document.querySelectorAll('.reveal-line');
