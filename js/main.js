@@ -70,3 +70,30 @@ function highlightCurrentPage() {
         }
     });
 }
+/* js/main.js - Add this at the bottom */
+
+// MAGNETIC BUTTON EFFECT
+const buttons = document.querySelectorAll('.lux-btn');
+
+buttons.forEach(btn => {
+    btn.addEventListener('mousemove', function(e) {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left; // Mouse X inside button
+        const y = e.clientY - rect.top;  // Mouse Y inside button
+        
+        // Calculate distance from center
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const deltaX = (x - centerX) * 0.3; // 0.3 is the magnetic strength
+        const deltaY = (y - centerY) * 0.3;
+
+        // Move the button slightly
+        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    });
+
+    // Reset when mouse leaves
+    btn.addEventListener('mouseleave', function() {
+        btn.style.transform = `translate(0px, 0px)`;
+    });
+});
