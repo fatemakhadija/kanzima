@@ -9,47 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    
-    <style>
-        /* Container for side-by-side images */
-        .image-pair {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .image-pair img {
-            width: 50%;
-            height: 400px;
-            object-fit: cover;
-            border: 1px solid #C5A059;
-            transition: transform 0.5s ease;
-        }
-
-        .image-pair:hover img:hover {
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        /* Mobile Fixes */
-        @media (max-width: 768px) {
-            .image-pair {
-                flex-direction: column; 
-            }
-            .image-pair img {
-                width: 100%;
-                height: 300px;
-            }
-        }
-
-        /* DESKTOP ZIG-ZAG FIX 
-           This ensures Step 2 Images appear on the LEFT on desktop,
-           even though they are second in the code.
-        */
-        @media (min-width: 769px) {
-            .swap-desktop div:nth-child(1) { order: 2; } /* Text goes Right */
-            .swap-desktop div:nth-child(2) { order: 1; } /* Image goes Left */
-        }
-    </style>
 </head>
 <body>
 
