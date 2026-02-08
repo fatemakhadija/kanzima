@@ -283,3 +283,56 @@ body {
     cursor: pointer;
     box-shadow: 0 0 15px #C5A059;
 }
+
+/* --- MOBILE RESPONSIVENESS FIXES --- */
+@media (max-width: 768px) {
+    
+    /* 1. Prevent the whole page from sliding left/right */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 2. Shrink the big Banner Text */
+    .hero-content h1 {
+        font-size: 2rem !important; /* Was 4rem, now much smaller */
+        line-height: 1.2;
+    }
+    
+    .hero-content p {
+        font-size: 1rem !important;
+        padding: 0 10px; /* Add breathing room so it doesn't touch edges */
+    }
+
+    /* 3. Fix the "Content Box" width */
+    /* On mobile, 40px padding is too much. We reduce it to 20px. */
+    .content-box {
+        width: 90% !important; /* Force it to fit within screen */
+        margin: 0 auto;        /* Center it */
+        padding: 20px !important; 
+    }
+
+    /* 4. Fix Headers in the text sections */
+    .content-section h2 {
+        font-size: 1.8rem;
+    }
+
+    /* 5. Adjust the "Grid" to stack items vertically */
+    .grid-2 {
+        grid-template-columns: 1fr !important; /* Force single column */
+        gap: 20px;
+    }
+    
+    /* 6. Fix Navigation Menu (Simple Mobile View) */
+    /* This ensures the menu doesn't break on small screens */
+    header {
+        padding: 10px 5%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav ul {
+        gap: 15px;
+        font-size: 0.9rem;
+    }
+}
