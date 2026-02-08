@@ -265,44 +265,73 @@ body {
     box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
     z-index: 10;
 }
-/* --- LUXURY ANIMATED BUTTON --- */
-.cta-button, .lux-btn, .inquire-btn {
+
+/* --- THE "ROLLING GOLD" LUXURY BUTTON --- */
+.lux-btn {
     position: relative;
     display: inline-block;
     padding: 15px 40px;
-    color: #C5A059; /* Gold Text */
-    border: 1px solid #C5A059;
     background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.3); /* Faint Gold Border */
+    color: #C5A059;
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    overflow: hidden; /* Keeps the animation inside the button */
-    transition: color 0.4s ease;
-    z-index: 1;
+    text-decoration: none;
+    overflow: hidden; /* Hides the rolling text */
     cursor: pointer;
+    transition: all 0.5s ease;
 }
 
-/* The "Sweep" Layer (Hidden by default) */
-.cta-button::before, .lux-btn::before, .inquire-btn::before {
+/* 1. The Text Container (Holds both lines) */
+.btn-content {
+    display: block;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1); /* "Expo" Ease for snappy feel */
+}
+
+/* 2. The Two Lines of Text */
+.btn-text-primary {
+    display: block;
+}
+
+.btn-text-secondary {
+    display: block;
+    position: absolute;
+    top: 100%; /* Sits just below the visible area */
+    left: 0;
+    width: 100%;
+    color: #000; /* Text turns black on hover */
+}
+
+/* 3. The Background Fill (slides up) */
+.lux-btn::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 0%; /* Starts empty */
-    height: 100%;
-    background: #C5A059; /* Gold Fill */
-    z-index: -1; /* Behind the text */
-    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth luxury ease */
+    width: 100%; height: 100%;
+    background: #C5A059; /* Gold Background */
+    transform: scaleY(0); /* Hidden vertically */
+    transform-origin: bottom;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
 }
 
-/* HOVER STATE */
-.cta-button:hover, .lux-btn:hover, .inquire-btn:hover {
-    color: #000; /* Text turns black for contrast */
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); /* Glow */
+/* --- HOVER ACTIONS --- */
+.lux-btn:hover {
+    border-color: #C5A059;
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); /* Glow */
 }
 
-.cta-button:hover::before, .lux-btn:hover::before, .inquire-btn:hover::before {
-    width: 100%; /* Fills the button */
+/* Slide the text up */
+.lux-btn:hover .btn-content {
+    transform: translateY(-100%);
+}
+
+/* Slide the gold background up */
+.lux-btn:hover::before {
+    transform: scaleY(1);
 }
 
 
