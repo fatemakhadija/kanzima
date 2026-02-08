@@ -265,24 +265,46 @@ body {
     box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
     z-index: 10;
 }
-
-.cta-button {
+/* --- LUXURY ANIMATED BUTTON --- */
+.cta-button, .lux-btn, .inquire-btn {
+    position: relative;
     display: inline-block;
+    padding: 15px 40px;
+    color: #C5A059; /* Gold Text */
     border: 1px solid #C5A059;
-    padding: 12px 30px;
-    color: #C5A059;
-    text-transform: uppercase;
+    background: transparent;
     font-family: 'Cinzel', serif;
+    font-size: 1rem;
     letter-spacing: 2px;
-    transition: all 0.3s ease;
+    text-transform: uppercase;
+    overflow: hidden; /* Keeps the animation inside the button */
+    transition: color 0.4s ease;
+    z-index: 1;
+    cursor: pointer;
 }
 
-.cta-button:hover {
-    background: #C5A059;
-    color: #000;
-    cursor: pointer;
-    box-shadow: 0 0 15px #C5A059;
+/* The "Sweep" Layer (Hidden by default) */
+.cta-button::before, .lux-btn::before, .inquire-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0%; /* Starts empty */
+    height: 100%;
+    background: #C5A059; /* Gold Fill */
+    z-index: -1; /* Behind the text */
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth luxury ease */
 }
+
+/* HOVER STATE */
+.cta-button:hover, .lux-btn:hover, .inquire-btn:hover {
+    color: #000; /* Text turns black for contrast */
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); /* Glow */
+}
+
+.cta-button:hover::before, .lux-btn:hover::before, .inquire-btn:hover::before {
+    width: 100%; /* Fills the button */
+}
+
 
 /* --- MOBILE RESPONSIVENESS FIXES --- */
 @media (max-width: 768px) {
