@@ -527,3 +527,36 @@ footer {
         margin-top: -50px; /* Less overlap on phone */
     }
 }
+
+/* --- CLICKABLE MAP OVERLAY --- */
+.map-hero {
+    position: relative; /* Needed for the overlay to sit inside */
+}
+
+.map-link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Sits ON TOP of the iframe */
+    cursor: pointer; /* Shows the hand icon */
+    background: rgba(0,0,0,0); /* Transparent */
+}
+
+/* Optional: Show a "Get Directions" hint when hovering */
+.map-hero:hover::after {
+    content: 'Click for Directions';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: #C5A059;
+    padding: 10px 20px;
+    border: 1px solid #C5A059;
+    font-family: 'Cinzel', serif;
+    z-index: 6;
+    pointer-events: none; /* Let the click pass through */
+}
+
