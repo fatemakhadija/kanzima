@@ -489,62 +489,63 @@ footer {
     .filter-sticky-bar { overflow-x: auto; white-space: nowrap; justify-content: flex-start; }
 }
 
-/* --- FIX FOR CONTACT PAGE --- */
+/* --- FIX FOR CONTACT PAGE (No Overlap Version) --- */
 
-/* 1. Push the map down so the Header doesn't cover it */
+/* 1. Map Section */
 .map-hero {
     width: 100%;
-    height: 50vh; /* Reduced height for better mobile view */
+    height: 50vh; /* Takes half the screen height */
     position: relative;
     overflow: hidden;
-    margin-top: 85px; /* CRITICAL FIX: Pushes map below the header */
-    border-bottom: 2px solid #C5A059;
+    margin-top: 85px; /* Pushes map below the Header */
+    border-bottom: 2px solid #C5A059; /* Gold line separator */
 }
 
 .map-hero iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Removed the dark filter so the map is clearer, as requested */
     border: 0;
 }
 
-/* 2. The Transparent Link Layer (For clicking the map) */
+/* 2. Transparent Click Layer */
 .map-link-overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    z-index: 10; /* Sits on top */
+    z-index: 10;
     background: transparent;
     cursor: pointer;
 }
 
-/* 3. The Card Container */
+/* 3. Card Container (FIXED: No Overlap) */
 .contact-overlay-container {
     position: relative;
-    margin-top: -60px; /* Slight overlap looks classy, not messy */
-    z-index: 20; /* Sits above the map overlay */
-    padding-bottom: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 0; /* CHANGED: No more negative margin */
+    padding-top: 60px; /* Adds space between Map and Card */
+    padding-bottom: 60px;
+    z-index: 20;
+    background-color: #050505; /* Matches body background */
 }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
     .map-hero {
-        height: 45vh; /* Even smaller on phone so you see the card immediately */
-        margin-top: 80px; /* Adjust for mobile header height */
+        height: 40vh; /* Slightly smaller map on phone */
+        margin-top: 80px; 
     }
     
     .contact-overlay-container {
-        margin-top: -40px; /* Less overlap on phone */
+        margin-top: 0; 
+        padding-top: 40px; /* Less gap on mobile */
     }
     
+    /* Make the card slightly narrower on mobile for style */
     .card {
-        padding: 40px 20px !important; /* More space inside the card */
+        width: 90% !important;
+        margin: 0 auto;
     }
 }
-
 
 /* --- CLICKABLE MAP OVERLAY --- */
 .map-hero {
