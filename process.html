@@ -3,59 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Royal Process | KANZIMA</title>
+    <title>The Royal Process | KANZIMA</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* Container for side-by-side images */
+        .image-pair {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Each image takes up half the space */
+        .image-pair img {
+            width: 50%;
+            height: 400px; /* Fixed height for uniformity */
+            object-fit: cover;
+            border: 1px solid #C5A059;
+            transition: transform 0.5s ease;
+        }
+
+        /* Hover effect: One grows, one shrinks slightly */
+        .image-pair:hover img:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        /* Mobile Fix for Image Pairs */
+        @media (max-width: 768px) {
+            .image-pair {
+                flex-direction: column; /* Stack on phone */
+            }
+            .image-pair img {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header></header> <img src="images/thread-needle.gif" class="floating-needle" alt="Sewing Animation">
 
-    <div class="page-header" style="background-image: url('images/banner-3.jpg'); height: 50vh;">
-        <h1 data-aos="fade-down">The Journey of a Dress</h1>
-        <p data-aos="fade-up">From a Sketch to a Masterpiece</p>
+    <div class="page-header" style="background-image: url('images/process-3.jpg'); height: 50vh;">
+        <div class="hero-overlay"></div>
+        <div style="position: relative; z-index: 2;">
+            <h1 data-aos="fade-down">The Journey</h1>
+            <div class="gold-line"></div>
+            <p data-aos="fade-up">From Sketch to Reality</p>
+        </div>
     </div>
 
     <section class="content-section">
         <div class="story-text">
-            <p class="reveal-line">At Kanzima, we do not simply sew clothes.</p>
-            <p class="reveal-line">We weave your dreams into reality.</p>
-            <p class="reveal-line">Every thread is chosen with intent.</p>
-            <p class="reveal-line">Every needle pass is a prayer for perfection.</p>
+            <p class="reveal-line">Every masterpiece begins with a thought.</p>
+            <p class="reveal-line">A line drawn on paper.</p>
+            <p class="reveal-line">A thread chosen with purpose.</p>
+            <p class="reveal-line">This is how we craft your legacy.</p>
         </div>
     </section>
 
     <section class="content-section">
-        
         <div class="grid-2" data-aos="fade-right">
             <div>
-                <h1 style="color:#C5A059; font-size:4rem;">01</h1>
-                <h2>The Consultation</h2>
-                <p>It starts with a conversation. We discuss your occasion, your inspirations, and your budget. Whether it's a bridal lehenga or an evening gown, we listen to your heart.</p>
+                <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">01</h1>
+                <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Khaka (Blueprint)</h2>
+                <p>Before a single stitch is made, the design is born on paper. This is the 'Khaka'—the soul of the dress. We draft intricate patterns that trace the flow of the embroidery.</p>
             </div>
-            <img src="images/banner-1.jpg" alt="Consultation" style="width:100%; border:1px solid #C5A059;">
+            
+            <div class="image-pair">
+                <img src="images/process-1-khaka-1.jpg" alt="Initial Sketch">
+                <img src="images/process-1-khaka-2.jpg" alt="Khaka Design Detail">
+            </div>
         </div>
+    </section>
 
+    <section class="content-section">
         <div class="grid-2" style="margin-top:100px;" data-aos="fade-left">
-            <img src="images/banner-2.jpg" alt="Sketching" style="width:100%; border:1px solid #C5A059;">
+            
+            <div class="image-pair">
+                 <img src="images/process-2-1.jpg" alt="Tracing Process">
+                <img src="images/process-2.jpg" alt="Fabric Selection">
+            </div>
+
             <div>
-                <h1 style="color:#C5A059; font-size:4rem;">02</h1>
-                <h2>The Sketch & Fabric</h2>
-                <p>Our designers translate your ideas into a paper sketch. Once approved, we source the finest silks, velvets, and organzas from authentic weavers.</p>
+                <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">02</h1>
+                <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Tracing</h2>
+                <p>The design is transferred onto the fabric using traditional methods. We select the finest silks and velvets, ensuring the foundation is as royal as the embroidery itself.</p>
             </div>
         </div>
+    </section>
 
+    <section class="content-section">
         <div class="grid-2" style="margin-top:100px;" data-aos="fade-right">
             <div>
-                <h1 style="color:#C5A059; font-size:4rem;">03</h1>
-                <h2>The Zardozi Craft</h2>
-                <p>The fabric is mounted on the 'Adda'. Our master artisans (Karigars) hand-embroider every motif using real gold threads, pearls, and Swarovski crystals.</p>
+                <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">03</h1>
+                <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Golden Stitch</h2>
+                <p>The fabric is mounted on the 'Adda' (wooden frame). Our master Karigars begin the painstaking work of Zardozi, adding gold wires, pearls, and sequins stitch by stitch.</p>
             </div>
-            <img src="images/banner-3.jpg" alt="Embroidery" style="width:100%; border:1px solid #C5A059;">
+            
+            <div>
+                 <img src="images/process-3.jpg" alt="Zardozi Embroidery" style="width:100%; height: 500px; object-fit: cover; border: 1px solid #C5A059;">
+            </div>
         </div>
+    </section>
 
+    <section class="content-section" style="padding-bottom: 100px;">
+        <div class="grid-2" style="margin-top:100px;" data-aos="fade-left">
+            <div style="width:100%; height:400px; background: #111; border: 1px solid #333; display: flex; align-items: center; justify-content: center;">
+                <p style="color: #666; font-family: 'Cinzel', serif;">Final Fitting Image Coming Soon</p>
+            </div>
+
+            <div>
+                <h1 style="color:#C5A059; font-size:4rem; margin-bottom: 0;">04</h1>
+                <h2 style="font-family: 'Cinzel', serif; margin-bottom: 20px;">The Grand Reveal</h2>
+                <p>The pieces are stitched together, lined with comfort, and fitted to perfection. The result is not just a dress, but a piece of art ready for your special day.</p>
+            </div>
+        </div>
     </section>
 
     <footer></footer>
