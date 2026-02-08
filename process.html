@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Royal Process | KANZIMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header></header> <img src="images/thread-needle.gif" class="floating-needle" alt="Sewing Animation">
+
+    <div class="page-header" style="background-image: url('images/banner-3.jpg'); height: 50vh;">
+        <h1 data-aos="fade-down">The Journey of a Dress</h1>
+        <p data-aos="fade-up">From a Sketch to a Masterpiece</p>
+    </div>
+
+    <section class="content-section">
+        <div class="story-text">
+            <p class="reveal-line">At Kanzima, we do not simply sew clothes.</p>
+            <p class="reveal-line">We weave your dreams into reality.</p>
+            <p class="reveal-line">Every thread is chosen with intent.</p>
+            <p class="reveal-line">Every needle pass is a prayer for perfection.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        
+        <div class="grid-2" data-aos="fade-right">
+            <div>
+                <h1 style="color:#C5A059; font-size:4rem;">01</h1>
+                <h2>The Consultation</h2>
+                <p>It starts with a conversation. We discuss your occasion, your inspirations, and your budget. Whether it's a bridal lehenga or an evening gown, we listen to your heart.</p>
+            </div>
+            <img src="images/banner-1.jpg" alt="Consultation" style="width:100%; border:1px solid #C5A059;">
+        </div>
+
+        <div class="grid-2" style="margin-top:100px;" data-aos="fade-left">
+            <img src="images/banner-2.jpg" alt="Sketching" style="width:100%; border:1px solid #C5A059;">
+            <div>
+                <h1 style="color:#C5A059; font-size:4rem;">02</h1>
+                <h2>The Sketch & Fabric</h2>
+                <p>Our designers translate your ideas into a paper sketch. Once approved, we source the finest silks, velvets, and organzas from authentic weavers.</p>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:100px;" data-aos="fade-right">
+            <div>
+                <h1 style="color:#C5A059; font-size:4rem;">03</h1>
+                <h2>The Zardozi Craft</h2>
+                <p>The fabric is mounted on the 'Adda'. Our master artisans (Karigars) hand-embroider every motif using real gold threads, pearls, and Swarovski crystals.</p>
+            </div>
+            <img src="images/banner-3.jpg" alt="Embroidery" style="width:100%; border:1px solid #C5A059;">
+        </div>
+
+    </section>
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // SCROLL REVEAL SCRIPT
+        window.addEventListener('scroll', revealStory);
+        function revealStory() {
+            var reveals = document.querySelectorAll('.reveal-line');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('visible');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
