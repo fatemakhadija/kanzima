@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | KANZIMA COUTURE</title>
+    <title>KANZIMA COUTURE | Handcrafted Elegance</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -19,28 +22,53 @@
     </div>
 
     <header></header>
+    
     <div id="banner-container"></div>
 
     <div class="thread-container" id="thread-wrapper">
-        <svg id="thread-svg" width="100%" height="100%" preserveAspectRatio="none">
+        <svg id="thread-svg" width="100%" height="100%" style="overflow: visible;">
             <path id="scroll-thread" d="" />
         </svg>
     </div>
 
-    <section class="content-section">
+    <section class="content-section" data-aos="fade-up" data-aos-duration="1500">
         <div class="content-box">
-            <h2>The Art of Zardozi</h2>
-            <p>At Kanzima Couture, we do not just make dresses; we craft legacies. 
-               Using the ancient art of Zardozi, every thread is hand-woven with precision.</p>
+            <h2 style="color: #C5A059; font-family: 'Cinzel', serif;">The Art of Hand Zari</h2>
+            <div style="width: 50px; height: 2px; background: #C5A059; margin: 15px auto;"></div>
+            <p style="margin-top: 15px;">
+                True luxury lies in the details. At <strong>Kanzima Couture</strong>, we revive the royal era of Zardozi. 
+                Using authentic gold and silver threads, pearls, and precious stones, we craft heirlooms, not just garments.
+            </p>
         </div>
     </section>
 
-    <section class="content-section" style="background: #080808; height: 800px;"> <div class="content-box">
-            <h2>Our Process</h2>
-            <p>From the first sketch to the final stitch, perfection is our only standard.</p>
-            <br>
-            <div style="width:100%; height:300px; background:#111; border:1px solid #333; display:flex; align-items:center; justify-content:center;">
-                <p style="color:#555;">[ Process Image Here ]</p>
+    <section class="content-section">
+        <div class="content-box" style="max-width: 1000px;">
+            <div class="grid-2">
+                <div style="text-align: left;" data-aos="fade-right" data-aos-duration="1500">
+                    <h2 style="color: #C5A059; font-family: 'Cinzel', serif;">A Legacy of Craftsmanship</h2>
+                    <p style="margin-top: 15px; margin-bottom: 20px;">
+                        Our artisans spend hundreds of hours on a single piece. 
+                        The fabric is stretched on a traditional <em>Adda</em>, 
+                        where the needle dances to create intricate floral and paisley motifs.
+                    </p>
+                    <a href="contact.html" class="cta-button">Book Consultation</a>
+                </div>
+                <div data-aos="fade-left" data-aos-duration="1500">
+                    <img src="images/banner-3.jpg" alt="Zardozi Process" class="hover-zoom" style="width: 100%; border: 1px solid #8C6E42;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="content-box">
+            <h2 style="color: #C5A059; font-family: 'Cinzel', serif;" data-aos="zoom-in">The Royal Bride</h2>
+            <p style="margin-top: 10px;" data-aos="fade-up" data-aos-delay="300">Designed for the woman who demands elegance.</p>
+            
+            <div class="grid-2" style="margin-top: 40px;">
+                <img src="images/banner-4.jpg" alt="Bridal Lehenga" class="hover-zoom" data-aos="flip-left" data-aos-duration="2000" style="width: 100%; height: 400px; object-fit: cover; border: 1px solid #8C6E42;">
+                <img src="images/banner-5.jpg" alt="Intricate Detail" class="hover-zoom" data-aos="flip-right" data-aos-duration="2000" style="width: 100%; height: 400px; object-fit: cover; border: 1px solid #8C6E42;">
             </div>
         </div>
     </section>
@@ -48,83 +76,62 @@
     <footer></footer>
 
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/particles-config.js"></script>
-
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
+        // 1. Initialize AOS (Scroll Animations)
+        AOS.init();
+
+        // 2. Preloader & Thread Logic (Same as before)
         document.addEventListener("DOMContentLoaded", function() {
-            
-            // --- A. Preloader Logic ---
+            // Hide Preloader
             const preloader = document.getElementById("preloader");
             window.addEventListener("load", function() {
                 setTimeout(() => {
                     preloader.style.opacity = "0";
                     setTimeout(() => { preloader.style.display = "none"; }, 500);
-                }, 1500); // Wait 1.5s so user sees the animation
+                    updateThread(); 
+                }, 1000);
             });
 
-            // --- B. Thread Scroll Logic ---
+            // Thread Logic
             const threadPath = document.getElementById("scroll-thread");
             const threadWrapper = document.getElementById("thread-wrapper");
-            
-            function setupThread() {
-                // 1. Calculate the total scrollable height below the banner
-                const bannerHeight = window.innerHeight; // The banner is 100vh
-                const totalPageHeight = document.body.scrollHeight;
-                const threadHeight = totalPageHeight - bannerHeight;
+            let pathLength = 0;
 
-                // 2. Set SVG container to match that height
+            function updateThread() {
+                const bannerHeight = window.innerHeight;
+                const bodyHeight = document.body.scrollHeight;
+                const threadHeight = bodyHeight - bannerHeight;
+                if (threadHeight <= 0) return;
+
                 threadWrapper.style.height = threadHeight + "px";
-
-                // 3. Draw a wavy line (Sine Wave) dynamically based on height
-                // M = Move to (Top Center), Q = Quadratic Curve
-                // We create a wavy line down the center (50%)
                 const width = window.innerWidth;
                 const center = width / 2;
-                
-                // Construct path: Straight line down with slight curves
-                // M (Start) -> L (Line to bottom)
-                // A simple straight line is cleaner for Zari work themes
-                const pathString = `M ${center} 0 L ${center} ${threadHeight}`;
-                
-                threadPath.setAttribute("d", pathString);
-
-                // 4. Setup Dash Offset (This hides the line initially)
-                const pathLength = threadPath.getTotalLength();
+                let d = `M ${center} 0 L ${center} ${threadHeight}`;
+                threadPath.setAttribute("d", d);
+                pathLength = threadPath.getTotalLength();
                 threadPath.style.strokeDasharray = pathLength;
                 threadPath.style.strokeDashoffset = pathLength;
-                
-                return pathLength;
             }
 
-            // Initialize
-            let pathLength = setupThread();
-
-            // Recalculate if window resizes
-            window.addEventListener("resize", () => {
-                pathLength = setupThread();
-            });
-
-            // 5. Sync Scroll to Draw Line
+            window.addEventListener("resize", updateThread);
             window.addEventListener("scroll", () => {
-                // Calculate how far we have scrolled relative to the thread area
                 const scrollY = window.scrollY;
                 const windowHeight = window.innerHeight;
-                
-                // We want the thread to start drawing ONLY when we scroll past the banner
                 if (scrollY > windowHeight) {
-                    const scrolledPastBanner = scrollY - windowHeight;
-                    const totalThreadDistance = document.body.scrollHeight - windowHeight * 2; // Approximate buffer
-                    
-                    // Percentage 0 to 1
-                    let percentage = scrolledPastBanner / totalThreadDistance;
-                    if (percentage > 1) percentage = 1;
-                    if (percentage < 0) percentage = 0;
-
-                    // Draw the line
+                    const scrolledDistance = scrollY - windowHeight;
+                    const totalThreadArea = document.body.scrollHeight - windowHeight - 200;
+                    let percentage = scrolledDistance / totalThreadArea;
+                    percentage = Math.max(0, Math.min(percentage, 1));
                     const drawLength = pathLength * percentage;
                     threadPath.style.strokeDashoffset = pathLength - drawLength;
                 }
             });
+            updateThread();
         });
     </script>
 </body>
