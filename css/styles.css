@@ -1,281 +1,101 @@
-/* --- styles.css --- */
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
 :root {
-    --bg-color: #0a0a0a;
-    --primary-gold: #C5A059;
-    --text-light: #E6DCCA;
-    --accent-bronze: #8C6E42;
+    --bg-color: #050505;       /* Deepest Black */
+    --primary-gold: #C5A059;   /* Kanzima Gold */
+    --text-light: #E6DCCA;     /* Champagne Text */
+    --accent-bronze: #8C6E42;  /* Darker Gold/Bronze */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     background-color: var(--bg-color);
     color: var(--text-light);
     font-family: 'Lato', sans-serif;
-    padding-top: 100px; /* Space for fixed header */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents side scrolling */
+    cursor: crosshair; /* Luxury Cursor */
 }
 
-/* Header Styles */
+/* =========================================
+   2. TYPOGRAPHY
+   ========================================= */
+h1, h2, h3, .logo-text {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+a { 
+    text-decoration: none; 
+    color: inherit; 
+    transition: 0.3s; 
+    cursor: pointer;
+}
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
 header {
-    background-color: rgba(10, 10, 10, 0.95);
+    background-color: rgba(5, 5, 5, 0.95);
     padding: 15px 5%;
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: 2000; /* Above everything */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--accent-bronze);
-    box-sizing: border-box; /* Fixes width issues */
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
-    font-family: 'Cinzel', serif;
-    color: var(--primary-gold);
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.logo-k {
-    font-size: 2.5rem;
-    background: linear-gradient(45deg, var(--primary-gold), var(--accent-bronze));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Cinzel', serif;
+    color: var(--primary-gold);
 }
 
 nav ul {
     display: flex;
     list-style: none;
     gap: 30px;
-    margin: 0;
-    padding: 0;
 }
 
 nav a {
-    text-decoration: none;
-    color: var(--text-light);
-    transition: 0.3s;
-    font-family: 'Cinzel', serif;
-}
-
-nav a:hover {
-    color: var(--primary-gold);
-}
-
-/* Footer Styles */
-footer {
-    text-align: center;
-    padding: 20px;
-    border-top: 1px solid var(--accent-bronze);
-    margin-top: 50px;
     font-size: 0.9rem;
-    color: #666;
-}
-
-/* Common Page Styles */
-.container {
-    padding: 20px 5%;
-    min-height: 60vh;
-}
-
-/* --- HERO SLIDER & ANIMATIONS --- */
-
-.hero-wrapper {
+    letter-spacing: 1px;
     position: relative;
-    width: 100%;
-    height: 100vh; /* Full Screen Height */
-    overflow: hidden;
-    background: #000;
 }
 
-/* Particle Container - Sits on top of images */
-#particles-js {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2; /* Above images, below text */
-    pointer-events: none; /* Let clicks pass through to buttons */
-}
-
-/* The Slider Container */
-.slider {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-/* Individual Slides */
-.slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0; /* Hidden by default */
-    animation: slideAnimation 25s infinite; /* 5 slides x 5 seconds each */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Dark Overlay on images so text pops */
-.slide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 50% Black tint */
-    z-index: 1;
-}
-
-/* Hero Text Styling */
-.hero-content {
-    position: relative;
-    z-index: 3; /* Topmost layer */
+nav a:hover, nav a.active {
     color: var(--primary-gold);
-    max-width: 800px;
-    padding: 20px;
 }
 
-.hero-content h1 {
-    font-size: 4rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: textReveal 5s ease-in-out infinite;
-}
-
-.hero-content p {
-    font-size: 1.5rem;
-    color: var(--text-light);
-    opacity: 0;
-    transform: translateY(30px);
-    animation: textReveal 5s ease-in-out infinite 0.5s; /* 0.5s delay */
-}
-
-/* --- KEYFRAME ANIMATIONS --- */
-
-/* Controls the fading of the Background Images */
-@keyframes slideAnimation {
-    0% { opacity: 0; }
-    4% { opacity: 1; }   /* Fade in quickly */
-    20% { opacity: 1; }  /* Stay visible */
-    24% { opacity: 0; }  /* Fade out */
-    100% { opacity: 0; }
-}
-
-/* Stagger the animations for each slide */
-/* Formula: Delay = (TotalDuration / TotalSlides) * (SlideIndex - 1) */
-.slide:nth-child(1) { animation-delay: 0s; }
-.slide:nth-child(2) { animation-delay: 5s; }
-.slide:nth-child(3) { animation-delay: 10s; }
-.slide:nth-child(4) { animation-delay: 15s; }
-.slide:nth-child(5) { animation-delay: 20s; }
-
-/* Text Animation (Slide Up and Fade In) */
-@keyframes textReveal {
-    0% { opacity: 0; transform: translateY(30px); }
-    10% { opacity: 1; transform: translateY(0); }
-    80% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-30px); }
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .hero-content h1 { font-size: 2.5rem; }
-    .hero-content p { font-size: 1rem; }
-}
-
-
-/* --- FIXED PRELOADER (Needle & Thread Animation) --- */
-#preloader {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: #050505;
-    z-index: 10000; /* Must be highest */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease;
-}
-
-/* The Needle Icon Animation */
-.needle-svg {
-    width: 60px;
-    height: 120px;
-    animation: stitchAction 1s ease-in-out infinite;
-}
-
-@keyframes stitchAction {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(15px); } /* Pokes down */
-    100% { transform: translateY(0); }
-}
-
-/* --- SCROLLING THREAD (The Gold Line) --- */
-.thread-container {
-    position: absolute;
-    top: 100vh; /* Starts exactly after the banner */
-    left: 0;
-    width: 100%;
-    /* We don't set fixed height here; JS will handle it */
-    pointer-events: none;
-    z-index: 5; /* Above background, below text */
-    overflow: hidden;
-}
-
-/* The Gold Line Path */
-#scroll-thread {
-    fill: none;
-    stroke: #C5A059; /* Kanzima Gold */
-    stroke-width: 3;
-    stroke-linecap: round;
-    filter: drop-shadow(0px 0px 5px rgba(197, 160, 89, 0.5)); /* Gold Glow */
-}
-/* --- CUSTOM CURSOR --- */
-/* If you have a needle image, replace the URL below */
-body {
-    cursor: crosshair; /* Fallback until you have an image */
-    /* cursor: url('../images/needle-cursor.png'), auto;  <-- Use this if you upload an image */
-}
-
-/* --- MICRO INTERACTIONS --- */
-.hover-zoom {
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hover-zoom:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
-    z-index: 10;
-}
-
-
-/* --- FIXED: ROLLING GOLD BUTTON --- */
+/* =========================================
+   4. LUXURY BUTTONS (ROLLING GOLD FIX)
+   ========================================= */
 .lux-btn {
     position: relative;
     display: inline-block;
-    /* CHANGE 1: Remove padding from container so overflow works */
+    /* IMPORTANT: Remove padding from container so overflow works */
     padding: 0; 
     background: transparent;
     border: 1px solid rgba(197, 160, 89, 0.3);
-    color: #C5A059;
+    color: var(--primary-gold);
     font-family: 'Cinzel', serif;
     font-size: 0.9rem;
     letter-spacing: 3px;
@@ -286,124 +106,140 @@ body {
     transition: all 0.5s ease;
 }
 
-/* 1. The Text Container */
+/* The Text Container */
 .btn-content {
     display: block;
     position: relative;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* 2. Primary Text (Visible) */
+/* Primary Text (Visible) */
 .btn-text-primary {
     display: block;
-    /* CHANGE 2: Add padding here to give the button its size */
-    padding: 15px 40px; 
+    padding: 15px 40px; /* Size comes from here */
 }
 
-/* 3. Secondary Text (Hidden Below) */
+/* Secondary Text (Hidden Below) */
 .btn-text-secondary {
     display: block;
     position: absolute;
-    top: 100%; /* Sits exactly below the primary text */
+    top: 100%;
     left: 0;
     width: 100%;
-    /* CHANGE 3: Add matching padding so it looks identical */
-    padding: 15px 40px; 
+    padding: 15px 40px; /* Matches primary */
     color: #000; /* Black text for contrast */
 }
 
-/* 4. The Gold Background Fill */
+/* Gold Background Fill */
 .lux-btn::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: #C5A059;
+    background: var(--primary-gold);
     transform: scaleY(0);
     transform-origin: bottom;
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     z-index: -1;
 }
 
-/* --- HOVER & ACTIVE STATES --- */
+/* Hover States */
 .lux-btn:hover, .lux-btn.active {
-    border-color: #C5A059;
+    border-color: var(--primary-gold);
     box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
 }
 
-/* Active/Hover: Slide Text Up */
 .lux-btn:hover .btn-content, .lux-btn.active .btn-content {
     transform: translateY(-100%);
 }
 
-/* Active/Hover: Slide Gold Background Up */
 .lux-btn:hover::before, .lux-btn.active::before {
     transform: scaleY(1);
 }
 
-
-/* --- MOBILE RESPONSIVENESS FIXES --- */
-@media (max-width: 768px) {
-    
-    /* 1. Prevent the whole page from sliding left/right */
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-
-    /* 2. Shrink the big Banner Text */
-    .hero-content h1 {
-        font-size: 2rem !important; /* Was 4rem, now much smaller */
-        line-height: 1.2;
-    }
-    
-    .hero-content p {
-        font-size: 1rem !important;
-        padding: 0 10px; /* Add breathing room so it doesn't touch edges */
-    }
-
-    /* 3. Fix the "Content Box" width */
-    /* On mobile, 40px padding is too much. We reduce it to 20px. */
-    .content-box {
-        width: 90% !important; /* Force it to fit within screen */
-        margin: 0 auto;        /* Center it */
-        padding: 20px !important; 
-    }
-
-    /* 4. Fix Headers in the text sections */
-    .content-section h2 {
-        font-size: 1.8rem;
-    }
-
-    /* 5. Adjust the "Grid" to stack items vertically */
-    .grid-2 {
-        grid-template-columns: 1fr !important; /* Force single column */
-        gap: 20px;
-    }
-    
-    /* 6. Fix Navigation Menu (Simple Mobile View) */
-    /* This ensures the menu doesn't break on small screens */
-    header {
-        padding: 10px 5%;
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    nav ul {
-        gap: 15px;
-        font-size: 0.9rem;
-    }
+/* =========================================
+   5. HERO & BANNERS
+   ========================================= */
+/* Home Page Slider Wrapper */
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
 }
-/* --- 1. CONTINUOUS NEEDLE GIF --- */
+
+/* Inner Page Parallax Hero */
+.page-header {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax Effect */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505);
+}
+
+/* Gold Separator Line */
+.gold-line {
+    width: 100px; height: 3px;
+    background: var(--primary-gold);
+    margin: 20px auto;
+}
+
+/* =========================================
+   6. ANIMATIONS & EFFECTS
+   ========================================= */
+/* Gold Dust Container */
+#particles-js {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Preloader (Needle) */
+#preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #050505;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.needle-svg {
+    width: 60px; height: 120px;
+    animation: stitchAction 1s ease-in-out infinite;
+}
+
+@keyframes stitchAction {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(15px); }
+    100% { transform: translateY(0); }
+}
+
+/* Floating Needle GIF */
 .floating-needle {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 80px; /* Adjust size */
-    height: auto;
+    bottom: 30px; right: 30px;
+    width: 80px; height: auto;
     z-index: 1000;
     opacity: 0.8;
-    pointer-events: none; /* Let clicks pass through */
+    pointer-events: none;
     animation: floatNeedle 3s ease-in-out infinite;
 }
 
@@ -413,11 +249,30 @@ body {
     100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* --- 2. SLOW TELLING (SCROLL REVEAL) --- */
+/* Scrolling Gold Thread */
+.thread-container {
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+}
+
+#scroll-thread {
+    fill: none;
+    stroke: var(--primary-gold);
+    stroke-width: 3;
+    filter: drop-shadow(0px 0px 5px rgba(197, 160, 89, 0.8));
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Scroll Reveal Text (Slow Telling) */
 .story-text {
     font-size: 1.4rem;
     line-height: 2;
-    color: #E6DCCA;
+    color: var(--text-light);
     max-width: 800px;
     margin: 50px auto;
     text-align: center;
@@ -434,7 +289,65 @@ body {
     transform: translateY(0);
 }
 
-/* --- 3. ROYAL LIGHTBOX (ZOOM FIX) --- */
+/* =========================================
+   7. LAYOUT & SECTIONS
+   ========================================= */
+.content-section {
+    position: relative;
+    padding: 100px 5%;
+    z-index: 1;
+}
+
+.content-box {
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid var(--accent-bronze);
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    text-align: center;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+}
+
+/* Image Pairs (Process Page) */
+.image-pair {
+    display: flex;
+    gap: 15px;
+}
+
+.image-pair img {
+    width: 50%;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid var(--primary-gold);
+    transition: transform 0.5s ease;
+}
+
+.image-pair:hover img:hover {
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+/* Micro Interaction: Image Zoom */
+.hover-zoom {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hover-zoom:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+}
+
+/* =========================================
+   8. LIGHTBOX (ZOOM MODAL)
+   ========================================= */
 .lightbox-modal {
     display: none;
     position: fixed;
@@ -449,7 +362,7 @@ body {
 .lightbox-img {
     max-width: 90%;
     max-height: 90vh;
-    border: 2px solid #C5A059;
+    border: 2px solid var(--primary-gold);
     box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
     animation: zoomOpen 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -462,7 +375,7 @@ body {
 .close-lightbox {
     position: absolute;
     top: 20px; right: 30px;
-    color: #C5A059;
+    color: var(--primary-gold);
     font-size: 50px;
     cursor: pointer;
     transition: 0.3s;
@@ -470,28 +383,77 @@ body {
 
 .close-lightbox:hover { transform: rotate(90deg); color: #fff; }
 
-/* --- 4. MAP & WHATSAPP --- */
+/* =========================================
+   9. FOOTER & CONTACT
+   ========================================= */
+footer {
+    padding: 30px;
+    text-align: center;
+    border-top: 1px solid var(--accent-bronze);
+    font-size: 0.9rem;
+    color: #666;
+    background: #050505;
+}
+
 .map-container iframe {
     width: 100%;
     height: 450px;
-    border: 1px solid #C5A059;
-    filter: grayscale(100%) invert(92%) contrast(83%); /* Royal Dark Map Style */
+    border: 1px solid var(--primary-gold);
+    filter: grayscale(100%) invert(92%) contrast(83%);
 }
 
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
+    bottom: 30px; left: 30px;
     background: #25D366;
     color: white;
     width: 60px; height: 60px;
     border-radius: 50%;
-    display: flex;
-    align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 30px;
     z-index: 2000;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
     transition: 0.3s;
 }
 
-.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 0 20px #25D366; }
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* =========================================
+   10. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+    
+    html, body { overflow-x: hidden; width: 100%; }
+
+    /* Header */
+    header { padding: 10px 5%; flex-direction: column; gap: 10px; }
+    nav ul { gap: 15px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center; }
+
+    /* Text Sizes */
+    .hero-content h1, .page-header h1 { font-size: 2rem !important; line-height: 1.2; }
+    .hero-content p { font-size: 1rem !important; padding: 0 10px; }
+    .story-text { font-size: 1.1rem; padding: 0 10px; }
+
+    /* Layouts */
+    .grid-2, .image-pair {
+        display: flex;
+        flex-direction: column !important;
+        gap: 30px;
+    }
+
+    /* Process Page Specific */
+    .swap-desktop div:nth-child(1) { order: 1; } /* Text first */
+    .swap-desktop div:nth-child(2) { order: 2; } /* Image second */
+
+    /* Images */
+    .image-pair img { width: 100%; height: 350px; }
+    
+    /* Content Box */
+    .content-box { width: 95% !important; margin: 0 auto; padding: 20px !important; }
+}
+
+@media (min-width: 769px) {
+    /* Zig Zag Fix for Desktop Process Page */
+    .swap-desktop div:nth-child(1) { order: 2; }
+    .swap-desktop div:nth-child(2) { order: 1; }
+}
