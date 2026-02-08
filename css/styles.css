@@ -188,181 +188,105 @@ nav a:hover, nav a.active {
 }
 
 /* =========================================
-   5. ART DECO CARD (LUXURY BOXES)
+   5. ART DECO CARD (Index Page)
    ========================================= */
-/* =========================================
-   MUGHAL ROYAL CARD (Intricate Frame)
-   ========================================= */
-.royal-card {
+.card {
     position: relative;
     width: 100%;
     max-width: 600px;
     margin: 60px auto;
-    padding: 3px; /* Space for the outer gold ring */
-    background: linear-gradient(135deg, #C5A059 0%, #8C6E42 100%); /* Gold Gradient Border */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    padding: 60px 30px;
+    background-color: #050505;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    text-align: center;
+    transition: transform 0.3s ease;
 }
 
-.royal-card-inner {
-    background-color: #080808; /* Deep Black Inside */
-    padding: 60px 40px;
-    position: relative;
-    /* Centering Fixes */
-    text-align: center; 
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Forces button to center */
-    
-    /* The Inner Frame Line */
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    outline: 1px solid rgba(197, 160, 89, 0.3);
-    outline-offset: -10px;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-/* --- THE 4 CORNER ORNAMENTS (The "Stepped" Look) --- */
-.mughal-corner {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: 2px solid #C5A059;
-    z-index: 2;
-    transition: all 0.5s ease;
-}
-
-/* Top Left */
-.mughal-corner.top-left {
-    top: 10px; left: 10px;
-    border-right: none; border-bottom: none;
-}
-.mughal-corner.top-left::after {
-    content: ''; position: absolute; top: 8px; left: 8px;
-    width: 100%; height: 100%;
-    border-top: 1px solid #C5A059; border-left: 1px solid #C5A059;
-}
-
-/* Top Right */
-.mughal-corner.top-right {
-    top: 10px; right: 10px;
-    border-left: none; border-bottom: none;
-}
-.mughal-corner.top-right::after {
-    content: ''; position: absolute; top: 8px; right: 8px;
-    width: 100%; height: 100%;
-    border-top: 1px solid #C5A059; border-right: 1px solid #C5A059;
-}
-
-/* Bottom Left */
-.mughal-corner.bottom-left {
-    bottom: 10px; left: 10px;
-    border-right: none; border-top: none;
-}
-.mughal-corner.bottom-left::after {
-    content: ''; position: absolute; bottom: 8px; left: 8px;
-    width: 100%; height: 100%;
-    border-bottom: 1px solid #C5A059; border-left: 1px solid #C5A059;
-}
-
-/* Bottom Right */
-.mughal-corner.bottom-right {
-    bottom: 10px; right: 10px;
-    border-left: none; border-top: none;
-}
-.mughal-corner.bottom-right::after {
-    content: ''; position: absolute; bottom: 8px; right: 8px;
-    width: 100%; height: 100%;
-    border-bottom: 1px solid #C5A059; border-right: 1px solid #C5A059;
-}
-
-/* Hover Effect: Corners Glow */
-.royal-card:hover .mughal-corner {
-    border-color: #fff;
-    box-shadow: 0 0 10px rgba(197,160,89,0.5);
-}
-
-/* --- TYPOGRAPHY & DIVIDER --- */
-.royal-card h1, .royal-card h2 {
-    font-family: 'Cinzel', serif;
-    color: #C5A059;
+.card h2 {
     font-size: 2.2rem;
-    letter-spacing: 4px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--primary-gold);
 }
 
-/* Traditional Ornamental Divider */
-.mughal-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0 30px 0;
-}
-.mughal-divider::before, .mughal-divider::after {
-    content: '';
-    height: 1px; width: 60px;
-    background: linear-gradient(to right, transparent, #C5A059, transparent);
-}
-.mughal-divider span {
-    color: #C5A059;
-    font-size: 1.5rem;
-    padding: 0 15px;
-    font-family: serif; /* Looks like a diamond/floral mark */
+.card-divider {
+    width: 60px; height: 1px;
+    background: var(--primary-gold);
+    margin: 0 auto 30px;
 }
 
-/* Content Text */
-.royal-card p, .royal-card a, .royal-card span {
+.card p {
     font-family: 'Lato', sans-serif;
-    color: #E6DCCA;
+    color: var(--text-light);
     font-size: 1.1rem;
     line-height: 1.8;
+    margin-bottom: 40px;
 }
 
-/* --- THE DIAMOND BUTTON (Exact Replica) --- */
-.diamond-btn-container {
-    display: inline-block;
+/* Offset Corners */
+.corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 2px solid var(--primary-gold);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.corner.top.left { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+.corner.top.right { top: -8px; right: -8px; border-left: none; border-bottom: none; }
+.corner.bottom.left { bottom: -8px; left: -8px; border-right: none; border-top: none; }
+.corner.bottom.right { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+.card:hover .corner {
+    width: 35px; height: 35px;
+    border-color: #fff;
+}
+
+/* Diamond Tip Button (Index Page) */
+.art-deco-btn {
     position: relative;
-    margin-top: 30px;
-    padding: 0 20px;
-}
-
-.diamond-btn {
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px;
     background: transparent;
-    border: none;
-    border-top: 1px solid #C5A059;
-    border-bottom: 1px solid #C5A059;
-    color: #C5A059;
+    color: var(--primary-gold);
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    padding: 12px 40px;
-    cursor: pointer;
     text-transform: uppercase;
-    transition: 0.4s;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    border-top: 1px solid var(--primary-gold);
+    border-bottom: 1px solid var(--primary-gold);
+    transition: all 0.3s ease;
 }
 
-/* The Hollow Diamonds on the sides */
-.diamond-btn-container::before, .diamond-btn-container::after {
-    content: '';
+.art-deco-btn span.left, .art-deco-btn span.right {
     position: absolute;
     top: 50%;
-    width: 12px; height: 12px;
-    border: 1px solid #C5A059;
+    width: 10px; height: 10px;
+    background: #050505;
+    border: 1px solid var(--primary-gold);
     transform: translateY(-50%) rotate(45deg);
-    transition: 0.4s;
+    transition: all 0.3s ease;
 }
-.diamond-btn-container::before { left: 0; }
-.diamond-btn-container::after { right: 0; }
 
-/* Button Hover */
-.diamond-btn:hover {
-    background: rgba(197, 160, 89, 0.1);
+.art-deco-btn span.left { left: -6px; border-right: none; border-top: none; }
+.art-deco-btn span.right { right: -6px; border-left: none; border-bottom: none; }
+
+.art-deco-btn:hover {
     color: #fff;
-    border-color: #fff;
-}
-.diamond-btn-container:hover::before, .diamond-btn-container:hover::after {
-    background: #C5A059;
-    border-color: #fff;
+    background: rgba(197, 160, 89, 0.1);
 }
 
+.art-deco-btn:hover span.left, .art-deco-btn:hover span.right {
+    background: var(--primary-gold);
+    border-color: #fff;
+}
 
 /* =========================================
    6. ANIMATIONS & EFFECTS
@@ -426,7 +350,7 @@ nav a:hover, nav a.active {
 }
 
 /* =========================================
-   7. LAYOUT & ROLLING BUTTONS (FIXED)
+   7. LAYOUT & ROLLING BUTTONS
    ========================================= */
 .content-section {
     position: relative;
@@ -448,7 +372,7 @@ nav a:hover, nav a.active {
     margin: 0 auto;
 }
 
-/* Rolling Gold Button (Clean Version) */
+/* Rolling Gold Button */
 .lux-btn {
     position: relative;
     display: inline-block;
@@ -546,7 +470,7 @@ footer {
 .whatsapp-float:hover { transform: scale(1.1); }
 
 /* =========================================
-   9. MOBILE RESPONSIVENESS
+   9. MOBILE & PROCESS PAGE FIXES
    ========================================= */
 @media (max-width: 768px) {
     html, body { overflow-x: hidden; width: 100%; }
@@ -559,99 +483,140 @@ footer {
 
     .grid-2 { display: flex; flex-direction: column !important; gap: 30px; }
     
-    /* Card Adjustments */
     .card { width: 95% !important; margin: 30px auto; padding: 40px 20px; }
     
     .filter-sticky-bar { overflow-x: auto; white-space: nowrap; justify-content: flex-start; }
+
+    /* Process Page Mobile */
+    .image-pair { flex-direction: column; }
+    .image-pair img { width: 100%; height: 300px; }
+    
+    .swap-desktop div:nth-child(1) { order: 1; }
+    .swap-desktop div:nth-child(2) { order: 2; }
 }
 
-/* --- FIX FOR CONTACT PAGE (No Overlap Version) --- */
+@media (min-width: 769px) {
+    /* Zig Zag Fix for Desktop Process Page */
+    .swap-desktop div:nth-child(1) { order: 2; }
+    .swap-desktop div:nth-child(2) { order: 1; }
+}
 
-/* 1. Map Section */
-.map-hero {
-    width: 100%;
-    height: 50vh; /* Takes half the screen height */
+/* Image Pair (Process Page) */
+.image-pair { display: flex; gap: 15px; }
+.image-pair img {
+    width: 50%; height: 400px; object-fit: cover;
+    border: 1px solid var(--primary-gold); transition: transform 0.5s ease;
+}
+.image-pair:hover img:hover { transform: scale(1.05); z-index: 2; }
+
+
+/* =========================================
+   10. MUGHAL ROYAL CARD (Contact Page)
+   ========================================= */
+.royal-card {
     position: relative;
-    overflow: hidden;
-    margin-top: 85px; /* Pushes map below the Header */
-    border-bottom: 2px solid #C5A059; /* Gold line separator */
-}
-
-.map-hero iframe {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 0;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 3px; 
+    background: linear-gradient(135deg, #C5A059 0%, #8C6E42 100%); 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-/* 2. Transparent Click Layer */
+.royal-card-inner {
+    background-color: #080808; 
+    padding: 60px 40px;
+    position: relative;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    outline: 1px solid rgba(197, 160, 89, 0.3);
+    outline-offset: -10px;
+}
+
+/* CRITICAL FIX: Forces the Link wrapping the button to center itself */
+.royal-card-inner a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mughal-corner {
+    position: absolute; width: 40px; height: 40px;
+    border: 2px solid #C5A059; z-index: 2; transition: all 0.5s ease;
+}
+
+.mughal-corner.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.mughal-corner.top-left::after { content: ''; position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; border-top: 1px solid #C5A059; border-left: 1px solid #C5A059; }
+
+.mughal-corner.top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.mughal-corner.top-right::after { content: ''; position: absolute; top: 8px; right: 8px; width: 100%; height: 100%; border-top: 1px solid #C5A059; border-right: 1px solid #C5A059; }
+
+.mughal-corner.bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.mughal-corner.bottom-left::after { content: ''; position: absolute; bottom: 8px; left: 8px; width: 100%; height: 100%; border-bottom: 1px solid #C5A059; border-left: 1px solid #C5A059; }
+
+.mughal-corner.bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+.mughal-corner.bottom-right::after { content: ''; position: absolute; bottom: 8px; right: 8px; width: 100%; height: 100%; border-bottom: 1px solid #C5A059; border-right: 1px solid #C5A059; }
+
+.royal-card:hover .mughal-corner { border-color: #fff; box-shadow: 0 0 10px rgba(197,160,89,0.5); }
+
+.mughal-divider {
+    display: flex; align-items: center; justify-content: center; margin: 20px 0 30px 0;
+}
+.mughal-divider::before, .mughal-divider::after {
+    content: ''; height: 1px; width: 60px; background: linear-gradient(to right, transparent, #C5A059, transparent);
+}
+.mughal-divider span { color: #C5A059; font-size: 1.5rem; padding: 0 15px; font-family: serif; }
+
+.diamond-btn-container {
+    display: inline-block; position: relative; margin-top: 30px; padding: 0 20px;
+}
+
+.diamond-btn {
+    background: transparent; border: none; border-top: 1px solid #C5A059; border-bottom: 1px solid #C5A059;
+    color: #C5A059; font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 3px; padding: 12px 40px;
+    cursor: pointer; text-transform: uppercase; transition: 0.4s;
+}
+
+.diamond-btn-container::before, .diamond-btn-container::after {
+    content: ''; position: absolute; top: 50%; width: 12px; height: 12px;
+    border: 1px solid #C5A059; transform: translateY(-50%) rotate(45deg); transition: 0.4s;
+}
+.diamond-btn-container::before { left: 0; }
+.diamond-btn-container::after { right: 0; }
+
+.diamond-btn:hover { background: rgba(197, 160, 89, 0.1); color: #fff; border-color: #fff; }
+.diamond-btn-container:hover::before, .diamond-btn-container:hover::after { background: #C5A059; border-color: #fff; }
+
+
+/* --- FIX FOR CONTACT PAGE (Map & Layout) --- */
+.map-hero {
+    width: 100%; height: 50vh; position: relative; overflow: hidden;
+    margin-top: 85px; border-bottom: 2px solid #C5A059;
+}
+.map-hero iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+
 .map-link-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 10;
-    background: transparent;
-    cursor: pointer;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 10; background: transparent; cursor: pointer;
 }
 
-/* 3. Card Container (FIXED: No Overlap) */
 .contact-overlay-container {
-    position: relative;
-    margin-top: 0; /* CHANGED: No more negative margin */
-    padding-top: 60px; /* Adds space between Map and Card */
-    padding-bottom: 60px;
-    z-index: 20;
-    background-color: #050505; /* Matches body background */
+    position: relative; margin-top: 0; padding-top: 60px; padding-bottom: 60px;
+    z-index: 20; background-color: #050505;
 }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
-    .map-hero {
-        height: 40vh; /* Slightly smaller map on phone */
-        margin-top: 80px; 
-    }
-    
-    .contact-overlay-container {
-        margin-top: 0; 
-        padding-top: 40px; /* Less gap on mobile */
-    }
-    
-    /* Make the card slightly narrower on mobile for style */
-    .card {
-        width: 90% !important;
-        margin: 0 auto;
-    }
+    .map-hero { height: 40vh; margin-top: 80px; }
+    .contact-overlay-container { margin-top: 0; padding-top: 40px; }
+    .royal-card { width: 95% !important; margin: 0 auto; }
 }
 
-/* --- CLICKABLE MAP OVERLAY --- */
-.map-hero {
-    position: relative; /* Needed for the overlay to sit inside */
-}
-
-.map-link-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5; /* Sits ON TOP of the iframe */
-    cursor: pointer; /* Shows the hand icon */
-    background: rgba(0,0,0,0); /* Transparent */
-}
-
-/* Optional: Show a "Get Directions" hint when hovering */
 .map-hero:hover::after {
-    content: 'Click for Directions';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: #C5A059;
-    padding: 10px 20px;
-    border: 1px solid #C5A059;
-    font-family: 'Cinzel', serif;
-    z-index: 6;
-    pointer-events: none; /* Let the click pass through */
+    content: 'Click for Directions'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.8);
+    color: #C5A059; padding: 10px 20px; border: 1px solid #C5A059;
+    font-family: 'Cinzel', serif; z-index: 6; pointer-events: none;
 }
-
