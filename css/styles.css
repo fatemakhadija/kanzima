@@ -86,81 +86,8 @@ nav a:hover, nav a.active {
 }
 
 /* =========================================
-   4. LUXURY BUTTONS (ROLLING GOLD FIX)
+   4. HERO SLIDER (7 IMAGES FIX)
    ========================================= */
-.lux-btn {
-    position: relative;
-    display: inline-block;
-    /* IMPORTANT: Remove padding from container so overflow works */
-    padding: 0; 
-    background: transparent;
-    border: 1px solid rgba(197, 160, 89, 0.3);
-    color: var(--primary-gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    overflow: hidden; /* This now correctly cuts off the second text */
-    cursor: pointer;
-    transition: all 0.5s ease;
-}
-
-/* The Text Container */
-.btn-content {
-    display: block;
-    position: relative;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-/* Primary Text (Visible) */
-.btn-text-primary {
-    display: block;
-    padding: 15px 40px; /* Size comes from here */
-}
-
-/* Secondary Text (Hidden Below) */
-.btn-text-secondary {
-    display: block;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 15px 40px; /* Matches primary */
-    color: #000; /* Black text for contrast */
-}
-
-/* Gold Background Fill */
-.lux-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: var(--primary-gold);
-    transform: scaleY(0);
-    transform-origin: bottom;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    z-index: -1;
-}
-
-/* Hover States */
-.lux-btn:hover, .lux-btn.active {
-    border-color: var(--primary-gold);
-    box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
-}
-
-.lux-btn:hover .btn-content, .lux-btn.active .btn-content {
-    transform: translateY(-100%);
-}
-
-.lux-btn:hover::before, .lux-btn.active::before {
-    transform: scaleY(1);
-}
-
-/* =========================================
-   HERO SLIDER (FIXED FOR 7 BANNERS)
-   ========================================= */
-
 .hero-wrapper {
     position: relative;
     width: 100%;
@@ -192,7 +119,7 @@ nav a:hover, nav a.active {
     background-repeat: no-repeat;
     opacity: 0; /* Hidden by default */
     
-    /* CRITICAL FIX: 35s Duration (7 slides x 5 seconds) */
+    /* 35s Duration (7 slides x 5 seconds) */
     animation: slideAnimation 35s infinite; 
     
     display: flex;
@@ -206,7 +133,7 @@ nav a:hover, nav a.active {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Overlay to make text readable */
+    background: rgba(0, 0, 0, 0.5); 
     z-index: 1;
 }
 
@@ -235,25 +162,24 @@ nav a:hover, nav a.active {
     animation: textReveal 5s ease-in-out infinite 0.5s;
 }
 
-/* --- ANIMATION MATH FOR 7 SLIDES --- */
+/* Animation for 7 Slides */
 @keyframes slideAnimation {
     0% { opacity: 0; }
-    3% { opacity: 1; }   /* Fade in quickly */
-    11% { opacity: 1; }  /* Stay visible (14% is roughly 1/7th) */
-    14% { opacity: 0; }  /* Fade out */
+    3% { opacity: 1; }
+    11% { opacity: 1; }
+    14% { opacity: 0; }
     100% { opacity: 0; }
 }
 
-/* --- DELAYS (Staggered by 5 seconds) --- */
+/* Staggered Delays */
 .slide:nth-child(1) { animation-delay: 0s; }
 .slide:nth-child(2) { animation-delay: 5s; }
 .slide:nth-child(3) { animation-delay: 10s; }
 .slide:nth-child(4) { animation-delay: 15s; }
 .slide:nth-child(5) { animation-delay: 20s; }
-.slide:nth-child(6) { animation-delay: 25s; } /* Fix: Added Slide 6 */
-.slide:nth-child(7) { animation-delay: 30s; } /* Fix: Added Slide 7 */
+.slide:nth-child(6) { animation-delay: 25s; }
+.slide:nth-child(7) { animation-delay: 30s; }
 
-/* --- TEXT REVEAL --- */
 @keyframes textReveal {
     0% { opacity: 0; transform: translateY(30px); }
     10% { opacity: 1; transform: translateY(0); }
@@ -261,30 +187,118 @@ nav a:hover, nav a.active {
     100% { opacity: 0; transform: translateY(-30px); }
 }
 
+/* =========================================
+   5. ART DECO CARD (LUXURY BOXES)
+   ========================================= */
+.card {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 60px 30px;
+    background-color: #050505;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--primary-gold);
+}
+
+.card-divider {
+    width: 60px; height: 1px;
+    background: var(--primary-gold);
+    margin: 0 auto 30px;
+}
+
+.card p {
+    font-family: 'Lato', sans-serif;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* Offset Corners */
+.corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 2px solid var(--primary-gold);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.corner.top.left { top: -8px; left: -8px; border-right: none; border-bottom: none; }
+.corner.top.right { top: -8px; right: -8px; border-left: none; border-bottom: none; }
+.corner.bottom.left { bottom: -8px; left: -8px; border-right: none; border-top: none; }
+.corner.bottom.right { bottom: -8px; right: -8px; border-left: none; border-top: none; }
+
+.card:hover .corner {
+    width: 35px; height: 35px;
+    border-color: #fff;
+}
+
+/* Diamond Tip Button */
+.art-deco-btn {
+    position: relative;
+    display: inline-block;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px;
+    background: transparent;
+    color: var(--primary-gold);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    border-top: 1px solid var(--primary-gold);
+    border-bottom: 1px solid var(--primary-gold);
+    transition: all 0.3s ease;
+}
+
+.art-deco-btn span.left, .art-deco-btn span.right {
+    position: absolute;
+    top: 50%;
+    width: 10px; height: 10px;
+    background: #050505;
+    border: 1px solid var(--primary-gold);
+    transform: translateY(-50%) rotate(45deg);
+    transition: all 0.3s ease;
+}
+
+.art-deco-btn span.left { left: -6px; border-right: none; border-top: none; }
+.art-deco-btn span.right { right: -6px; border-left: none; border-bottom: none; }
+
+.art-deco-btn:hover {
+    color: #fff;
+    background: rgba(197, 160, 89, 0.1);
+}
+
+.art-deco-btn:hover span.left, .art-deco-btn:hover span.right {
+    background: var(--primary-gold);
+    border-color: #fff;
+}
 
 /* =========================================
    6. ANIMATIONS & EFFECTS
    ========================================= */
-/* Gold Dust Container */
-#particles-js {
-    position: absolute;
-    width: 100%; height: 100%;
-    top: 0; left: 0;
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* Preloader (Needle) */
+/* Preloader */
 #preloader {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     background: #050505;
     z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
     transition: opacity 0.5s ease;
 }
 
@@ -316,7 +330,7 @@ nav a:hover, nav a.active {
     100% { transform: translateY(0px) rotate(0deg); }
 }
 
-/* Scrolling Gold Thread */
+/* Scrolling Thread */
 .thread-container {
     position: absolute;
     top: 100vh;
@@ -335,44 +349,13 @@ nav a:hover, nav a.active {
     transition: stroke-dashoffset 0.1s linear;
 }
 
-/* Scroll Reveal Text (Slow Telling) */
-.story-text {
-    font-size: 1.4rem;
-    line-height: 2;
-    color: var(--text-light);
-    max-width: 800px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-.reveal-line {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease-out;
-}
-
-.reveal-line.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 /* =========================================
-   7. LAYOUT & SECTIONS
+   7. LAYOUT & ROLLING BUTTONS (FIXED)
    ========================================= */
 .content-section {
     position: relative;
     padding: 100px 5%;
     z-index: 1;
-}
-
-.content-box {
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid var(--accent-bronze);
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    backdrop-filter: blur(5px);
-    text-align: center;
 }
 
 .grid-2 {
@@ -383,75 +366,76 @@ nav a:hover, nav a.active {
     text-align: left;
 }
 
-/* Image Pairs (Process Page) */
-.image-pair {
-    display: flex;
-    gap: 15px;
+.content-box-simple {
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.image-pair img {
-    width: 50%;
-    height: 400px;
-    object-fit: cover;
-    border: 1px solid var(--primary-gold);
-    transition: transform 0.5s ease;
+/* Rolling Gold Button (Clean Version) */
+.lux-btn {
+    position: relative;
+    display: inline-block;
+    padding: 0; /* NO padding on container */
+    background: transparent;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    color: var(--primary-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s ease;
 }
 
-.image-pair:hover img:hover {
-    transform: scale(1.05);
-    z-index: 2;
+.btn-content {
+    display: block;
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
+.btn-text-primary, .btn-text-secondary {
+    display: block;
+    padding: 15px 40px; /* Padding on text only */
+}
+
+.btn-text-secondary {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    color: #000;
+}
+
+.lux-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--primary-gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+}
+
+.lux-btn:hover { border-color: var(--primary-gold); }
+.lux-btn:hover .btn-content { transform: translateY(-100%); }
+.lux-btn:hover::before { transform: scaleY(1); }
 
 /* Micro Interaction: Image Zoom */
 .hover-zoom {
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 .hover-zoom:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
 }
 
 /* =========================================
-   8. LIGHTBOX (ZOOM MODAL)
-   ========================================= */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    z-index: 5000;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox-img {
-    max-width: 90%;
-    max-height: 90vh;
-    border: 2px solid var(--primary-gold);
-    box-shadow: 0 0 50px rgba(197, 160, 89, 0.3);
-    animation: zoomOpen 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-@keyframes zoomOpen {
-    from { transform: scale(0.5); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.close-lightbox {
-    position: absolute;
-    top: 20px; right: 30px;
-    color: var(--primary-gold);
-    font-size: 50px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.close-lightbox:hover { transform: rotate(90deg); color: #fff; }
-
-/* =========================================
-   9. FOOTER & CONTACT
+   8. FOOTER & CONTACT
    ========================================= */
 footer {
     padding: 30px;
@@ -486,41 +470,21 @@ footer {
 .whatsapp-float:hover { transform: scale(1.1); }
 
 /* =========================================
-   10. MOBILE RESPONSIVENESS
+   9. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
-    
     html, body { overflow-x: hidden; width: 100%; }
-
-    /* Header */
+    
     header { padding: 10px 5%; flex-direction: column; gap: 10px; }
     nav ul { gap: 15px; font-size: 0.8rem; flex-wrap: wrap; justify-content: center; }
 
-    /* Text Sizes */
-    .hero-content h1, .page-header h1 { font-size: 2rem !important; line-height: 1.2; }
+    .hero-content h1 { font-size: 2rem !important; line-height: 1.2; }
     .hero-content p { font-size: 1rem !important; padding: 0 10px; }
-    .story-text { font-size: 1.1rem; padding: 0 10px; }
 
-    /* Layouts */
-    .grid-2, .image-pair {
-        display: flex;
-        flex-direction: column !important;
-        gap: 30px;
-    }
-
-    /* Process Page Specific */
-    .swap-desktop div:nth-child(1) { order: 1; } /* Text first */
-    .swap-desktop div:nth-child(2) { order: 2; } /* Image second */
-
-    /* Images */
-    .image-pair img { width: 100%; height: 350px; }
+    .grid-2 { display: flex; flex-direction: column !important; gap: 30px; }
     
-    /* Content Box */
-    .content-box { width: 95% !important; margin: 0 auto; padding: 20px !important; }
-}
-
-@media (min-width: 769px) {
-    /* Zig Zag Fix for Desktop Process Page */
-    .swap-desktop div:nth-child(1) { order: 2; }
-    .swap-desktop div:nth-child(2) { order: 1; }
+    /* Card Adjustments */
+    .card { width: 95% !important; margin: 30px auto; padding: 40px 20px; }
+    
+    .filter-sticky-bar { overflow-x: auto; white-space: nowrap; justify-content: flex-start; }
 }
