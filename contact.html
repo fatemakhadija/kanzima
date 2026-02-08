@@ -2,52 +2,110 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us | KANZIMA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | KANZIMA</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <header></header>
+    <header></header> <img src="images/thread-needle.gif" class="floating-needle" alt="Sewing Animation">
 
-    <div class="page-header" style="height: 40vh; background: #000;">
-        <h1>Visit Our Atelier</h1>
-        <p>We are waiting to craft your dreams.</p>
-    </div>
-
-    <div class="container" style="padding: 50px 5%;">
-        <div class="grid-2">
-            
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.232304892288!2d55.2708!3d25.2048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDEyJzE3LjMiTiA1NcKwMTYnMTQuOSJF!5e0!3m2!1sen!2s!4v1631234567890" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-
-            <div style="padding: 20px;">
-                <h2 style="color: #C5A059; font-family: 'Cinzel', serif;">Get in Touch</h2>
-                <p style="margin-bottom: 20px;">For appointments and custom orders.</p>
-                
-                <p><i class="fas fa-map-marker-alt" style="color:#C5A059;"></i> &nbsp; Lucknow, Uttar Pradesh, India</p>
-                <p><i class="fas fa-envelope" style="color:#C5A059;"></i> &nbsp; contact@kanzima.com</p>
-                
-                <br>
-                <a href="https://wa.me/919876543210" class="lux-btn">
-                    <span class="btn-content">
-                        <span class="btn-text-primary"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</span>
-                        <span class="btn-text-secondary"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</span>
-                    </span>
-                </a>
-            </div>
+    <div class="page-header" style="background-image: url('images/banner-1.jpg'); height: 40vh;">
+        <div class="hero-overlay"></div>
+        <div style="position: relative; z-index: 2;">
+            <h1 data-aos="fade-down">Visit Our Atelier</h1>
+            <div class="gold-line"></div>
+            <p data-aos="fade-up">We are waiting to craft your dreams.</p>
         </div>
     </div>
 
-    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+    <div class="content-section">
+        <div class="grid-2">
+            
+            <div class="card" data-aos="fade-right">
+                <div class="corner top left"></div>
+                <div class="corner top right"></div>
+                <div class="corner bottom left"></div>
+                <div class="corner bottom right"></div>
+
+                <h2>Get in Touch</h2>
+                <div class="card-divider"></div>
+
+                <div style="text-align: left; padding: 0 10px;">
+                    <div style="margin-bottom: 25px; display: flex; gap: 15px;">
+                        <i class="fas fa-map-marker-alt" style="color:#C5A059; font-size: 1.2rem; margin-top: 5px;"></i>
+                        <div>
+                            <strong style="color: #C5A059; font-family: 'Cinzel', serif;">Address:</strong><br>
+                            <span style="color: #E6DCCA;">
+                                52, Mirza Ghalib Rd,<br>
+                                SultanPur Bhawa, Malviyanagar,<br>
+                                Prayagraj, Uttar Pradesh 211003
+                            </span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 25px; display: flex; gap: 15px;">
+                        <i class="fas fa-phone-alt" style="color:#C5A059; font-size: 1.2rem; margin-top: 5px;"></i>
+                        <div>
+                            <strong style="color: #C5A059; font-family: 'Cinzel', serif;">Phone:</strong><br>
+                            <a href="https://wa.me/919307159339" target="_blank" style="color: #fff; text-decoration: underline;">
+                                +91 9307159339
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <i class="fas fa-envelope" style="color:#C5A059; font-size: 1.2rem; margin-top: 5px;"></i>
+                        <div>
+                            <strong style="color: #C5A059; font-family: 'Cinzel', serif;">Email:</strong><br>
+                            <span style="color: #E6DCCA;">contact@kanzima.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+                
+                <a href="https://wa.me/919307159339" target="_blank" style="text-decoration: none;">
+                    <button class="art-deco-btn">
+                        <span class="left"></span>
+                        Chat on WhatsApp
+                        <span class="right"></span>
+                    </button>
+                </a>
+            </div>
+
+            <div class="map-container" data-aos="fade-left">
+                <iframe 
+                    width="100%" 
+                    height="500" 
+                    style="border: 1px solid #C5A059; filter: grayscale(100%) invert(92%) contrast(83%);" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d225.19716603724996!2d81.82322835857644!3d25.433092501921717!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3985352a96eaff61%3A0x7f89210f866fd8c4!2sMasood%20Embroidery%20Boutique!5e0!3m2!1sen!2sin!4v1770572014544!5m2!1sen!2sin">
+                </iframe>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="https://wa.me/919307159339" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <footer></footer>
+
     <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
 </body>
 </html>
