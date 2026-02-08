@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collection | KANZIMA COUTURE</title>
+    <title>The Royal Collection | KANZIMA</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -15,130 +15,109 @@
 </head>
 <body>
 
-    <header></header> <div class="page-header">
-        <h1 data-aos="fade-down">The Masterpieces</h1>
-        <p data-aos="fade-up" data-aos-delay="200">Where every stitch tells a royal story.</p>
+    <header></header> <div class="gallery-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-text" data-aos="zoom-out" data-aos-duration="1500">
+            <h1>The Archive</h1>
+            <div class="gold-line"></div>
+            <p>Timeless Zardozi Masterpieces</p>
+        </div>
     </div>
 
-    <div class="filter-container" data-aos="fade-in" data-aos-delay="400">
-        <button class="filter-btn active" onclick="filterGallery('all')">All Work</button>
-        <button class="filter-btn" onclick="filterGallery('bridal')">Bridal</button>
-        <button class="filter-btn" onclick="filterGallery('party')">Party Wear</button>
-        <button class="filter-btn" onclick="filterGallery('details')">Close-Ups</button>
+    <div class="filter-sticky-bar" data-aos="fade-in">
+        <button class="lux-btn active" onclick="filterGallery('all')">All Masterpieces</button>
+        <button class="lux-btn" onclick="filterGallery('bridal')">Bridal</button>
+        <button class="lux-btn" onclick="filterGallery('party')">Evening Wear</button>
     </div>
 
-    <div class="gallery-grid">
-        
-        <div class="gallery-item bridal" data-aos="fade-up">
-            <div class="image-wrapper">
-                <img src="gallery/image-1.jpg" alt="Design 1">
-                <div class="overlay">
-                    <div class="text">
-                        <h3>Royal Collection</h3>
-                        <p>Bridal Series</p>
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                </div>
+    <div class="editorial-container">
+
+        <div class="art-piece bridal" data-aos="fade-up">
+            <div class="art-image">
+                <div class="img-frame">
+                    <img src="gallery/image-1.jpg" alt="Royal Bridal Red">
+                    <div class="shine"></div> </div>
+            </div>
+            <div class="art-details">
+                <h2>The Crimson Maharani</h2>
+                <h3>Bridal Collection</h3>
+                <p>A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours to achieve this level of royal perfection.</p>
+                <button class="inquire-btn">Inquire Price</button>
             </div>
         </div>
 
-        <div class="gallery-item party" data-aos="fade-up" data-aos-delay="100">
-            <div class="image-wrapper">
-                <img src="gallery/image-2.jpg" alt="Design 2">
-                <div class="overlay">
-                    <div class="text">
-                        <h3>Evening Wear</h3>
-                        <p>Party Collection</p>
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+        <div class="art-piece party reverse-layout" data-aos="fade-up">
+            <div class="art-image">
+                <div class="img-frame">
+                    <img src="gallery/image-2.jpg" alt="Peach Elegance">
+                    <div class="shine"></div>
                 </div>
+            </div>
+            <div class="art-details">
+                <h2>Peach Blossom</h2>
+                <h3>Evening Wear</h3>
+                <p>Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look where elegance speaks softer than words.</p>
+                <button class="inquire-btn">Inquire Price</button>
             </div>
         </div>
 
-        <div class="gallery-item details" data-aos="fade-up" data-aos-delay="200">
-            <div class="image-wrapper">
-                <img src="gallery/image-3.jpg" alt="Design 3">
-                <div class="overlay">
-                    <div class="text">
-                        <h3>Intricate Details</h3>
-                        <p>Close-up Work</p>
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+        <div class="art-piece bridal" data-aos="fade-up">
+            <div class="art-image">
+                <div class="img-frame">
+                    <img src="gallery/image-3.jpg" alt="Intricate Zari Details">
+                    <div class="shine"></div>
                 </div>
+            </div>
+            <div class="art-details">
+                <h2>The Golden Thread</h2>
+                <h3>Close-Up Detail</h3>
+                <p>Witness the precision of our master artisans. Every sequin, every pearl is placed by hand, creating a texture that feels like jewelry on fabric.</p>
+                <button class="inquire-btn">Inquire Price</button>
             </div>
         </div>
 
-        <div class="gallery-item bridal" data-aos="fade-up">
-            <div class="image-wrapper">
-                <img src="gallery/image-4.jpg" alt="Design 4">
-                <div class="overlay">
-                    <div class="text">
-                        <h3>Signature Style</h3>
-                        <p>Custom Order</p>
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+        <div class="art-piece party reverse-layout" data-aos="fade-up">
+            <div class="art-image">
+                <div class="img-frame">
+                    <img src="gallery/image-4.jpg" alt="Heavy Border Work">
+                    <div class="shine"></div>
                 </div>
+            </div>
+            <div class="art-details">
+                <h2>Royal Heritage Border</h2>
+                <h3>Custom Commission</h3>
+                <p>A heavy heritage border designed for a custom bridal dupatta. The weight of the gold work is balanced perfectly on sheer fabric.</p>
+                <button class="inquire-btn">Inquire Price</button>
             </div>
         </div>
 
-    </div>
-
-    <div id="lightbox" class="lightbox">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <div id="caption"></div>
     </div>
 
     <footer></footer>
 
     <script src="js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
-        // Initialize Animations
         AOS.init();
 
-        // 1. FILTERING LOGIC
+        // Simple Filter Logic
         function filterGallery(category) {
-            const items = document.querySelectorAll('.gallery-item');
-            const buttons = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.art-piece');
+            const buttons = document.querySelectorAll('.lux-btn');
 
-            // Update Active Button
+            // Button Active State
             buttons.forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
 
-            // Show/Hide Items with Animation
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
-                    item.style.display = 'block';
-                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                    item.style.display = 'flex';
+                    setTimeout(() => item.style.opacity = '1', 50);
                 } else {
                     item.style.opacity = '0';
-                    item.style.transform = 'scale(0.8)';
-                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                    setTimeout(() => item.style.display = 'none', 500);
                 }
             });
-        }
-
-        // 2. LIGHTBOX LOGIC
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const captionText = document.getElementById('caption');
-
-        // Add Click Event to all Images
-        document.querySelectorAll('.image-wrapper').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const title = this.querySelector('h3').innerText;
-                
-                lightbox.style.display = "block";
-                lightboxImg.src = img.src;
-                captionText.innerText = title;
-            });
-        });
-
-        function closeLightbox() {
-            lightbox.style.display = "none";
         }
     </script>
 
