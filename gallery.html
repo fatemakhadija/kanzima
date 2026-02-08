@@ -4,39 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collection | KANZIMA COUTURE</title>
-    <link rel="stylesheet" href="css/styles.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/gallery-style.css"> </head>
 <body>
 
-    <header></header> <div class="container">
-        <h2 style="text-align:center; color: var(--primary-gold); margin-bottom:30px;">Our Masterpieces</h2>
-        
-        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-            
-            <div class="product-card">
-                <img src="gallery/image-1.jpg" alt="Zari Work Design 1" style="width:100%; border: 1px solid #8C6E42;">
-                <p style="text-align:center; margin-top:10px;">Bridal Design 01</p>
-            </div>
-
-            <div class="product-card">
-                <img src="gallery/image-2.jpg" alt="Zari Work Design 2" style="width:100%; border: 1px solid #8C6E42;">
-                <p style="text-align:center; margin-top:10px;">Bridal Design 02</p>
-            </div>
-
-            <div class="product-card">
-                <img src="gallery/image-3.jpg" alt="Zari Work Design 3" style="width:100%; border: 1px solid #8C6E42;">
-                <p style="text-align:center; margin-top:10px;">Bridal Design 03</p>
-            </div>
-
-            <div class="product-card">
-                <img src="gallery/image-4.jpg" alt="Zari Work Design 4" style="width:100%; border: 1px solid #8C6E42;">
-                <p style="text-align:center; margin-top:10px;">Bridal Design 04</p>
-            </div>
-
-        </div>
+    <header></header> <div class="page-header">
+        <h1 data-aos="fade-down">The Masterpieces</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Where every stitch tells a royal story.</p>
     </div>
 
-    <footer></footer> <script src="js/main.js"></script>
+    <div class="filter-container" data-aos="fade-in" data-aos-delay="400">
+        <button class="filter-btn active" onclick="filterGallery('all')">All Work</button>
+        <button class="filter-btn" onclick="filterGallery('bridal')">Bridal</button>
+        <button class="filter-btn" onclick="filterGallery('party')">Party Wear</button>
+        <button class="filter-btn" onclick="filterGallery('details')">Close-Ups</button>
+    </div>
+
+    <div class="gallery-grid">
+        
+        <div class="gallery-item bridal" data-aos="fade-up">
+            <div class="image-wrapper">
+                <img src="images/banner-1.jpg" alt="Bridal Lehenga">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Royal Red Lehenga</h3>
+                        <p>Zardozi on Velvet</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item party" data-aos="fade-up" data-aos-delay="100">
+            <div class="image-wrapper">
+                <img src="images/banner-2.jpg" alt="Party Gown">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Evening Elegance</h3>
+                        <p>Handwork on Silk</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item details" data-aos="fade-up" data-aos-delay="200">
+            <div class="image-wrapper">
+                <img src="images/banner-3.jpg" alt="Embroidery Detail">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Intricate Zari</h3>
+                        <p>Gold Wire Detail</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item bridal" data-aos="fade-up">
+            <div class="image-wrapper">
+                <img src="images/banner-4.jpg" alt="Bridal Dupatta">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>The Queen's Veil</h3>
+                        <p>Heavy Border Work</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-item party" data-aos="fade-up" data-aos-delay="100">
+            <div class="image-wrapper">
+                <img src="images/banner-5.jpg" alt="Anarkali Suit">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Golden Anarkali</h3>
+                        <p>Antique Finish</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+         <div class="gallery-item details" data-aos="fade-up" data-aos-delay="200">
+            <div class="image-wrapper">
+                <img src="images/banner-6.jpg" alt="Pattern Detail">
+                <div class="overlay">
+                    <div class="text">
+                        <h3>Floral Motifs</h3>
+                        <p>Pearl & Stone Work</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption"></div>
+    </div>
+
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Animations
+        AOS.init();
+
+        // 1. FILTERING LOGIC
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Update Active Button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Show/Hide Items with Animation
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                }
+            });
+        }
+
+        // 2. LIGHTBOX LOGIC
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const captionText = document.getElementById('caption');
+
+        // Add Click Event to all Images
+        document.querySelectorAll('.image-wrapper').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const title = this.querySelector('h3').innerText;
+                
+                lightbox.style.display = "block";
+                lightboxImg.src = img.src;
+                captionText.innerText = title;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
