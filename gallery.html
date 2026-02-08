@@ -25,29 +25,52 @@
     </div>
 
     <div class="filter-sticky-bar" data-aos="fade-in">
-        <button class="lux-btn active" onclick="filterGallery('all')">All Masterpieces</button>
-        <button class="lux-btn" onclick="filterGallery('bridal')">Bridal</button>
-        <button class="lux-btn" onclick="filterGallery('party')">Evening Wear</button>
+        <button class="lux-btn active" onclick="filterGallery('all')">
+            <span class="btn-content">
+                <span class="btn-text-primary">All Works</span>
+                <span class="btn-text-secondary">All Works</span>
+            </span>
+        </button>
+        
+        <button class="lux-btn" onclick="filterGallery('bridal')">
+            <span class="btn-content">
+                <span class="btn-text-primary">Bridal</span>
+                <span class="btn-text-secondary">Bridal</span>
+            </span>
+        </button>
+        
+        <button class="lux-btn" onclick="filterGallery('party')">
+             <span class="btn-content">
+                <span class="btn-text-primary">Evening Wear</span>
+                <span class="btn-text-secondary">Evening Wear</span>
+            </span>
+        </button>
     </div>
 
     <div class="editorial-container">
 
         <div class="art-piece bridal" data-aos="fade-up">
-            <div class="art-image">
+            <div class="art-image" onclick="openLightbox(this)">
                 <div class="img-frame">
                     <img src="gallery/image-1.jpg" alt="Royal Bridal Red">
-                    <div class="shine"></div> </div>
+                    <div class="shine"></div>
+                </div>
             </div>
             <div class="art-details">
                 <h2>The Crimson Maharani</h2>
                 <h3>Bridal Collection</h3>
-                <p>A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours to achieve this level of royal perfection.</p>
-                <button class="inquire-btn">Inquire Price</button>
+                <p>A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours.</p>
+                <button class="lux-btn">
+                     <span class="btn-content">
+                        <span class="btn-text-primary">Inquire Price</span>
+                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
+                    </span>
+                </button>
             </div>
         </div>
 
         <div class="art-piece party reverse-layout" data-aos="fade-up">
-            <div class="art-image">
+            <div class="art-image" onclick="openLightbox(this)">
                 <div class="img-frame">
                     <img src="gallery/image-2.jpg" alt="Peach Elegance">
                     <div class="shine"></div>
@@ -56,13 +79,18 @@
             <div class="art-details">
                 <h2>Peach Blossom</h2>
                 <h3>Evening Wear</h3>
-                <p>Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look where elegance speaks softer than words.</p>
-                <button class="inquire-btn">Inquire Price</button>
+                <p>Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look.</p>
+                <button class="lux-btn">
+                     <span class="btn-content">
+                        <span class="btn-text-primary">Inquire Price</span>
+                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
+                    </span>
+                </button>
             </div>
         </div>
 
         <div class="art-piece bridal" data-aos="fade-up">
-            <div class="art-image">
+            <div class="art-image" onclick="openLightbox(this)">
                 <div class="img-frame">
                     <img src="gallery/image-3.jpg" alt="Intricate Zari Details">
                     <div class="shine"></div>
@@ -71,13 +99,18 @@
             <div class="art-details">
                 <h2>The Golden Thread</h2>
                 <h3>Close-Up Detail</h3>
-                <p>Witness the precision of our master artisans. Every sequin, every pearl is placed by hand, creating a texture that feels like jewelry on fabric.</p>
-                <button class="inquire-btn">Inquire Price</button>
+                <p>Witness the precision of our master artisans. Every sequin is placed by hand.</p>
+                <button class="lux-btn">
+                     <span class="btn-content">
+                        <span class="btn-text-primary">Inquire Price</span>
+                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
+                    </span>
+                </button>
             </div>
         </div>
 
         <div class="art-piece party reverse-layout" data-aos="fade-up">
-            <div class="art-image">
+            <div class="art-image" onclick="openLightbox(this)">
                 <div class="img-frame">
                     <img src="gallery/image-4.jpg" alt="Heavy Border Work">
                     <div class="shine"></div>
@@ -86,11 +119,21 @@
             <div class="art-details">
                 <h2>Royal Heritage Border</h2>
                 <h3>Custom Commission</h3>
-                <p>A heavy heritage border designed for a custom bridal dupatta. The weight of the gold work is balanced perfectly on sheer fabric.</p>
-                <button class="inquire-btn">Inquire Price</button>
+                <p>A heavy heritage border designed for a custom bridal dupatta.</p>
+                <button class="lux-btn">
+                     <span class="btn-content">
+                        <span class="btn-text-primary">Inquire Price</span>
+                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
+                    </span>
+                </button>
             </div>
         </div>
 
+    </div>
+
+    <div id="myLightbox" class="lightbox-modal">
+        <span class="close-lightbox" onclick="closeLightbox()">×</span>
+        <img class="lightbox-img" id="lightbox-img-display">
     </div>
 
     <footer></footer>
@@ -100,14 +143,15 @@
     <script>
         AOS.init();
 
-        // Simple Filter Logic
+        // 1. FILTER LOGIC
         function filterGallery(category) {
             const items = document.querySelectorAll('.art-piece');
             const buttons = document.querySelectorAll('.lux-btn');
 
-            // Button Active State
+            // Button Active State (Remove active from parent button)
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            // Add active to the clicked button (event.currentTarget catches the button, not the span)
+            event.currentTarget.classList.add('active');
 
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
@@ -118,6 +162,21 @@
                     setTimeout(() => item.style.display = 'none', 500);
                 }
             });
+        }
+
+        // 2. ZOOM LIGHTBOX LOGIC
+        function openLightbox(element) {
+            // Find the image inside the clicked frame
+            const img = element.querySelector('img');
+            const modal = document.getElementById('myLightbox');
+            const modalImg = document.getElementById('lightbox-img-display');
+            
+            modal.style.display = "flex"; // Show modal
+            modalImg.src = img.src; // Set image
+        }
+
+        function closeLightbox() {
+            document.getElementById('myLightbox').style.display = "none";
         }
     </script>
 
