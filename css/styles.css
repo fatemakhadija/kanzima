@@ -207,10 +207,16 @@ nav a:hover, nav a.active {
     background-color: #080808; /* Deep Black Inside */
     padding: 60px 40px;
     position: relative;
+    /* Centering Fixes */
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Forces button to center */
+    
     /* The Inner Frame Line */
     border: 1px solid rgba(197, 160, 89, 0.3);
     outline: 1px solid rgba(197, 160, 89, 0.3);
-    outline-offset: -10px; /* Creates the double-line effect */
+    outline-offset: -10px;
 }
 
 /* --- THE 4 CORNER ORNAMENTS (The "Stepped" Look) --- */
