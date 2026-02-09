@@ -47,89 +47,8 @@
         </button>
     </div>
 
-    <div class="editorial-container">
-
-        <div class="art-piece bridal" data-aos="fade-up">
-            <div class="art-image" onclick="openLightbox(this)">
-                <div class="img-frame">
-                    <img src="gallery/image-1.jpg" alt="Royal Bridal Red">
-                    <div class="shine"></div>
-                </div>
-            </div>
-            <div class="art-details">
-                <h2>The Crimson Maharani</h2>
-                <h3>Bridal Collection</h3>
-                <p>A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours.</p>
-                <button class="lux-btn">
-                     <span class="btn-content">
-                        <span class="btn-text-primary">Inquire Price</span>
-                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
-                    </span>
-                </button>
-            </div>
+    <div id="gallery-container" class="editorial-container">
         </div>
-
-        <div class="art-piece party reverse-layout" data-aos="fade-up">
-            <div class="art-image" onclick="openLightbox(this)">
-                <div class="img-frame">
-                    <img src="gallery/image-2.jpg" alt="Peach Elegance">
-                    <div class="shine"></div>
-                </div>
-            </div>
-            <div class="art-details">
-                <h2>Peach Blossom</h2>
-                <h3>Evening Wear</h3>
-                <p>Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look.</p>
-                <button class="lux-btn">
-                     <span class="btn-content">
-                        <span class="btn-text-primary">Inquire Price</span>
-                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
-                    </span>
-                </button>
-            </div>
-        </div>
-
-        <div class="art-piece bridal" data-aos="fade-up">
-            <div class="art-image" onclick="openLightbox(this)">
-                <div class="img-frame">
-                    <img src="gallery/image-3.jpg" alt="Intricate Zari Details">
-                    <div class="shine"></div>
-                </div>
-            </div>
-            <div class="art-details">
-                <h2>The Golden Thread</h2>
-                <h3>Close-Up Detail</h3>
-                <p>Witness the precision of our master artisans. Every sequin is placed by hand.</p>
-                <button class="lux-btn">
-                     <span class="btn-content">
-                        <span class="btn-text-primary">Inquire Price</span>
-                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
-                    </span>
-                </button>
-            </div>
-        </div>
-
-        <div class="art-piece party reverse-layout" data-aos="fade-up">
-            <div class="art-image" onclick="openLightbox(this)">
-                <div class="img-frame">
-                    <img src="gallery/image-4.jpg" alt="Heavy Border Work">
-                    <div class="shine"></div>
-                </div>
-            </div>
-            <div class="art-details">
-                <h2>Royal Heritage Border</h2>
-                <h3>Custom Commission</h3>
-                <p>A heavy heritage border designed for a custom bridal dupatta.</p>
-                <button class="lux-btn">
-                     <span class="btn-content">
-                        <span class="btn-text-primary">Inquire Price</span>
-                        <span class="btn-text-secondary" style="color:#000;">Inquire Price</span>
-                    </span>
-                </button>
-            </div>
-        </div>
-
-    </div>
 
     <div id="myLightbox" class="lightbox-modal">
         <span class="close-lightbox" onclick="closeLightbox()">×</span>
@@ -139,18 +58,18 @@
     <footer></footer>
 
     <script src="js/main.js"></script>
+    <script src="js/gallery-loader.js"></script> 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
 
-        // 1. FILTER LOGIC
+        // FILTER LOGIC (Updated to work with Dynamic Data)
         function filterGallery(category) {
             const items = document.querySelectorAll('.art-piece');
             const buttons = document.querySelectorAll('.lux-btn');
 
-            // Button Active State (Remove active from parent button)
+            // Button Active State
             buttons.forEach(btn => btn.classList.remove('active'));
-            // Add active to the clicked button (event.currentTarget catches the button, not the span)
             event.currentTarget.classList.add('active');
 
             items.forEach(item => {
@@ -164,15 +83,14 @@
             });
         }
 
-        // 2. ZOOM LIGHTBOX LOGIC
+        // LIGHTBOX LOGIC
         function openLightbox(element) {
-            // Find the image inside the clicked frame
             const img = element.querySelector('img');
             const modal = document.getElementById('myLightbox');
             const modalImg = document.getElementById('lightbox-img-display');
             
-            modal.style.display = "flex"; // Show modal
-            modalImg.src = img.src; // Set image
+            modal.style.display = "flex";
+            modalImg.src = img.src;
         }
 
         function closeLightbox() {
