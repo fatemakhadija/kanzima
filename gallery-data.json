@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "visible": true,
+        "category": "bridal",
+        "image": "gallery/image-1.jpg",
+        "title": "The Crimson Maharani",
+        "subtitle": "Bridal Collection",
+        "description": "A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours."
+    },
+    {
+        "id": 2,
+        "visible": true,
+        "category": "party",
+        "image": "gallery/image-2.jpg",
+        "title": "Peach Blossom",
+        "subtitle": "Evening Wear",
+        "description": "Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look."
+    },
+    {
+        "id": 3,
+        "visible": true,
+        "category": "bridal",
+        "image": "gallery/image-3.jpg",
+        "title": "The Golden Thread",
+        "subtitle": "Close-Up Detail",
+        "description": "Witness the precision of our master artisans. Every sequin is placed by hand."
+    },
+    {
+        "id": 4,
+        "visible": false, 
+        "category": "party",
+        "image": "gallery/image-4.jpg",
+        "title": "Hidden Dress",
+        "subtitle": "This will not show",
+        "description": "Because visible is set to false, this item stays hidden."
+    }
+]
