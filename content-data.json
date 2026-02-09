@@ -1,0 +1,103 @@
+{
+    "process": {
+        "hero": {
+            "title": "The Journey",
+            "subtitle": "From Imagination to Reality"
+        },
+        "intro": [
+            "Every masterpiece begins with a thought.",
+            "A line drawn on paper.",
+            "A budget respected.",
+            "This is how we craft your legacy."
+        ],
+        "steps": [
+            {
+                "id": "01",
+                "title": "Consultation & Budget",
+                "desc": "Unlike others, we start with your range. Whether you need a simple elegant finish or a heavy royal bridal look, we plan the materials to fit your budget first.",
+                "image": "images/process-1.jpg"
+            },
+            {
+                "id": "02",
+                "title": "The Khaka (Blueprint)",
+                "desc": "You are the designer. We convert your rough ideas into professional sketches (Khaka) and refine the silhouette until it matches the image in your mind.",
+                "image": "images/process-2.jpg"
+            },
+            {
+                "id": "03",
+                "title": "Sourcing & Sampling",
+                "desc": "We don't just use expensive brands. We source from local markets to global suppliers. You approve a live sample swatch before we touch the final fabric.",
+                "image": "images/process-3.jpg"
+            },
+            {
+                "id": "04",
+                "title": "The Golden Stitch",
+                "desc": "Our master Karigars mount the fabric on the 'Adda'. Using Zardozi, Aari, and thread work, the embroidery is executed with surgical precision.",
+                "image": "images/process-4.jpg"
+            }
+        ]
+    },
+    "services": {
+        "hero": {
+            "title": "Our Craft",
+            "subtitle": "Bespoke & Bulk Production"
+        },
+        "list": [
+            {
+                "title": "Bespoke Bridal",
+                "desc": "One-of-a-kind Lehengas and Sherwanis designed exclusively for your special day. No mass production.",
+                "icon": "fa-ring"
+            },
+            {
+                "title": "Designer Production",
+                "desc": "Are you a boutique owner? Send us your tech packs. We handle sampling, sourcing, and bulk export quality manufacturing.",
+                "icon": "fa-industry"
+            },
+            {
+                "title": "Restoration",
+                "desc": "We restore vintage sarees and antique Zari work, preserving the memories of your ancestors.",
+                "icon": "fa-history"
+            },
+            {
+                "title": "Accessories",
+                "desc": "Hand-embroidered belts, potli bags, badges, and shoe uppers to complete your brand's look.",
+                "icon": "fa-gem"
+            }
+        ],
+        "tiers_title": "Customize Your Budget",
+        "tiers_subtitle": "We adjust the materials to fit your price range.",
+        "tiers": [
+            {
+                "title": "The Royal Tier",
+                "subtitle": "Heirloom Quality",
+                "desc": "For brides who want the weight of tradition. We use the finest authentic materials.",
+                "items": ["Authentic Zardozi", "Semi-Precious Stones", "French Knots", "Antique Zari"]
+            },
+            {
+                "title": "The Elegant Tier",
+                "subtitle": "Modern & Chic",
+                "desc": "Perfect for cocktail sarees and evening gowns. High shine, lighter weight.",
+                "items": ["Cut-Dana (Glass Beads)", "High-Gloss Sequins", "Premium Crystals", "Gota Patti"]
+            },
+            {
+                "title": "The Smart-Budget Tier",
+                "subtitle": "Beautiful & Affordable",
+                "desc": "Maximum visual impact, optimized for cost. We use clever techniques to lower the price.",
+                "items": ["Machine-Hand Fusion", "Lightweight Beads", "Thread-Work Borders", "Standard Zari"]
+            }
+        ]
+    },
+    "about": {
+        "hero": {
+            "title": "The Karigar Collective",
+            "subtitle": "Preserving the Soul of India"
+        },
+        "story": "Kanzima Couture is not just a brand; it is a collective of skilled artisans (Karigars). Located in Prayagraj, the heart of India's embroidery belt, we bridge the gap between ancient techniques and modern budgets.",
+        "philosophy": "We believe luxury is about transparency. You know exactly what materials we use, and you pay for the craft, not the label.",
+        "stats": [
+            { "num": "15+", "label": "Years Experience" },
+            { "num": "500+", "label": "Brides Dressed" },
+            { "num": "100%", "label": "Handmade" }
+        ]
+    }
+}
