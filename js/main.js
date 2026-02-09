@@ -97,3 +97,82 @@ buttons.forEach(btn => {
         btn.style.transform = `translate(0px, 0px)`;
     });
 });
+
+/* =========================================
+   NEEDLE ANIMATION & GLOBAL ICONS
+   ========================================= */
+document.addEventListener("DOMContentLoaded", function() {
+
+    // 1. INJECT NEEDLE (If not present)
+    let needle = document.querySelector('.floating-needle');
+    if (!needle) {
+        needle = document.createElement('img');
+        needle.src = 'images/thread-needle.gif';
+        needle.className = 'floating-needle';
+        needle.alt = 'Sewing Animation';
+        document.body.appendChild(needle);
+    }
+
+    // 2. INJECT WHATSAPP (If not present)
+    let whatsapp = document.querySelector('.whatsapp-float');
+    if (!whatsapp) {
+        whatsapp = document.createElement('a');
+        whatsapp.href = 'https://wa.me/919307159339';
+        whatsapp.className = 'whatsapp-float';
+        whatsapp.target = '_blank';
+        whatsapp.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        document.body.appendChild(whatsapp);
+    }
+
+    // 3. SCROLL ANIMATION (Diagonal Movement)
+    window.addEventListener('scroll', function() {
+        if (!needle) return;
+
+        // Calculate how far we have scrolled (0 to 1)
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = scrollTop / docHeight;
+
+        // Calculate Target Position (Diagonal Path)
+        // Moves from Left (0) to Right (Screen Width - Needle Width)
+        // Moves from Top (0) to Bottom (Screen Height - Needle Height)
+        
+        const maxX = window.innerWidth - 80; // 80px buffer
+        const maxY = window.innerHeight - 100; // 100px buffer
+
+        const moveX = scrollPercent * maxX;
+        const moveY = scrollPercent * maxY;
+
+        // Apply Movement
+        needle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+
+    // 4. HEADER LOADER (Keep your existing header logic if you have it here)
+    // If you don't have header logic, you can add it below.
+    const header = document.querySelector('header');
+    if(header && header.innerHTML.trim() === '') {
+        header.innerHTML = `
+            <div class="logo">
+                <img src="images/logo.png" alt="Kanzima Logo" style="height: 50px;">
+                <span class="logo-text">KANZIMA COUTURE</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="process.html">The Process</a></li>
+                    <li><a href="gallery.html">Collection</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        `;
+        
+        // Highlight Active Link
+        const currentPage = window.location.pathname.split("/").pop() || 'index.html';
+        const links = document.querySelectorAll('nav a');
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+    }
+});
