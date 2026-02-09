@@ -20,20 +20,26 @@
             {
                 "id": "02",
                 "title": "The Khaka (Blueprint)",
-                "desc": "You are the designer. We convert your rough ideas into professional sketches (Khaka) and refine the silhouette until it matches the image in your mind.",
-                "image": "images/process-2.jpg"
+                "desc": "Before a single stitch is made, the design is born on paper. This is the 'Khaka'—the soul of the dress. We draft intricate patterns that trace the flow of the embroidery.",
+                "image": "images/process-1-khaka-1.jpg"
             },
             {
                 "id": "03",
-                "title": "Sourcing & Sampling",
-                "desc": "We don't just use expensive brands. We source from local markets to global suppliers. You approve a live sample swatch before we touch the final fabric.",
-                "image": "images/process-3.jpg"
+                "title": "The Tracing",
+                "desc": "The design is transferred onto the fabric using traditional methods. We select the finest silks and velvets, ensuring the foundation is as royal as the embroidery itself.",
+                "image": "images/process-2-1.jpg"
             },
             {
                 "id": "04",
                 "title": "The Golden Stitch",
-                "desc": "Our master Karigars mount the fabric on the 'Adda'. Using Zardozi, Aari, and thread work, the embroidery is executed with surgical precision.",
-                "image": "images/process-4.jpg"
+                "desc": "The fabric is mounted on the 'Adda' (wooden frame). Our master Karigars begin the painstaking work of Zardozi, adding gold wires, pearls, and sequins stitch by stitch.",
+                "image": "images/process-3.jpg"
+            },
+            {
+                "id": "05",
+                "title": "The Grand Reveal",
+                "desc": "The pieces are stitched together, lined with comfort, and fitted to perfection. The result is not just a dress, but a piece of art ready for your special day.",
+                "image": "images/banner-4.jpg"
             }
         ]
     },
