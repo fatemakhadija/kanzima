@@ -6,7 +6,7 @@
         "image": "gallery/image-1.jpg",
         "title": "The Crimson Maharani",
         "subtitle": "Bridal Collection",
-        "description": "A symphony of deep crimson velvet and antique gold Zari. Hand-embroidered for over 400 hours."
+        "description": "A symphony of deep crimson velvet and antique gold Zari."
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "image": "gallery/image-2.jpg",
         "title": "Peach Blossom",
         "subtitle": "Evening Wear",
-        "description": "Soft pastel hues meet heavy metallic thread work. Perfect for the modern reception look."
+        "description": "Soft pastel hues meet heavy metallic thread work."
     },
     {
         "id": 3,
@@ -24,15 +24,51 @@
         "image": "gallery/image-3.jpg",
         "title": "The Golden Thread",
         "subtitle": "Close-Up Detail",
-        "description": "Witness the precision of our master artisans. Every sequin is placed by hand."
+        "description": "Witness the precision of our master artisans."
     },
     {
         "id": 4,
-        "visible": false, 
+        "visible": true, 
         "category": "party",
         "image": "gallery/image-4.jpg",
-        "title": "Hidden Dress",
-        "subtitle": "This will not show",
-        "description": "Because visible is set to false, this item stays hidden."
+        "title": "Midnight Glamour",
+        "subtitle": "Cocktail Collection",
+        "description": "Heavy sequins work on sheer fabric for a dazzling evening look."
+    },
+    {
+        "id": 5,
+        "visible": true, 
+        "category": "bridal",
+        "image": "gallery/image-5.jpg",
+        "title": "The Royal Peacock",
+        "subtitle": "Masterpiece Collection",
+        "description": "Intricate peacock motifs hand-embroidered with Zardozi and pearls."
+    },
+    {
+        "id": 6,
+        "visible": true, 
+        "category": "party",
+        "image": "gallery/image-6.jpg",
+        "title": "Stardust Net",
+        "subtitle": "Modern Handwork",
+        "description": "Contemporary cut-dana work on sheer net fabric."
+    },
+    {
+        "id": 7,
+        "visible": true, 
+        "category": "bridal",
+        "image": "gallery/image-7.jpg",
+        "title": "Velvet Heritage",
+        "subtitle": "Traditional Craft",
+        "description": "Dense floral Jaal work on premium velvet."
+    },
+    {
+        "id": 8,
+        "visible": true, 
+        "category": "bridal",
+        "image": "gallery/image-8.jpg",
+        "title": "The Scarlet Drape",
+        "subtitle": "Signature Saree",
+        "description": "A timeless red saree with signature Kanzima borders."
     }
 ]
