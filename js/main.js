@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- 1. LOAD THE HEADER ---
+    // --- 1. LOAD COMPONENTS ---
+    
+    // Load Header
     const headerElement = document.querySelector("header");
     if (headerElement) {
         fetch("pages/header.html")
@@ -10,13 +12,12 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 headerElement.innerHTML = data;
-                // Highlight the current page in the menu (Optional polish)
                 highlightCurrentPage(); 
             })
             .catch(error => console.error("Error loading header:", error));
     }
 
-    // --- 2. LOAD THE FOOTER ---
+    // Load Footer
     const footerElement = document.querySelector("footer");
     if (footerElement) {
         fetch("pages/footer.html")
@@ -30,10 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading footer:", error));
     }
 
-    // --- 3. LOAD BANNER & START ANIMATION ---
+    // Load Banner (And start Ken Burns Animation)
     const bannerContainer = document.getElementById("banner-container");
-    
-    // Only try to load the banner if the container exists (e.g., on the Homepage)
     if (bannerContainer) {
         fetch("pages/banner.html")
             .then(response => {
@@ -41,79 +40,34 @@ document.addEventListener("DOMContentLoaded", function() {
                 return response.text();
             })
             .then(data => {
-                // A. Inject the Banner HTML
                 bannerContainer.innerHTML = data;
-                
-                // B. Initialize the Particle Animation
-                // We check if the function exists first to prevent errors
-                if (typeof startParticles === "function") {
-                    console.log("Starting Gold Dust Animation...");
-                    startParticles();
-                } else {
-                    console.warn("startParticles function not found. Check js/particles-config.js");
-                }
+                // Start the new Zoom Animation instead of Particles
+                startBannerSlider(); 
             })
             .catch(error => console.error("Error loading banner:", error));
     }
-});
 
-// --- HELPER: Active Menu Highlighter ---
-// This adds a gold color to the menu item of the page you are currently on
-function highlightCurrentPage() {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll("nav a");
+    // --- 2. GLOBAL INJECTIONS (Needle & WhatsApp) ---
     
-    navLinks.forEach(link => {
-        if (link.getAttribute("href") === currentPage) {
-            link.style.color = "#C5A059"; // Force Gold Color
-            link.style.borderBottom = "1px solid #C5A059";
-        }
-    });
-}
-/* js/main.js - Add this at the bottom */
-
-// MAGNETIC BUTTON EFFECT
-const buttons = document.querySelectorAll('.lux-btn');
-
-buttons.forEach(btn => {
-    btn.addEventListener('mousemove', function(e) {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Mouse X inside button
-        const y = e.clientY - rect.top;  // Mouse Y inside button
-        
-        // Calculate distance from center
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const deltaX = (x - centerX) * 0.3; // 0.3 is the magnetic strength
-        const deltaY = (y - centerY) * 0.3;
-
-        // Move the button slightly
-        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    });
-
-    // Reset when mouse leaves
-    btn.addEventListener('mouseleave', function() {
-        btn.style.transform = `translate(0px, 0px)`;
-    });
-});
-
-/* =========================================
-   NEEDLE ANIMATION & GLOBAL ICONS
-   ========================================= */
-document.addEventListener("DOMContentLoaded", function() {
-
-    // 1. INJECT NEEDLE (If not present)
+    // Inject Floating Needle (if missing)
     let needle = document.querySelector('.floating-needle');
     if (!needle) {
         needle = document.createElement('img');
         needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
+        // Add basic styles directly to ensure visibility
+        needle.style.position = 'fixed';
+        needle.style.top = '20px';
+        needle.style.left = '20px';
+        needle.style.width = '60px';
+        needle.style.zIndex = '9999';
+        needle.style.pointerEvents = 'none';
+        needle.style.transition = 'transform 0.1s linear';
         document.body.appendChild(needle);
     }
 
-    // 2. INJECT WHATSAPP (If not present)
+    // Inject WhatsApp (if missing)
     let whatsapp = document.querySelector('.whatsapp-float');
     if (!whatsapp) {
         whatsapp = document.createElement('a');
@@ -124,89 +78,127 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.appendChild(whatsapp);
     }
 
-    // 3. SCROLL ANIMATION (Diagonal Movement)
+    // --- 3. SCROLL ANIMATION (Diagonal Needle Movement) ---
     window.addEventListener('scroll', function() {
         if (!needle) return;
 
-        // Calculate how far we have scrolled (0 to 1)
+        // Calculate scroll percentage
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
         const scrollPercent = scrollTop / docHeight;
 
-        // Calculate Target Position (Diagonal Path)
-        // Moves from Left (0) to Right (Screen Width - Needle Width)
-        // Moves from Top (0) to Bottom (Screen Height - Needle Height)
-        
-        const maxX = window.innerWidth - 80; // 80px buffer
-        const maxY = window.innerHeight - 100; // 100px buffer
+        // Move diagonally from Top-Left to Bottom-Right
+        const maxX = window.innerWidth - 80; 
+        const maxY = window.innerHeight - 100;
 
         const moveX = scrollPercent * maxX;
         const moveY = scrollPercent * maxY;
 
-        // Apply Movement
         needle.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
 
-    // 4. HEADER LOADER (Keep your existing header logic if you have it here)
-    // If you don't have header logic, you can add it below.
-    const header = document.querySelector('header');
-    if(header && header.innerHTML.trim() === '') {
-        header.innerHTML = `
-            <div class="logo">
-                <img src="images/logo.png" alt="Kanzima Logo" style="height: 50px;">
-                <span class="logo-text">KANZIMA COUTURE</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="process.html">The Process</a></li>
-                    <li><a href="gallery.html">Collection</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-        `;
-        
-        // Highlight Active Link
-        const currentPage = window.location.pathname.split("/").pop() || 'index.html';
-        const links = document.querySelectorAll('nav a');
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-            }
+    // --- 4. PRELOADER FADE OUT ---
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+        window.addEventListener("load", function() {
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                setTimeout(() => { preloader.style.display = "none"; }, 500);
+            }, 1000);
         });
+    }
+});
+
+// --- HELPER: Active Menu Highlighter ---
+function highlightCurrentPage() {
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const navLinks = document.querySelectorAll("nav a");
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add('active'); // Assumes .active class in CSS
+            link.style.color = "#C5A059"; 
+        }
+    });
+}
+
+// --- NEW FUNCTION: KEN BURNS BANNER SLIDER ---
+function startBannerSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+    
+    let current = 0;
+    const intervalTime = 7000; // 7 seconds per slide
+
+    setInterval(() => {
+        // Remove active class from current
+        slides[current].classList.remove('active');
+        
+        // Move to next
+        current = (current + 1) % slides.length;
+        
+        // Add active class to next (triggers CSS zoom)
+        slides[current].classList.add('active');
+    }, intervalTime);
+}
+
+// --- MAGNETIC BUTTON EFFECT ---
+// Applies to any element with .lux-btn class (loaded dynamically or static)
+document.addEventListener('mousemove', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        const btn = e.target.closest('.lux-btn');
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const deltaX = (x - centerX) * 0.3;
+        const deltaY = (y - centerY) * 0.3;
+
+        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    }
+});
+
+document.addEventListener('mouseout', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
     }
 });
 
 /* ============================
    CUSTOM CURSOR LOGIC
    ============================ */
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
+// Only run on desktop (width > 768px) to prevent mobile issues
+if (window.innerWidth > 768) {
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorCircle = document.querySelector('.cursor-circle');
 
-// 1. Move Cursor
-window.addEventListener('mousemove', function(e) {
-    const posX = e.clientX;
-    const posY = e.clientY;
+    if (cursorDot && cursorCircle) {
+        // 1. Move Cursor
+        window.addEventListener('mousemove', function(e) {
+            const posX = e.clientX;
+            const posY = e.clientY;
 
-    // Dot moves instantly
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
+            // Dot moves instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
 
-    // Outline moves with lag (Animation)
-    cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-});
+            // Circle moves with fluid delay
+            cursorCircle.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 400, fill: "forwards" });
+        });
 
-// 2. Hover Effect (Expand on Links)
-const interactiveElements = document.querySelectorAll('a, button, .card, .art-image');
-
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        document.body.classList.add('hovering');
-    });
-    el.addEventListener('mouseleave', () => {
-        document.body.classList.remove('hovering');
-    });
-});
+        // 2. Hover Effect (Delegation for dynamic elements)
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a') || e.target.closest('button') || e.target.closest('.card') || e.target.closest('.art-image')) {
+                document.body.classList.add('hovering');
+            } else {
+                document.body.classList.remove('hovering');
+            }
+        });
+    }
+}
