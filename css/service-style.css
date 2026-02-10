@@ -1,0 +1,99 @@
+/* =========================================
+   SERVICES PAGE SPECIFIC STYLES
+   ========================================= */
+
+/* 1. HERO SECTION */
+.services-hero {
+    height: 50vh;
+    background: url('../images/services-hero.jpg') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 2. SERVICES GRID ICONS */
+.service-icon {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: 20px;
+}
+
+/* 3. BUDGET TIERS SECTION */
+.tiers-section {
+    background: linear-gradient(to bottom, #050505, #0f0f0f);
+    padding-top: 80px;
+    border-top: 1px solid #222;
+}
+
+/* Tier Card Styling */
+.tier-card {
+    text-align: left;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 40px;
+    background: #0a0a0a;
+    transition: 0.3s;
+}
+
+.tier-card:hover {
+    border-color: var(--primary-gold);
+    transform: translateY(-5px);
+}
+
+.tier-title {
+    color: var(--primary-gold);
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+}
+
+.tier-subtitle {
+    font-size: 1rem;
+    color: var(--accent-bronze);
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.tier-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+}
+
+/* The List inside the Tier */
+.tier-details {
+    margin-top: 25px;
+    border-top: 1px dashed #333;
+    padding-top: 20px;
+}
+
+.tier-label {
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.tier-list {
+    list-style: none;
+    padding: 0;
+    color: #999;
+}
+
+.tier-list li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.check-icon {
+    color: var(--primary-gold);
+    margin-right: 10px;
+}
+
