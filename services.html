@@ -7,13 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/global-style.css">
-    <link rel="stylesheet" href="css/gallery-style.css">
+    <link rel="stylesheet" href="css/services-style.css">
 </head>
 <body>
     <header></header>
     
-    <div class="gallery-hero" style="background-image: url('images/services-hero.jpg');">
+    <div class="services-hero">
         <div class="hero-overlay"></div>
         <div class="hero-text" data-aos="zoom-out">
             <h1>Our Craft</h1>
@@ -26,28 +27,28 @@
         <div class="grid-2" style="max-width:1200px; margin:0 auto; gap:40px;">
             
             <div class="card" data-aos="zoom-in" style="margin:0; min-height:350px;">
-                <i class="fas fa-ring" style="font-size:3rem; color:#C5A059; margin-bottom:20px;"></i>
+                <i class="fas fa-ring service-icon"></i>
                 <h2>Bespoke Bridal</h2>
                 <div class="card-divider"></div>
                 <p>One-of-a-kind Lehengas and Sherwanis designed exclusively for your special day. No mass production.</p>
             </div>
 
             <div class="card" data-aos="zoom-in" style="margin:0; min-height:350px;">
-                <i class="fas fa-industry" style="font-size:3rem; color:#C5A059; margin-bottom:20px;"></i>
+                <i class="fas fa-industry service-icon"></i>
                 <h2>Designer Production</h2>
                 <div class="card-divider"></div>
                 <p>Are you a boutique owner? Send us your tech packs. We handle sampling, sourcing, and bulk export quality manufacturing.</p>
             </div>
 
             <div class="card" data-aos="zoom-in" style="margin:0; min-height:350px;">
-                <i class="fas fa-history" style="font-size:3rem; color:#C5A059; margin-bottom:20px;"></i>
+                <i class="fas fa-history service-icon"></i>
                 <h2>Restoration</h2>
                 <div class="card-divider"></div>
                 <p>We restore vintage sarees and antique Zari work, preserving the memories of your ancestors.</p>
             </div>
 
             <div class="card" data-aos="zoom-in" style="margin:0; min-height:350px;">
-                <i class="fas fa-gem" style="font-size:3rem; color:#C5A059; margin-bottom:20px;"></i>
+                <i class="fas fa-gem service-icon"></i>
                 <h2>Accessories</h2>
                 <div class="card-divider"></div>
                 <p>Hand-embroidered belts, potli bags, badges, and shoe uppers to complete your brand's look.</p>
@@ -55,7 +56,7 @@
         </div>
     </div>
 
-    <div class="content-section" style="background: linear-gradient(to bottom, #050505, #0a0a0a); padding-top:80px; border-top:1px solid #333;">
+    <div class="content-section tiers-section">
         <div style="text-align:center; margin-bottom:60px;" data-aos="fade-up">
             <h2 style="font-size:3rem; color:#C5A059; font-family:'Cinzel';">Customize Your Budget</h2>
             <p style="color:#E6DCCA; font-size:1.2rem; margin-top:10px;">We adjust the materials to fit your price range.</p>
@@ -63,44 +64,44 @@
         
         <div class="grid-2" style="max-width:1200px; margin:0 auto; gap:40px; align-items:start;">
             
-            <div class="card" data-aos="fade-up" style="margin:0; text-align:left; border: 1px solid rgba(197, 160, 89, 0.2);">
-                <h3 style="color:#C5A059; font-family:'Cinzel'; font-size:1.8rem;">The Royal Tier</h3>
-                <span style="font-size:1rem; color:#8C6E42; display:block; margin-bottom:20px; font-weight:bold;">Heirloom Quality</span>
-                <p style="font-size:1rem; line-height:1.8;">For brides who want the weight of tradition. We use the finest authentic materials.</p>
-                <div style="margin-top:25px; border-top:1px dashed #333; padding-top:20px;">
-                    <strong style="color:#E6DCCA; display:block; margin-bottom:10px;">We use:</strong>
-                    <ul style="list-style:none; padding:0; color:#999;">
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Authentic Zardozi</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Semi-Precious Stones</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>French Knots</li>
+            <div class="tier-card" data-aos="fade-up">
+                <h3 class="tier-title">The Royal Tier</h3>
+                <span class="tier-subtitle">Heirloom Quality</span>
+                <p class="tier-desc">For brides who want the weight of tradition. We use the finest authentic materials.</p>
+                <div class="tier-details">
+                    <strong class="tier-label">We use:</strong>
+                    <ul class="tier-list">
+                        <li><i class="fas fa-check check-icon"></i>Authentic Zardozi</li>
+                        <li><i class="fas fa-check check-icon"></i>Semi-Precious Stones</li>
+                        <li><i class="fas fa-check check-icon"></i>French Knots</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="card" data-aos="fade-up" style="margin:0; text-align:left; border: 1px solid rgba(197, 160, 89, 0.2);">
-                <h3 style="color:#C5A059; font-family:'Cinzel'; font-size:1.8rem;">The Elegant Tier</h3>
-                <span style="font-size:1rem; color:#8C6E42; display:block; margin-bottom:20px; font-weight:bold;">Modern & Chic</span>
-                <p style="font-size:1rem; line-height:1.8;">Perfect for cocktail sarees and evening gowns. High shine, lighter weight.</p>
-                <div style="margin-top:25px; border-top:1px dashed #333; padding-top:20px;">
-                    <strong style="color:#E6DCCA; display:block; margin-bottom:10px;">We use:</strong>
-                    <ul style="list-style:none; padding:0; color:#999;">
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Cut-Dana (Glass Beads)</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>High-Gloss Sequins</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Gota Patti</li>
+            <div class="tier-card" data-aos="fade-up">
+                <h3 class="tier-title">The Elegant Tier</h3>
+                <span class="tier-subtitle">Modern & Chic</span>
+                <p class="tier-desc">Perfect for cocktail sarees and evening gowns. High shine, lighter weight.</p>
+                <div class="tier-details">
+                    <strong class="tier-label">We use:</strong>
+                    <ul class="tier-list">
+                        <li><i class="fas fa-check check-icon"></i>Cut-Dana (Glass Beads)</li>
+                        <li><i class="fas fa-check check-icon"></i>High-Gloss Sequins</li>
+                        <li><i class="fas fa-check check-icon"></i>Gota Patti</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="card" data-aos="fade-up" style="margin:0; text-align:left; border: 1px solid rgba(197, 160, 89, 0.2);">
-                <h3 style="color:#C5A059; font-family:'Cinzel'; font-size:1.8rem;">Smart-Budget Tier</h3>
-                <span style="font-size:1rem; color:#8C6E42; display:block; margin-bottom:20px; font-weight:bold;">Beautiful & Affordable</span>
-                <p style="font-size:1rem; line-height:1.8;">Maximum visual impact, optimized for cost. We use clever techniques to lower the price.</p>
-                <div style="margin-top:25px; border-top:1px dashed #333; padding-top:20px;">
-                    <strong style="color:#E6DCCA; display:block; margin-bottom:10px;">We use:</strong>
-                    <ul style="list-style:none; padding:0; color:#999;">
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Machine-Hand Fusion</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Lightweight Beads</li>
-                        <li style="margin-bottom:8px;"><i class="fas fa-check" style="color:#C5A059; margin-right:10px;"></i>Standard Zari</li>
+            <div class="tier-card" data-aos="fade-up">
+                <h3 class="tier-title">Smart-Budget Tier</h3>
+                <span class="tier-subtitle">Beautiful & Affordable</span>
+                <p class="tier-desc">Maximum visual impact, optimized for cost. We use clever techniques to lower the price.</p>
+                <div class="tier-details">
+                    <strong class="tier-label">We use:</strong>
+                    <ul class="tier-list">
+                        <li><i class="fas fa-check check-icon"></i>Machine-Hand Fusion</li>
+                        <li><i class="fas fa-check check-icon"></i>Lightweight Beads</li>
+                        <li><i class="fas fa-check check-icon"></i>Standard Zari</li>
                     </ul>
                 </div>
             </div>
