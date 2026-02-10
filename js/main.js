@@ -176,3 +176,37 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+/* ============================
+   CUSTOM CURSOR LOGIC
+   ============================ */
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorOutline = document.querySelector('.cursor-outline');
+
+// 1. Move Cursor
+window.addEventListener('mousemove', function(e) {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    // Dot moves instantly
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    // Outline moves with lag (Animation)
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+});
+
+// 2. Hover Effect (Expand on Links)
+const interactiveElements = document.querySelectorAll('a, button, .card, .art-image');
+
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hovering');
+    });
+});
