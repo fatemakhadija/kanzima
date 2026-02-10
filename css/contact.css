@@ -1,0 +1,67 @@
+/* =========================================
+   CONTACT PAGE STYLES
+   ========================================= */
+
+.map-hero {
+    width: 100%; height: 50vh; position: relative; margin-top: 85px;
+    border-bottom: 2px solid var(--primary-gold);
+}
+.map-hero iframe { width: 100%; height: 100%; border: 0; }
+.map-link-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;
+}
+
+.contact-overlay-container {
+    position: relative; margin-top: -80px; padding-bottom: 60px; z-index: 20;
+}
+
+.royal-card {
+    position: relative; width: 100%; max-width: 600px; margin: 0 auto; padding: 3px;
+    background: linear-gradient(135deg, #C5A059 0%, #8C6E42 100%);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.royal-card-inner {
+    background-color: #080808; padding: 60px 40px; text-align: center;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    outline: 1px solid rgba(197, 160, 89, 0.3); outline-offset: -10px;
+}
+
+/* Mughal Corners */
+.mughal-corner {
+    position: absolute; width: 40px; height: 40px;
+    border: 2px solid #C5A059; z-index: 2; transition: all 0.5s ease;
+}
+.mughal-corner.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.mughal-corner.top-left::after { content: ''; position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; border-top: 1px solid #C5A059; border-left: 1px solid #C5A059; }
+/* ... (You can add the other corners similarly if strictly needed, but basic box is usually enough) */
+
+.royal-card:hover .mughal-corner { border-color: #fff; box-shadow: 0 0 10px rgba(197,160,89,0.5); }
+
+.mughal-divider {
+    display: flex; align-items: center; justify-content: center; margin: 20px 0 30px 0;
+}
+.mughal-divider::before, .mughal-divider::after {
+    content: ''; height: 1px; width: 60px; background: linear-gradient(to right, transparent, #C5A059, transparent);
+}
+.mughal-divider span { color: #C5A059; font-size: 1.5rem; padding: 0 15px; }
+
+/* Contact Specific Diamond Button */
+.diamond-btn-container { display: inline-block; position: relative; margin-top: 30px; padding: 0 20px; }
+.diamond-btn {
+    background: transparent; border: none; border-top: 1px solid #C5A059; border-bottom: 1px solid #C5A059;
+    color: #C5A059; font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 3px; padding: 12px 40px;
+    cursor: pointer; text-transform: uppercase; transition: 0.4s;
+}
+.diamond-btn-container::before, .diamond-btn-container::after {
+    content: ''; position: absolute; top: 50%; width: 12px; height: 12px;
+    border: 1px solid #C5A059; transform: translateY(-50%) rotate(45deg); transition: 0.4s;
+}
+.diamond-btn-container::before { left: 0; }
+.diamond-btn-container::after { right: 0; }
+.diamond-btn:hover { background: rgba(197, 160, 89, 0.1); color: #fff; }
+
+@media (max-width: 768px) {
+    .map-hero { height: 40vh; margin-top: 80px; }
+    .contact-overlay-container { margin-top: 0; padding-top: 40px; }
+}
