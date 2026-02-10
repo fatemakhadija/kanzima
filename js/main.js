@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 headerElement.innerHTML = data;
                 highlightCurrentPage(); 
-            });
+                initMobileMenu(); // <--- NEW: Initialize Mobile Menu after header loads
+            })
+            .catch(error => console.error("Error loading header:", error));
     }
 
     // Footer
@@ -18,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (footerElement) {
         fetch("pages/footer.html")
             .then(res => res.text())
-            .then(data => footerElement.innerHTML = data);
+            .then(data => footerElement.innerHTML = data)
+            .catch(error => console.error("Error loading footer:", error));
     }
 
     // Banner (Ken Burns + Particles)
@@ -35,8 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 2. Start Particles
                 if (typeof startParticles === "function") {
                     startParticles();
+                } else {
+                    console.warn("Particles function not found.");
                 }
-            });
+            })
+            .catch(error => console.error("Error loading banner:", error));
     }
 
     // --- 2. GLOBAL INJECTIONS ---
@@ -54,8 +60,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// --- FUNCTIONS ---
+// --- HELPER FUNCTIONS ---
 
+// 1. Mobile Menu Logic (NEW)
+function initMobileMenu() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    }
+}
+
+// 2. Ken Burns Banner Slider
 function startBannerSlider() {
     const slides = document.querySelectorAll('.slide');
     if (slides.length === 0) return;
@@ -68,6 +97,7 @@ function startBannerSlider() {
     }, intervalTime);
 }
 
+// 3. Inject Icons (Needle + WhatsApp)
 function injectGlobalIcons() {
     // Needle
     if (!document.querySelector('.floating-needle')) {
@@ -75,7 +105,7 @@ function injectGlobalIcons() {
         needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
-        // Basic styles injected directly to ensure visibility
+        // Styles are handled in global-style.css, but inline ensures position
         needle.style.position = 'fixed';
         needle.style.top = '20px';
         needle.style.left = '20px';
@@ -107,6 +137,7 @@ function injectGlobalIcons() {
     }
 }
 
+// 4. Highlight Active Page
 function highlightCurrentPage() {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll("nav a");
