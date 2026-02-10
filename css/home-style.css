@@ -1,0 +1,88 @@
+
+/* =========================================
+   HOME PAGE STYLES
+   ========================================= */
+
+/* 1. KEN BURNS VIDEO BANNER */
+.hero-wrapper {
+    position: relative; width: 100%; height: 100vh; overflow: hidden; background: #000;
+}
+
+#particles-js {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    z-index: 4; pointer-events: none;
+}
+
+.slider, .slide {
+    position: relative; width: 100%; height: 100%;
+}
+.slide {
+    position: absolute; top: 0; left: 0; opacity: 0;
+    transition: opacity 1.5s ease-in-out; overflow: hidden;
+}
+
+.slide-bg {
+    width: 100%; height: 100%; background-size: cover; background-position: center;
+    transform: scale(1); transition: transform 8s linear; /* Slow Zoom */
+}
+
+.slide.active { opacity: 1; z-index: 1; }
+.slide.active .slide-bg { transform: scale(1.15); }
+
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    z-index: 3;
+}
+
+.hero-content {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 10; text-align: center; width: 90%; max-width: 900px;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem; text-shadow: 0 5px 15px rgba(0,0,0,0.9);
+    margin-bottom: 15px; opacity: 0; animation: fadeUp 1s ease-out forwards 0.5s;
+}
+.hero-content p {
+    font-size: 1.5rem; color: #fff; opacity: 0; animation: fadeUp 1s ease-out forwards 0.8s;
+}
+
+.hero-btn {
+    display: inline-block; margin-top: 30px; padding: 15px 40px;
+    border: 1px solid var(--primary-gold); color: var(--primary-gold);
+    font-family: 'Cinzel', serif; font-size: 1rem; opacity: 0;
+    animation: fadeUp 1s ease-out forwards 1.2s; transition: 0.3s;
+}
+.hero-btn:hover { background: var(--primary-gold); color: #000; }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+/* 2. HOME SPECIFIC BUTTONS (Diamond Style) */
+.art-deco-btn {
+    position: relative; display: inline-block; height: 45px; line-height: 45px;
+    padding: 0 40px; background: transparent; color: var(--primary-gold);
+    font-family: 'Cinzel', serif; letter-spacing: 2px; font-size: 0.9rem;
+    border: none; border-top: 1px solid var(--primary-gold);
+    border-bottom: 1px solid var(--primary-gold); transition: 0.3s;
+}
+.art-deco-btn span.left, .art-deco-btn span.right {
+    position: absolute; top: 50%; width: 10px; height: 10px;
+    background: #0a0a0a; border: 1px solid var(--primary-gold);
+    transform: translateY(-50%) rotate(45deg); transition: 0.3s;
+}
+.art-deco-btn span.left { left: -6px; border-right: none; border-top: none; }
+.art-deco-btn span.right { right: -6px; border-left: none; border-bottom: none; }
+
+.art-deco-btn:hover { color: #fff; background: rgba(197, 160, 89, 0.1); }
+.art-deco-btn:hover span.left, .art-deco-btn:hover span.right {
+    background: var(--primary-gold); border-color: #fff;
+}
+
+.hover-zoom { transition: transform 0.6s ease; }
+.hover-zoom:hover { transform: scale(1.03); }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+}
