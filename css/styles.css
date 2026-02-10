@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Hides default cursor for custom needle */
+    cursor: none; /* Hide default cursor */
 }
 
 html {
@@ -93,7 +93,7 @@ header {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 15px; /* Space between Logo, Text, and GIF */
+    gap: 15px; /* Spacing between Logo, Text, and GIF */
 }
 
 .logo-img { height: 50px; width: auto; }
@@ -125,7 +125,7 @@ nav a:hover, nav a.active {
 }
 
 /* =========================================
-   5. HERO BANNER (Ken Burns + Particles)
+   5. HERO BANNER (Ken Burns Video Effect)
    ========================================= */
 .hero-wrapper {
     position: relative;
@@ -133,15 +133,6 @@ nav a:hover, nav a.active {
     height: 100vh;
     overflow: hidden;
     background: #000;
-}
-
-/* PARTICLES: Z-Index 4 ensures they float ABOVE the dark overlay */
-#particles-js {
-    position: absolute;
-    width: 100%; height: 100%;
-    top: 0; left: 0;
-    z-index: 4; 
-    pointer-events: none;
 }
 
 .slider {
@@ -156,23 +147,28 @@ nav a:hover, nav a.active {
     width: 100%; height: 100%;
     opacity: 0;
     transition: opacity 1.5s ease-in-out; 
-    overflow: hidden;
+    overflow: hidden; /* Important for scale effect */
 }
 
-/* Background Image Container (For Zoom Effect) */
+/* Background Image Container */
 .slide-bg {
     width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
     transform: scale(1);
-    transition: transform 8s linear; /* Slow smooth zoom */
+    transition: transform 8s linear; /* Slow Zoom */
 }
 
 /* Active State */
-.slide.active { opacity: 1; z-index: 1; }
-.slide.active .slide-bg { transform: scale(1.15); }
+.slide.active {
+    opacity: 1;
+    z-index: 2;
+}
 
-/* Dark Overlay (Z-Index 3: Below particles, above image) */
+.slide.active .slide-bg {
+    transform: scale(1.15); /* Zoom to 115% */
+}
+
 .hero-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -193,7 +189,7 @@ nav a:hover, nav a.active {
 
 .hero-content h1 {
     font-size: 4.5rem;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.9);
+    text-shadow: 0 5px 15px rgba(0,0,0,0.8);
     margin-bottom: 15px;
     opacity: 0;
     animation: fadeUp 1s ease-out forwards 0.5s;
@@ -254,7 +250,7 @@ nav a:hover, nav a.active {
     margin: 0 auto;
 }
 
-/* Card Style */
+/* Standard Card */
 .card {
     background: #0a0a0a;
     padding: 50px;
@@ -325,12 +321,35 @@ nav a:hover, nav a.active {
 }
 .reveal-line.visible { opacity: 1; transform: translateY(0); }
 
-.image-pair { display: flex; gap: 20px; }
-.image-pair img {
-    width: 50%; height: 450px; object-fit: cover;
-    border: 1px solid var(--primary-gold); transition: transform 0.5s ease;
+/* NEW: Process Infographic Styles */
+.process-image-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    border: 2px solid rgba(197, 160, 89, 0.3);
+    padding: 10px;
+    background: rgba(10, 10, 10, 0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.image-pair:hover img:hover { transform: scale(1.03); z-index: 2; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+
+.process-infographic {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* NEW: Process Legend Styles */
+.process-legend {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.legend-title {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
 
 /* =========================================
    8. CONTACT PAGE STYLES
@@ -364,7 +383,7 @@ nav a:hover, nav a.active {
 .mughal-divider::before, .mughal-divider::after {
     content: ''; height: 1px; width: 60px; background: linear-gradient(to right, transparent, #C5A059, transparent);
 }
-.mughal-divider span { color: #C5A059; font-size: 1.5rem; padding: 0 15px; font-family: serif; }
+.mughal-divider span { color: #C5A059; font-size: 1.5rem; padding: 0 15px; }
 
 /* Contact Diamond Button */
 .diamond-btn-container { display: inline-block; position: relative; margin-top: 30px; padding: 0 20px; }
@@ -440,20 +459,11 @@ footer {
     .card { width: 90%; margin: 30px auto; padding: 40px 20px; }
     
     /* Process Page Mobile */
-    .image-pair { flex-direction: column; }
-    .image-pair img { width: 100%; height: 300px; }
-    
-    .swap-desktop { display: flex; flex-direction: column; }
-    .swap-desktop div:nth-child(1) { order: 1; }
-    .swap-desktop div:nth-child(2) { order: 2; }
+    .process-legend.grid-2 { grid-template-columns: 1fr; gap: 30px; }
+    .process-legend div:last-child { grid-column: auto; }
 
     /* Disable Custom Cursor */
     .cursor-dot, .cursor-circle { display: none !important; }
     * { cursor: auto !important; }
     .logo-gif { height: 30px; }
-}
-
-@media (min-width: 769px) {
-    .swap-desktop div:nth-child(1) { order: 2; }
-    .swap-desktop div:nth-child(2) { order: 1; }
 }
