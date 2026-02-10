@@ -162,7 +162,7 @@ body.hovering .cursor-circle {
 .needle-svg { width: 50px; height: 100px; animation: bounce 1s infinite; }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
 
-/* Hero Placeholders (For About/Services/Contact) */
+/* Hero Placeholders (Default for Desktop) */
 .services-hero, .about-hero {
     height: 50vh;
     background-size: cover; background-position: center;
@@ -173,83 +173,140 @@ body.hovering .cursor-circle {
 
 
 /* =========================================================================
-   6. GLOBAL MEDIA QUERIES (Mobile & Tablet Support for ALL Pages)
+   6. RESPONSIVE ENGINE (Using Your Standard Queries)
    ========================================================================= */
 
-/* A. TABLET & MOBILE (Max Width 1024px) - Activates Hamburger & Flex Grid */
-@media (max-width: 1024px) {
-    /* 1. Header Adjustments */
+/* ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@media (min-width: 1281px) {
+  /* Default Styles Apply - No overrides needed */
+}
+
+/* ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* Minor adjustments for smaller laptops */
+  .grid-2 { gap: 30px; }
+  h1 { font-size: 3.5rem; }
+}
+
+/* ##Device = Tablets, Ipads (portrait & landscape)
+  ##Screen = B/w 768px to 1024px
+  ##FUNCTION: Activates Hamburger, Stacked layouts
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+    /* 1. Header & Nav - Enable Hamburger */
     header { padding: 15px 20px; }
     .logo-img { height: 40px; }
-    .logo-text { font-size: 1rem !important; }
-    .logo-gif { display: none; } /* Save space */
-
-    /* 2. Show Hamburger */
     .hamburger { display: block; }
-
-    /* 3. Mobile/Tablet Navigation Overlay */
     .nav-menu {
         position: fixed; left: -100%; top: 0; width: 100%; height: 100vh;
-        background-color: #000;
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
-        transition: 0.4s; z-index: 1999;
+        background-color: #000; display: flex; flex-direction: column;
+        justify-content: center; align-items: center; transition: 0.4s; z-index: 1999;
     }
     .nav-menu.active { left: 0; }
     .nav-menu ul { flex-direction: column; gap: 40px; }
-    .nav-menu a { font-size: 1.5rem; font-family: 'Cinzel', serif; }
-
-    /* 4. Hamburger Animation */
     .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* 2. Layouts */
+    .grid-2 { gap: 20px; }
+    .process-hero { height: 50vh !important; }
+    .hero-wrapper { height: 60vh !important; }
 }
 
-/* B. MOBILE SPECIFIC (Max Width 768px) - Stacking & Sizing */
-@media (max-width: 768px) {
-    
-    /* 1. Global Grid Collapse */
+/* ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+    /* Same Mobile Logic as below, but slightly wider */
     .grid-2 { display: flex; flex-direction: column; gap: 40px; }
-    .card { width: 95% !important; margin: 0 auto; padding: 30px 20px; }
+    .card { width: 90% !important; margin: 0 auto; }
+    .hamburger { display: block; }
     
-    /* 2. Disable Fancy Cursor (Touch devices don't need it) */
+    /* Nav Menu */
+    .nav-menu { position: fixed; left: -100%; top: 0; width: 100%; height: 100vh; background: #000; z-index: 1999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; }
+    .nav-menu.active { left: 0; }
+    .nav-menu ul { flex-direction: column; gap: 30px; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Banners */
+    .hero-wrapper { height: 70vh !important; }
+    .process-hero { height: 50vh !important; }
+}
+
+/* ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 480px
+  ##FUNCTION: CRITICAL MOBILE FIXES (Process, Banners, Stacking)
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+    
+    /* 1. GLOBAL LAYOUT RESET */
+    .grid-2 { display: flex; flex-direction: column; gap: 30px; }
+    .card { width: 95% !important; margin: 0 auto; padding: 30px 20px; }
+    .content-section { padding: 50px 5%; }
+    
+    /* 2. HEADER & NAV */
+    header { padding: 15px; }
+    .logo-img { height: 35px; }
+    .logo-text { font-size: 1rem !important; }
+    .logo-gif { display: none; }
+    
+    .hamburger { display: block; }
+    .nav-menu {
+        position: fixed; left: -100%; top: 0; width: 100%; height: 100vh;
+        background-color: #000; display: flex; flex-direction: column;
+        justify-content: center; align-items: center; transition: 0.4s; z-index: 1999;
+    }
+    .nav-menu.active { left: 0; }
+    .nav-menu ul { flex-direction: column; gap: 30px; }
+    .nav-menu a { font-size: 1.5rem; font-family: 'Cinzel', serif; }
+    
+    .hamburger.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* 3. HERO BANNER FIXES (Prevent Zoom) */
+    .hero-wrapper { height: 60vh !important; } /* Home Page */
+    .process-hero { 
+        height: 40vh !important; 
+        background-attachment: scroll !important; /* Fixes zoom on iOS */
+        background-position: center !important;
+    }
+    .services-hero, .about-hero { height: 40vh !important; }
+    .gallery-hero { height: 40vh !important; background-attachment: scroll !important; }
+    .map-hero { height: 40vh !important; margin-top: 75px; }
+
+    /* 4. PROCESS PAGE SPECIFIC FIXES */
+    /* Fix Image Cropping: Force auto height so full image shows */
+    .step-image-wrapper { height: auto !important; width: 100% !important; }
+    .step-img { height: auto !important; width: 100% !important; }
+    
+    /* Fix Layout Stacking */
+    .swap-desktop { flex-direction: column !important; } 
+    .step-content { text-align: center; padding: 0; order: 1; }
+    .step-image-wrapper { order: 2; margin-top: 20px; }
+    
+    /* Fix Text Visibility */
+    .reveal-line { opacity: 1 !important; transform: translateY(0) !important; }
+    .step-number { font-size: 3.5rem !important; }
+
+    /* 5. CONTACT PAGE FIXES */
+    .contact-overlay-container { margin-top: 0 !important; padding-top: 30px !important; }
+    .royal-card { width: 95% !important; }
+
+    /* 6. TYPOGRAPHY SCALING */
+    h1 { font-size: 2.2rem !important; }
+    .hero-content h1, .hero-text h1 { font-size: 2rem !important; line-height: 1.2; }
+    p { font-size: 1rem !important; }
+    
+    /* 7. DISABLE CURSOR (Touch Devices) */
     .cursor-dot, .cursor-circle { display: none !important; }
     * { cursor: auto !important; }
-
-    /* 3. HERO HEIGHT ADJUSTMENTS */
-    /* Home Page */
-    .hero-wrapper { height: 70vh !important; } 
-    /* Process Page */
-    .process-hero { height: 40vh !important; background-attachment: scroll !important; } 
-    /* Services & About Page */
-    .services-hero, .about-hero { height: 40vh !important; } 
-
-    /* 4. Typography Scaling */
-    h1 { font-size: 2.5rem !important; }
-    .hero-content h1, .hero-text h1 { font-size: 2.2rem !important; line-height: 1.2; }
-    
-    /* 5. Process Page Specifics */
-    .swap-desktop { flex-direction: column; } 
-    .step-image-wrapper { height: 300px !important; } 
-    .step-number { font-size: 3.5rem !important; }
-    .step-content { text-align: center; padding: 0; }
-
-    /* 6. About Page Specifics */
-    .stats-container { flex-direction: column; gap: 30px; }
-    
-    /* 7. Services Page Specifics */
-    .tier-card { margin-bottom: 20px; }
-
-    /* 8. CONTACT PAGE SPECIFICS (NEW) */
-    .map-hero { 
-        height: 40vh !important; 
-        margin-top: 80px; /* Account for fixed header */
-    }
-    .contact-overlay-container { 
-        margin-top: 0 !important; 
-        padding-top: 40px !important; 
-    }
-    .royal-card { 
-        width: 95% !important; 
-        margin: 0 auto !important; 
-    }
 }
