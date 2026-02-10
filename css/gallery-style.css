@@ -1,7 +1,11 @@
+/* =========================================
+   GALLERY PAGE STYLES
+   ========================================= */
+
 /* --- 1. HERO SECTION --- */
 .gallery-hero {
     height: 50vh;
-    background: url('../gallery/image-1.jpg') no-repeat center center/cover;
+    background: url('../images/gallery-hero.jpg') no-repeat center center/cover;
     position: relative;
     display: flex;
     justify-content: center;
@@ -9,6 +13,9 @@
     text-align: center;
     background-attachment: fixed; /* Parallax */
 }
+
+/* Fallback color */
+.gallery-hero { background-color: #050505; }
 
 .hero-overlay {
     position: absolute;
@@ -53,34 +60,31 @@
     top: 80px; /* Below header */
     z-index: 100;
     border-bottom: 1px solid #222;
+    gap: 15px;
 }
 
-/* IMPORTANT: I removed the .lux-btn code from here.
-   Now it will use the correct "Rolling" style from styles.css.
-   We only keep the margin for spacing.
-*/
+/* We use the .lux-btn class from global-style.css, but add specific spacing here */
 .filter-sticky-bar .lux-btn {
     margin: 0 10px;
 }
 
-/* --- 3. EDITORIAL SHOWCASE (The Zig-Zag) --- */
+/* --- 3. EDITORIAL SHOWCASE --- */
 .editorial-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 50px 20px;
-    overflow: hidden; /* Prevent horizontal scroll */
+    overflow: hidden;
 }
 
 .art-piece {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 150px; /* Big spacing between items */
+    margin-bottom: 150px;
     opacity: 1;
     transition: opacity 0.5s ease;
 }
 
-/* The Reverse Layout (Image Right, Text Left) */
 .reverse-layout {
     flex-direction: row-reverse;
 }
@@ -89,7 +93,7 @@
 .art-image {
     width: 50%;
     position: relative;
-    cursor: pointer; /* Indicates clickable */
+    cursor: pointer;
 }
 
 .img-frame {
@@ -108,7 +112,7 @@
 }
 
 .art-piece:hover .img-frame img {
-    transform: scale(1.1); /* Smooth slow zoom */
+    transform: scale(1.1);
 }
 
 /* Shine Effect */
@@ -155,34 +159,122 @@
     margin-bottom: 40px;
 }
 
-/* REMOVED .inquire-btn class to prevent conflicts. 
-   We use .lux-btn everywhere now. */
+/* --- LIGHTBOX --- */
+.lightbox-modal {
+    display: none; position: fixed; z-index: 9999;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    justify-content: center; align-items: center;
+}
+.lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid #C5A059; }
+.close-lightbox {
+    position: absolute; top: 20px; right: 40px;
+    color: #fff; font-size: 50px; cursor: pointer;
+}
 
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
+
+/* =========================================================================
+   GALLERY SPECIFIC RESPONSIVE QUERIES
+   ========================================================================= */
+
+/* ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@media (min-width: 1281px) {
+  /* Default styles apply */
+}
+
+/* ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .editorial-container { padding: 50px 40px; }
+    .img-frame { height: 500px; }
+}
+
+/* ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+    .gallery-hero { height: 40vh; }
+    
+    /* Slightly squeeze text/image ratio for tablets */
+    .art-image { width: 45%; }
+    .art-details { width: 55%; padding: 20px; }
+    
+    .filter-sticky-bar { padding: 20px; }
+    .filter-sticky-bar .lux-btn {
+        margin: 0 5px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .gallery-hero { height: 50vh; }
+}
+
+/* ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+    /* Stack content for smaller landscape screens */
     .art-piece, .reverse-layout {
-        flex-direction: column !important; /* Stack vertically */
+        flex-direction: column !important;
         margin-bottom: 80px;
     }
+    .art-image, .art-details { width: 100%; }
+    .art-details { text-align: center; padding: 30px 20px; }
+    .img-frame { height: 350px; }
 
-    .art-image, .art-details {
-        width: 100%;
+    /* Filter Bar Wrap */
+    .filter-sticky-bar { flex-wrap: wrap; gap: 10px; }
+    .filter-sticky-bar .lux-btn { margin: 0; flex: 1 1 auto; }
+}
+
+/* ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 480px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+    /* 1. HERO FIX */
+    .gallery-hero {
+        height: 40vh;
+        background-attachment: scroll; /* Fix zoom on mobile */
     }
+    .hero-text h1 { font-size: 2.5rem; letter-spacing: 5px; }
 
-    .img-frame {
-        height: 400px; /* Smaller image height on phone */
-    }
-
-    .art-details {
-        text-align: center;
-        padding: 30px 10px;
-    }
-
-    .hero-text h1 { font-size: 2.5rem; }
-    
+    /* 2. FILTER BAR FIX (Wrapping Buttons) */
     .filter-sticky-bar {
-        overflow-x: auto; /* Scrollable buttons on small screens */
-        justify-content: flex-start;
-        white-space: nowrap;
+        flex-wrap: wrap;       /* Buttons drop to next line */
+        justify-content: center;
+        padding: 15px 10px;
+        gap: 10px;
     }
+    .filter-sticky-bar .lux-btn {
+        flex: 1 1 auto;        /* Fill width evenly */
+        min-width: 100px;      
+        margin: 0;
+        font-size: 0.8rem;     /* Smaller text */
+    }
+    .btn-text-primary, .btn-text-secondary {
+        padding: 10px 15px;    /* Tighter padding */
+    }
+
+    /* 3. GALLERY STACKING */
+    .art-piece, .reverse-layout {
+        flex-direction: column !important; /* Stack Vertical */
+        margin-bottom: 60px;
+    }
+    .art-image { width: 100%; }
+    .img-frame { height: 350px; } /* Smaller images */
+    
+    .art-details { 
+        width: 100%; 
+        text-align: center; 
+        padding: 30px 10px; 
+    }
+    
+    .art-details h2 { font-size: 2rem; }
 }
