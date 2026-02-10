@@ -7,7 +7,6 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <link rel="stylesheet" href="css/global-style.css">
@@ -19,9 +18,9 @@
 
     <header></header>
     
-    <div class="process-hero" style="background-image: url('images/image_0.jpg');">
+    <div class="process-hero">
         <div class="hero-overlay"></div>
-        <div class="hero-text" data-aos="zoom-out" data-aos-duration="1500">
+        <div class="hero-text" data-aos="zoom-out">
             <h1>The Journey</h1>
             <div class="gold-line"></div>
             <p>From Imagination to Reality</p>
@@ -35,14 +34,14 @@
         <p class="reveal-line">This is how we craft your legacy.</p>
     </div>
 
-    <div class="content-section">
+    <div class="process-step-section">
         <div class="grid-2">
-            <div class="step-content" data-aos="fade-right" data-aos-duration="1200">
+            <div class="step-content" data-aos="fade-right">
                 <h1 class="step-number">01</h1>
                 <h2 class="step-title">The Khaka (Blueprint)</h2>
                 <p class="step-desc">Before a single stitch is made, the design is born on paper. This is the 'Khaka'—the soul of the dress. We draft intricate patterns that trace the flow of the embroidery.</p>
             </div>
-            <div class="step-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="step-image-wrapper" data-aos="zoom-in">
                 <div class="corner top left"></div>
                 <div class="corner bottom right"></div>
                 <img src="images/process-1-khaka-1.jpg" alt="Khaka Sketch" class="step-img">
@@ -50,14 +49,14 @@
         </div>
     </div>
 
-    <div class="content-section">
+    <div class="process-step-section">
         <div class="grid-2 swap-desktop">
-            <div class="step-content" data-aos="fade-left" data-aos-duration="1200">
+            <div class="step-content" data-aos="fade-left">
                 <h1 class="step-number">02</h1>
                 <h2 class="step-title">The Tracing</h2>
                 <p class="step-desc">The design is transferred onto the fabric using traditional methods. We select the finest silks and velvets, ensuring the foundation is as royal as the embroidery itself.</p>
             </div>
-            <div class="step-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="step-image-wrapper" data-aos="zoom-in">
                 <div class="corner top left"></div>
                 <div class="corner bottom right"></div>
                 <img src="images/process-1-khaka-2.jpg" alt="Tracing Detail" class="step-img">
@@ -65,14 +64,14 @@
         </div>
     </div>
 
-    <div class="content-section">
+    <div class="process-step-section">
         <div class="grid-2">
-            <div class="step-content" data-aos="fade-right" data-aos-duration="1200">
+            <div class="step-content" data-aos="fade-right">
                 <h1 class="step-number">03</h1>
                 <h2 class="step-title">Material Selection</h2>
                 <p class="step-desc">We handpick every bead, sequin, and thread. Whether it's authentic Zardozi or modern crystals, we ensure the materials match your vision and budget.</p>
             </div>
-            <div class="step-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="step-image-wrapper" data-aos="zoom-in">
                 <div class="corner top left"></div>
                 <div class="corner bottom right"></div>
                 <img src="images/process-2.jpg" alt="Materials" class="step-img">
@@ -80,14 +79,14 @@
         </div>
     </div>
 
-    <div class="content-section">
+    <div class="process-step-section">
         <div class="grid-2 swap-desktop">
-            <div class="step-content" data-aos="fade-left" data-aos-duration="1200">
+            <div class="step-content" data-aos="fade-left">
                 <h1 class="step-number">04</h1>
                 <h2 class="step-title">The Golden Stitch</h2>
                 <p class="step-desc">The fabric is mounted on the 'Adda' (wooden frame). Our master Karigars begin the painstaking work of Zardozi, adding gold wires, pearls, and sequins stitch by stitch.</p>
             </div>
-            <div class="step-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="step-image-wrapper" data-aos="zoom-in">
                 <div class="corner top left"></div>
                 <div class="corner bottom right"></div>
                 <img src="images/process-4.jpg" alt="Hand Embroidery" class="step-img">
@@ -95,14 +94,14 @@
         </div>
     </div>
 
-    <div class="content-section" style="padding-bottom: 120px;">
+    <div class="process-step-section" style="padding-bottom: 120px;">
         <div class="grid-2">
-            <div class="step-content" data-aos="fade-right" data-aos-duration="1200">
+            <div class="step-content" data-aos="fade-right">
                 <h1 class="step-number">05</h1>
                 <h2 class="step-title">The Grand Reveal</h2>
                 <p class="step-desc">The pieces are stitched together, lined with comfort, and fitted to perfection. The result is not just a dress, but a piece of art ready for your special day.</p>
             </div>
-            <div class="step-image-wrapper" data-aos="zoom-in" data-aos-duration="1500">
+            <div class="step-image-wrapper" data-aos="zoom-in">
                 <div class="corner top left"></div>
                 <div class="corner bottom right"></div>
                 <img src="images/process-5.jpg" alt="Final Reveal" class="step-img">
@@ -117,14 +116,13 @@
     <script>
         AOS.init();
         
-        // Custom Reveal Logic for Intro Text
+        // Scroll reveal for text
         window.addEventListener('scroll', () => {
             const reveals = document.querySelectorAll('.reveal-line');
             reveals.forEach(reveal => {
                 const windowHeight = window.innerHeight;
                 const elementTop = reveal.getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 150) {
                     reveal.classList.add('visible');
                 }
             });
