@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 headerElement.innerHTML = data;
                 highlightCurrentPage(); 
-                initMobileMenu(); // <--- NEW: Initialize Mobile Menu after header loads
+                initMobileMenu(); 
             })
             .catch(error => console.error("Error loading header:", error));
     }
@@ -24,25 +24,33 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading footer:", error));
     }
 
-    // Banner (Ken Burns + Particles)
+    // HOME Banner (Ken Burns + Particles)
     const bannerContainer = document.getElementById("banner-container");
     if (bannerContainer) {
         fetch("pages/banner.html")
             .then(res => res.text())
             .then(data => {
                 bannerContainer.innerHTML = data;
-                
-                // 1. Start Zoom Animation
                 startBannerSlider(); 
-                
-                // 2. Start Particles
                 if (typeof startParticles === "function") {
                     startParticles();
                 } else {
                     console.warn("Particles function not found.");
                 }
             })
-            .catch(error => console.error("Error loading banner:", error));
+            .catch(error => console.error("Error loading home banner:", error));
+    }
+
+    // --- NEW: CUSTOM BANNER INJECTION (For Contact Page) ---
+    // This looks for the ID we added to contact.html and injects the new 3-part banner
+    const customHeroContainer = document.getElementById("custom-hero-container");
+    if (customHeroContainer) {
+        fetch("pages/custom-banner.html")
+            .then(res => res.text())
+            .then(data => {
+                customHeroContainer.innerHTML = data;
+            })
+            .catch(error => console.error("Error loading custom banner:", error));
     }
 
     // --- 2. GLOBAL INJECTIONS ---
@@ -62,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // --- HELPER FUNCTIONS ---
 
-// 1. Mobile Menu Logic (NEW)
+// 1. Mobile Menu Logic
 function initMobileMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
@@ -105,7 +113,6 @@ function injectGlobalIcons() {
         needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
-        // Styles are handled in global-style.css, but inline ensures position
         needle.style.position = 'fixed';
         needle.style.top = '20px';
         needle.style.left = '20px';
