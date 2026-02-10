@@ -6,7 +6,7 @@
 .custom-hero-wrapper {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 90vh; /* Slightly reduced height */
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -16,65 +16,68 @@
 }
 
 /* --- SIDE PANELS (DRESSES) --- */
+/* Changed from absolute to relative for better control */
 .side-panel {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 30%; 
+    position: relative;
+    height: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     z-index: 1;
 }
-.left-panel { left: 0; }
-.right-panel { right: 0; }
+
+/* Negative margins to pull them closer to the center card */
+.left-panel { margin-right: -50px; }
+.right-panel { margin-left: -50px; }
 
 .side-dress {
-    max-height: 90vh;
+    max-height: 80vh;
     width: auto;
-    max-width: 100%;
+    max-width: 30vw; /* Limit width relative to viewport */
     object-fit: contain;
-    filter: drop-shadow(0 0 15px rgba(0,0,0,0.9));
+    filter: drop-shadow(0 0 20px rgba(0,0,0,1)); /* Stronger shadow for depth */
 }
 
 /* --- CENTER STAGE --- */
 .center-stage {
     position: relative;
-    z-index: 10;
-    width: 450px;
+    z-index: 10; /* Ensure it's above the dresses */
+    width: 420px;
     padding: 30px;
-    background: radial-gradient(circle at center, #111 0%, #000 70%);
-    border: 1px solid rgba(197, 160, 89, 0.3);
+    background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%);
+    border: 1px solid rgba(197, 160, 89, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow: 0 0 60px rgba(0,0,0,1);
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
 }
 
-/* 1. Typography */
+/* 1. Typography - NEW FONTS */
 .royal-art-text {
-    font-family: 'Great Vibes', cursive; /* Or similar calligraphy */
-    font-size: 1.8rem;
+    font-family: 'Pinyon Script', cursive; /* New attractive calligraphy */
+    font-size: 2.2rem;
     color: #C5A059;
-    margin-bottom: 15px;
-    font-weight: 300;
+    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 1px;
 }
 
 .brand-calligraphy {
-    font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
+    font-family: 'Cinzel Decorative', serif; /* New decorative serif */
+    font-size: 2.4rem;
     font-weight: 700;
-    background: linear-gradient(to right, #C5A059, #FCE205, #C5A059);
+    background: linear-gradient(to right, #C5A059, #FFFACD, #C5A059);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 /* 2. Logo */
 .dress-logo {
-    width: 100px;
+    width: 90px;
     height: auto;
     margin-bottom: 5px;
 }
@@ -82,56 +85,57 @@
 /* 3. QR Section */
 .qr-frame-container {
     position: relative;
-    padding: 25px;
+    padding: 22px;
     margin-bottom: 25px;
 }
 
 .qr-box {
-    padding: 10px;
+    padding: 8px;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
 }
 
 .qr-image {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     display: block;
 }
 
 .scan-me-label {
     position: absolute;
-    top: -10px;
-    right: -20px;
-    font-family: 'Great Vibes', cursive;
+    top: -15px;
+    right: -25px;
+    font-family: 'Pinyon Script', cursive; /* Matching the top text */
     color: #C5A059;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     transform: rotate(15deg);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
 /* Gold Angles */
 .angle-icon {
     position: absolute;
-    width: 50px;
+    width: 45px;
     height: auto;
 }
-.top-left { top: -10px; left: -10px; }
-.bottom-right { bottom: -10px; right: -10px; }
+.top-left { top: -8px; left: -8px; }
+.bottom-right { bottom: -8px; right: -8px; }
 
 /* 4. Contact Strip */
 .contact-strip {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 12px;
+    margin-top: 5px;
 }
 
 .shiny-gold-icon {
-    font-size: 2.2rem;
-    background: linear-gradient(135deg, #FFD700, #C5A059);
+    font-size: 2.4rem;
+    background: linear-gradient(135deg, #FCE205, #C5A059);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.6));
 }
 
 .gold-number {
@@ -139,19 +143,20 @@
     font-size: 1.4rem;
     color: #C5A059;
     letter-spacing: 1px;
+    font-weight: 700;
 }
 
 /* =========================================
-   ANIMATIONS
+   ANIMATIONS (Kept the same)
    ========================================= */
-
+/* ... (Animations remain exactly as they were in the previous version) ... */
 /* 1. Left Dress: Fly in from Left */
 .animate-fly-left {
     animation: flyInLeft 1.2s ease-out forwards;
     opacity: 0;
 }
 @keyframes flyInLeft {
-    0% { transform: translateX(-100px); opacity: 0; }
+    0% { transform: translateX(-80px); opacity: 0; }
     100% { transform: translateX(0); opacity: 1; }
 }
 
@@ -161,7 +166,7 @@
     opacity: 0;
 }
 @keyframes flyInRight {
-    0% { transform: translateX(100px); opacity: 0; }
+    0% { transform: translateX(80px); opacity: 0; }
     100% { transform: translateX(0); opacity: 1; }
 }
 
@@ -252,31 +257,46 @@
 
 
 /* =========================================
-   MEDIA QUERIES (STRICT)
+   MEDIA QUERIES (Refined for new layout)
    ========================================= */
-
-/* ##Device = Desktops (1281px+) */
-@media (min-width: 1281px) { }
 
 /* ##Device = Laptops (1025px - 1280px) */
 @media (min-width: 1025px) and (max-width: 1280px) {
-    .side-panel { width: 25%; }
-    .qr-image { width: 140px; height: 140px; }
+    .center-stage { width: 380px; }
+    .side-dress { max-width: 25vw; }
+    .left-panel { margin-right: -40px; }
+    .right-panel { margin-left: -40px; }
 }
 
 /* ##Device = Tablets (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-    .custom-hero-wrapper { flex-direction: column; justify-content: center; }
-    .side-panel { width: 20%; opacity: 0.3; z-index: 0; }
-    .center-stage { z-index: 2; width: 60%; }
+    .custom-hero-wrapper {
+        flex-direction: column;
+        padding-top: 120px;
+        justify-content: flex-start;
+    }
+    /* On tablets, place dresses closer to the card, flanking it */
+    .side-panel {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 0;
+        opacity: 0.6; /* Fade them out slightly so text is readable */
+    }
+    .left-panel { left: 5%; margin-right: 0; justify-content: flex-end; }
+    .right-panel { right: 5%; margin-left: 0; justify-content: flex-start; }
+    .side-dress { max-height: 60vh; max-width: 20vw; }
+    .center-stage { width: 60%; max-width: 400px; }
 }
 
 /* ##Device = Mobile Landscape (481px - 767px) */
 @media (min-width: 481px) and (max-width: 767px) {
+    /* Hide dresses on short screens to prioritize content */
     .side-panel { display: none; }
-    .center-stage { width: 80%; border: none; box-shadow: none; }
-    .custom-hero-wrapper { min-height: auto; padding: 100px 0; }
-    .royal-art-text { font-size: 1.5rem; }
+    .custom-hero-wrapper { min-height: auto; padding: 100px 0 50px; }
+    .center-stage { width: 80%; }
+    .royal-art-text { font-size: 1.8rem; }
+    .brand-calligraphy { font-size: 2rem; }
 }
 
 /* ##Device = Mobile Portrait (320px - 480px) */
@@ -284,16 +304,22 @@
     .custom-hero-wrapper {
         flex-direction: column;
         padding-top: 100px;
-        height: auto;
+        min-height: auto;
+        padding-bottom: 50px;
     }
+
+    /* Keep dresses hidden on small mobile for readability as per previous agreement */
     .side-panel { display: none; }
+
     .center-stage {
         width: 95%;
-        padding: 20px 10px;
-        border: 1px solid rgba(197, 160, 89, 0.2);
+        padding: 25px 15px;
     }
-    .brand-calligraphy { font-size: 1.5rem; }
+
+    .royal-art-text { font-size: 1.8rem; }
+    .brand-calligraphy { font-size: 1.8rem; }
     .qr-image { width: 130px; height: 130px; }
-    .gold-number { font-size: 1.1rem; }
-    .royal-art-text { font-size: 1.3rem; }
+    .gold-number { font-size: 1.2rem; }
+    .shiny-gold-icon { font-size: 2rem; }
+    .scan-me-label { font-size: 1.2rem; right: -15px; top: -10px; }
 }
