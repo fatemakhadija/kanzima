@@ -7,14 +7,13 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body style="overflow-x: hidden;">
+
     <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <div class="cursor-circle"></div>
 
     <div id="preloader">
         <svg class="needle-svg" viewBox="0 0 24 100" fill="none" stroke="#C5A059" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -24,16 +23,8 @@
         <p style="color: #C5A059; margin-top: 20px; font-family: 'Cinzel', serif; letter-spacing: 2px;">WEAVING LEGACY...</p>
     </div>
 
-    <img src="images/thread-needle.gif" class="floating-needle" alt="Kanzima Needle">
-
     <header></header> 
     <div id="banner-container"></div> 
-
-    <div class="thread-container" id="thread-wrapper">
-        <svg id="thread-svg" width="100%" height="100%" style="overflow: visible;">
-            <path id="scroll-thread" d="" />
-        </svg>
-    </div>
 
     <section class="content-section" data-aos="fade-up" data-aos-duration="1500">
         <div class="card">
@@ -94,7 +85,8 @@
     </section>
 
     <section class="content-section">
-        <div class="content-box-simple"> <h2 style="color: #C5A059; font-family: 'Cinzel', serif;" data-aos="zoom-in">The Royal Bride</h2>
+        <div class="content-box-simple"> 
+            <h2 style="color: #C5A059; font-family: 'Cinzel', serif;" data-aos="zoom-in">The Royal Bride</h2>
             <p style="margin-top: 10px; margin-bottom: 30px; color: #E6DCCA;" data-aos="fade-up">Designed for the woman who demands elegance.</p>
             
             <div class="grid-2">
@@ -116,6 +108,7 @@
 
     <script src="js/main.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/particles-config.js"></script>
     
@@ -123,60 +116,15 @@
         // Initialize Animations
         AOS.init();
 
-        // Preloader & Thread Logic
+        // Preloader Logic (Cleaned - Thread Logic Removed)
         document.addEventListener("DOMContentLoaded", function() {
-            // Hide Preloader
             const preloader = document.getElementById("preloader");
             window.addEventListener("load", function() {
                 setTimeout(() => {
                     preloader.style.opacity = "0";
                     setTimeout(() => { preloader.style.display = "none"; }, 500);
-                    updateThread(); 
                 }, 1000);
             });
-
-            // Thread Logic
-            const threadPath = document.getElementById("scroll-thread");
-            const threadWrapper = document.getElementById("thread-wrapper");
-            let pathLength = 0;
-
-            function updateThread() {
-                const bannerHeight = window.innerHeight;
-                const bodyHeight = document.body.scrollHeight;
-                const threadHeight = bodyHeight - bannerHeight;
-
-                if (threadHeight <= 0) return;
-
-                threadWrapper.style.height = threadHeight + "px";
-                const width = window.innerWidth;
-                const center = width / 2;
-                
-                // Draw Line
-                let d = `M ${center} 0 L ${center} ${threadHeight}`;
-                threadPath.setAttribute("d", d);
-
-                pathLength = threadPath.getTotalLength();
-                threadPath.style.strokeDasharray = pathLength;
-                threadPath.style.strokeDashoffset = pathLength;
-            }
-
-            window.addEventListener("resize", updateThread);
-            window.addEventListener("scroll", () => {
-                const scrollY = window.scrollY;
-                const windowHeight = window.innerHeight;
-                
-                if (scrollY > windowHeight) {
-                    const scrolledDistance = scrollY - windowHeight;
-                    const totalThreadArea = document.body.scrollHeight - windowHeight - 200;
-                    
-                    let percentage = scrolledDistance / totalThreadArea;
-                    percentage = Math.max(0, Math.min(percentage, 1));
-
-                    const drawLength = pathLength * percentage;
-                    threadPath.style.strokeDashoffset = pathLength - drawLength;
-                }
-            });
-            updateThread();
         });
     </script>
 </body>
