@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- 1. LOAD HEADER ---
+    // --- 1. LOAD COMPONENTS ---
+    
+    // Header
     const headerElement = document.querySelector("header");
     if (headerElement) {
         fetch("pages/header.html")
@@ -11,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // --- 2. LOAD FOOTER ---
+    // Footer
     const footerElement = document.querySelector("footer");
     if (footerElement) {
         fetch("pages/footer.html")
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => footerElement.innerHTML = data);
     }
 
-    // --- 3. LOAD BANNER & START ANIMATIONS ---
+    // Banner (Ken Burns + Particles)
     const bannerContainer = document.getElementById("banner-container");
     if (bannerContainer) {
         fetch("pages/banner.html")
@@ -27,22 +29,20 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 bannerContainer.innerHTML = data;
                 
-                // A. Start the Zoom Slider
+                // 1. Start Zoom Animation
                 startBannerSlider(); 
                 
-                // B. Start Particles (CRITICAL STEP)
+                // 2. Start Particles
                 if (typeof startParticles === "function") {
                     startParticles();
-                } else {
-                    console.warn("Particles config not found.");
                 }
             });
     }
 
-    // --- 4. GLOBAL INJECTIONS (Needle & WhatsApp) ---
+    // --- 2. GLOBAL INJECTIONS ---
     injectGlobalIcons();
 
-    // --- 5. PRELOADER FADE OUT ---
+    // --- 3. PRELOADER ---
     const preloader = document.getElementById("preloader");
     if (preloader) {
         window.addEventListener("load", function() {
@@ -54,15 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// --- HELPER FUNCTIONS ---
+// --- FUNCTIONS ---
 
 function startBannerSlider() {
     const slides = document.querySelectorAll('.slide');
     if (slides.length === 0) return;
-    
     let current = 0;
-    const intervalTime = 7000; // 7 seconds per slide
-
+    const intervalTime = 7000;
     setInterval(() => {
         slides[current].classList.remove('active');
         current = (current + 1) % slides.length;
@@ -76,12 +74,15 @@ function injectGlobalIcons() {
         let needle = document.createElement('img');
         needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
+        needle.alt = 'Sewing Animation';
+        // Basic styles injected directly to ensure visibility
         needle.style.position = 'fixed';
         needle.style.top = '20px';
         needle.style.left = '20px';
         needle.style.width = '60px';
         needle.style.zIndex = '9999';
         needle.style.pointerEvents = 'none';
+        needle.style.transition = 'transform 0.1s linear';
         document.body.appendChild(needle);
 
         // Scroll Logic for Needle
@@ -116,6 +117,26 @@ function highlightCurrentPage() {
         }
     });
 }
+
+// --- MAGNETIC BUTTONS ---
+document.addEventListener('mousemove', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        const btn = e.target.closest('.lux-btn');
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) * 0.3;
+        const deltaY = (y - centerY) * 0.3;
+        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    }
+});
+document.addEventListener('mouseout', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
+    }
+});
 
 // --- CURSOR LOGIC ---
 if (window.innerWidth > 768) {
