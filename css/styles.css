@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Hide default cursor for custom needle */
+    cursor: none; /* Hides default cursor for custom needle */
 }
 
 html {
@@ -91,26 +91,38 @@ header {
 }
 
 .logo-container {
-    display: flex; align-items: center; gap: 15px; 
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between Logo, Text, and GIF */
 }
 
 .logo-img { height: 50px; width: auto; }
 
 .logo-text-group {
-    display: flex; flex-direction: column; justify-content: center; line-height: 1;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    line-height: 1;
 }
 
 .logo-gif { height: 40px; width: auto; margin-left: 5px; }
 
 nav ul {
-    display: flex; list-style: none; gap: 30px;
+    display: flex;
+    list-style: none;
+    gap: 30px;
 }
 
 nav a {
-    font-size: 0.9rem; letter-spacing: 1px; position: relative; padding-bottom: 5px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
 }
 
-nav a:hover, nav a.active { color: var(--primary-gold); }
+nav a:hover, nav a.active {
+    color: var(--primary-gold);
+}
 
 /* =========================================
    5. HERO BANNER (Ken Burns + Particles)
@@ -123,7 +135,7 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
     background: #000;
 }
 
-/* PARTICLES (Layer 4: Above shadow, below text) */
+/* PARTICLES: Z-Index 4 ensures they float ABOVE the dark overlay */
 #particles-js {
     position: absolute;
     width: 100%; height: 100%;
@@ -147,19 +159,20 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
     overflow: hidden;
 }
 
-/* Background Image (Layer 1) */
+/* Background Image Container (For Zoom Effect) */
 .slide-bg {
     width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
     transform: scale(1);
-    transition: transform 8s linear; /* Slow Zoom */
+    transition: transform 8s linear; /* Slow smooth zoom */
 }
 
+/* Active State */
 .slide.active { opacity: 1; z-index: 1; }
 .slide.active .slide-bg { transform: scale(1.15); }
 
-/* Dark Overlay (Layer 3: Sits on top of image, below particles) */
+/* Dark Overlay (Z-Index 3: Below particles, above image) */
 .hero-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -168,7 +181,6 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
     z-index: 3;
 }
 
-/* Text Content (Layer 10: On top of everything) */
 .hero-content {
     position: absolute;
     top: 50%; left: 50%;
@@ -217,33 +229,46 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-
 /* =========================================
    6. GLOBAL LAYOUTS & CARDS
    ========================================= */
 .content-section {
-    position: relative; padding: 100px 5%; z-index: 10; background: var(--bg-color);
+    position: relative;
+    padding: 100px 5%;
+    z-index: 10;
+    background: var(--bg-color);
 }
 
 .grid-2 {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-    align-items: center; max-width: 1200px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .content-box-simple {
-    text-align: center; max-width: 1200px; margin: 0 auto;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Art Deco Card */
+/* Card Style */
 .card {
-    background: #0a0a0a; padding: 50px; border: 1px solid rgba(197, 160, 89, 0.2);
-    text-align: center; transition: transform 0.3s; position: relative;
+    background: #0a0a0a;
+    padding: 50px;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+    position: relative;
 }
 .card:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
 
 .card-divider { height: 1px; width: 60px; background: var(--primary-gold); margin: 25px auto; }
 .card p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 20px;}
 
+/* Gold Corners */
 .corner {
     position: absolute; width: 20px; height: 20px;
     border: 1px solid var(--primary-gold); transition: 0.4s ease;
@@ -254,28 +279,28 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
 .corner.bottom.right { bottom: -5px; right: -5px; border-left: none; border-top: none; }
 .card:hover .corner { width: 30px; height: 30px; border-color: #fff; }
 
-/* Image Hover Zoom */
-.hover-zoom {
-    transition: transform 0.6s ease;
-}
-.hover-zoom:hover { transform: scale(1.03); }
-
-/* Diamond Button (Home Only) */
+/* Diamond Button (Home) */
 .art-deco-btn {
-    position: relative; display: inline-block; height: 45px; line-height: 45px; padding: 0 40px;
-    background: transparent; color: var(--primary-gold); font-family: 'Cinzel', serif;
-    letter-spacing: 2px; font-size: 0.9rem; border: none; 
-    border-top: 1px solid var(--primary-gold); border-bottom: 1px solid var(--primary-gold);
+    position: relative; display: inline-block;
+    height: 45px; line-height: 45px; padding: 0 40px;
+    background: transparent; color: var(--primary-gold);
+    font-family: 'Cinzel', serif; letter-spacing: 2px; font-size: 0.9rem;
+    border: none; border-top: 1px solid var(--primary-gold); border-bottom: 1px solid var(--primary-gold);
     transition: 0.3s;
 }
 .art-deco-btn span.left, .art-deco-btn span.right {
-    position: absolute; top: 50%; width: 10px; height: 10px; background: #0a0a0a;
-    border: 1px solid var(--primary-gold); transform: translateY(-50%) rotate(45deg); transition: 0.3s;
+    position: absolute; top: 50%; width: 10px; height: 10px;
+    background: #0a0a0a; border: 1px solid var(--primary-gold);
+    transform: translateY(-50%) rotate(45deg); transition: 0.3s;
 }
 .art-deco-btn span.left { left: -6px; border-right: none; border-top: none; }
 .art-deco-btn span.right { right: -6px; border-left: none; border-bottom: none; }
 .art-deco-btn:hover { color: #fff; background: rgba(197, 160, 89, 0.1); }
 .art-deco-btn:hover span.left, .art-deco-btn:hover span.right { background: var(--primary-gold); border-color: #fff; }
+
+/* Image Zoom */
+.hover-zoom { transition: transform 0.6s ease; }
+.hover-zoom:hover { transform: scale(1.03); }
 
 /* =========================================
    7. PROCESS PAGE STYLES
@@ -283,7 +308,7 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
 .page-header {
     position: relative; width: 100%; background-size: cover; background-position: center;
     display: flex; align-items: center; justify-content: center; text-align: center;
-    margin-top: 75px; /* Offset fixed header */
+    margin-top: 75px;
 }
 
 .gold-line {
@@ -377,7 +402,7 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
 .lux-btn:hover::before { transform: scaleY(1); }
 
 /* =========================================
-   10. FOOTER & GLOBAL ICONS
+   10. FOOTER & ICONS
    ========================================= */
 footer {
     padding: 30px; text-align: center; border-top: 1px solid var(--accent-bronze);
@@ -418,7 +443,6 @@ footer {
     .image-pair { flex-direction: column; }
     .image-pair img { width: 100%; height: 300px; }
     
-    /* Ensure Zig-Zag order is correct on mobile (Text top, Image bottom) */
     .swap-desktop { display: flex; flex-direction: column; }
     .swap-desktop div:nth-child(1) { order: 1; }
     .swap-desktop div:nth-child(2) { order: 2; }
@@ -430,7 +454,6 @@ footer {
 }
 
 @media (min-width: 769px) {
-    /* Zig Zag Layout for Desktop */
     .swap-desktop div:nth-child(1) { order: 2; }
     .swap-desktop div:nth-child(2) { order: 1; }
 }
