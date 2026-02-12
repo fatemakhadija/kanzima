@@ -310,3 +310,30 @@ body.hovering .cursor-circle {
     .cursor-dot, .cursor-circle { display: none !important; }
     * { cursor: auto !important; }
 }
+/* ... existing styles ... */
+
+.logo-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    position: relative; /* Ensure context for any positioning */
+}
+
+/* NEW: Header Needle Style */
+.header-needle-gif {
+    height: 50px; /* Match logo height */
+    width: auto;
+    margin-left: 10px; /* Space from the text */
+    display: block;
+    mix-blend-mode: screen; /* Optional: Helps blend if gif has black bg */
+}
+
+/* Update Media Query for Mobile */
+@media (max-width: 1024px) {
+    /* ... existing mobile styles ... */
+    
+    .header-needle-gif {
+        height: 35px; /* Slightly smaller on mobile */
+        margin-left: 5px;
+    }
+}
