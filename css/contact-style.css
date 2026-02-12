@@ -25,16 +25,36 @@
     background-color: #080808; padding: 60px 40px; text-align: center;
     border: 1px solid rgba(197, 160, 89, 0.3);
     outline: 1px solid rgba(197, 160, 89, 0.3); outline-offset: -10px;
+    position: relative; /* Ensure corners position correctly */
 }
 
-/* Mughal Corners */
+/* Mughal Corners (Fixed) */
 .mughal-corner {
     position: absolute; width: 40px; height: 40px;
     border: 2px solid #C5A059; z-index: 2; transition: all 0.5s ease;
 }
-.mughal-corner.top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.mughal-corner.top-left::after { content: ''; position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; border-top: 1px solid #C5A059; border-left: 1px solid #C5A059; }
-/* ... (You can add the other corners similarly if strictly needed, but basic box is usually enough) */
+
+/* Force correct borders to form 'L' shapes and prevent full boxes */
+.mughal-corner.top-left { 
+    top: 10px; left: 10px; 
+    border-right: none !important; 
+    border-bottom: none !important; 
+}
+.mughal-corner.top-right { 
+    top: 10px; right: 10px; 
+    border-left: none !important; 
+    border-bottom: none !important; 
+}
+.mughal-corner.bottom-left { 
+    bottom: 10px; left: 10px; 
+    border-right: none !important; 
+    border-top: none !important; 
+}
+.mughal-corner.bottom-right { 
+    bottom: 10px; right: 10px; 
+    border-left: none !important; 
+    border-top: none !important; 
+}
 
 .royal-card:hover .mughal-corner { border-color: #fff; box-shadow: 0 0 10px rgba(197,160,89,0.5); }
 
