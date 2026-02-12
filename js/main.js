@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // --- 2. LOAD COMPONENTS ---
     
-    // Header
+    // Header (This loads the Menu)
     const headerElement = document.querySelector("header");
     if (headerElement) {
         fetch("pages/header.html")
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading custom banner:", error));
     }
 
-    // Home Page Banner
+    // Home Page Banner (Ken Burns)
     const bannerContainer = document.getElementById("banner-container");
     if (bannerContainer) {
         fetch("pages/banner.html")
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Inject Icons (Needle + WhatsApp) - FIXED ANIMATION
+// 1. Inject Icons (Needle + WhatsApp) - STATIC POSITION
 function injectGlobalIcons() {
     // Floating Needle
     if (!document.querySelector('.floating-needle')) {
@@ -79,41 +79,15 @@ function injectGlobalIcons() {
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
         
-        // Initial Style (Handled by CSS, but reinforced here)
+        // STATIC POSITION: Center of Header (slightly to the right to avoid text)
         needle.style.position = 'fixed';
+        needle.style.top = '15px'; 
+        needle.style.left = '55%'; /* Pushed slightly right of center */
+        needle.style.width = '50px'; 
         needle.style.zIndex = '9999';
         needle.style.pointerEvents = 'none';
         
         document.body.appendChild(needle);
-
-        // Scroll Logic: Center Top -> Bottom Right
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            
-            // Safety check for short pages
-            let scrollPercent = (docHeight > 0) ? scrollTop / docHeight : 0;
-            if (scrollPercent > 1) scrollPercent = 1;
-
-            // Start Position (Top Center)
-            const startX = window.innerWidth / 2; // Middle of screen
-            const startY = 20; // Top of screen
-
-            // End Position (Bottom Right)
-            const endX = window.innerWidth - 70; 
-            const endY = window.innerHeight - 80;
-
-            // Calculate Current Position
-            const currentX = startX + (endX - startX) * scrollPercent;
-            const currentY = startY + (endY - startY) * scrollPercent;
-
-            // Apply
-            needle.style.left = currentX + 'px';
-            needle.style.top = currentY + 'px';
-        });
-        
-        // Trigger once to set initial position
-        window.dispatchEvent(new Event('scroll'));
     }
 
     // WhatsApp Float
@@ -132,6 +106,7 @@ function injectCustomCursor() {
     let dot = document.querySelector('.cursor-dot');
     let circle = document.querySelector('.cursor-circle');
 
+    // Create if missing
     if (!dot || !circle) {
         dot = document.createElement('div');
         dot.className = 'cursor-dot';
@@ -142,6 +117,7 @@ function injectCustomCursor() {
         document.body.appendChild(circle);
     }
 
+    // Attach Listeners (Desktop Only)
     if (window.innerWidth > 768) {
         dot.style.display = 'block';
         circle.style.display = 'block';
@@ -149,6 +125,7 @@ function injectCustomCursor() {
         window.addEventListener('mousemove', (e) => {
             dot.style.left = `${e.clientX}px`;
             dot.style.top = `${e.clientY}px`;
+            
             circle.animate({ 
                 left: `${e.clientX}px`, 
                 top: `${e.clientY}px` 
@@ -163,6 +140,7 @@ function injectCustomCursor() {
             }
         });
     } else {
+        // Hide on mobile
         if(dot) dot.style.display = 'none';
         if(circle) circle.style.display = 'none';
     }
