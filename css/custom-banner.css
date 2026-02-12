@@ -6,7 +6,7 @@
 .custom-hero-wrapper {
     position: relative;
     width: 100%;
-    min-height: 90vh; /* Slightly reduced height */
+    min-height: 100vh;
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -16,56 +16,59 @@
 }
 
 /* --- SIDE PANELS (DRESSES) --- */
-/* Changed from absolute to relative for better control */
 .side-panel {
-    position: relative;
-    height: auto;
-    display: flex;
-    align-items: center;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%; /* Full width to allow extreme positioning */
+    pointer-events: none; /* Let clicks pass through */
     z-index: 1;
 }
 
-/* Negative margins to pull them closer to the center card */
-.left-panel { margin-right: -50px; }
-.right-panel { margin-left: -50px; }
-
 .side-dress {
-    max-height: 80vh;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 85vh; /* Tall but fits screen */
     width: auto;
-    max-width: 30vw; /* Limit width relative to viewport */
     object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0,0,0,1)); /* Stronger shadow for depth */
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.9));
 }
+
+/* Desktop Positioning */
+.img-left { left: 10%; }  /* Adjust this to move dress closer/further */
+.img-right { right: 10%; }
 
 /* --- CENTER STAGE --- */
 .center-stage {
     position: relative;
-    z-index: 10; /* Ensure it's above the dresses */
+    z-index: 10;
     width: 420px;
-    padding: 30px;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%);
+    padding: 40px 30px;
+    background: radial-gradient(circle at center, rgba(20,20,20,0.95) 0%, rgba(0,0,0,0.95) 100%);
     border: 1px solid rgba(197, 160, 89, 0.4);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    box-shadow: 0 0 80px rgba(0,0,0,1);
+    backdrop-filter: blur(5px); /* Blurs the dresses behind it slightly */
 }
 
-/* 1. Typography - NEW FONTS */
+/* 1. Typography */
 .royal-art-text {
-    font-family: 'Pinyon Script', cursive; /* New attractive calligraphy */
-    font-size: 2.2rem;
+    font-family: 'Pinyon Script', cursive; /* The new Calligraphy */
+    font-size: 2.5rem;
     color: #C5A059;
     margin-bottom: 10px;
     font-weight: 400;
-    line-height: 1.2;
     letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .brand-calligraphy {
-    font-family: 'Cinzel Decorative', serif; /* New decorative serif */
-    font-size: 2.4rem;
+    font-family: 'Cinzel Decorative', serif; /* The new Brand Font */
+    font-size: 2.6rem;
     font-weight: 700;
     background: linear-gradient(to right, #C5A059, #FFFACD, #C5A059);
     -webkit-background-clip: text;
@@ -85,7 +88,7 @@
 /* 3. QR Section */
 .qr-frame-container {
     position: relative;
-    padding: 22px;
+    padding: 20px;
     margin-bottom: 25px;
 }
 
@@ -93,7 +96,7 @@
     padding: 8px;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
 }
 
 .qr-image {
@@ -104,11 +107,11 @@
 
 .scan-me-label {
     position: absolute;
-    top: -15px;
-    right: -25px;
-    font-family: 'Pinyon Script', cursive; /* Matching the top text */
+    top: -20px;
+    right: -30px;
+    font-family: 'Pinyon Script', cursive;
     color: #C5A059;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     transform: rotate(15deg);
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
@@ -119,15 +122,15 @@
     width: 45px;
     height: auto;
 }
-.top-left { top: -8px; left: -8px; }
-.bottom-right { bottom: -8px; right: -8px; }
+.top-left { top: -10px; left: -10px; }
+.bottom-right { bottom: -10px; right: -10px; }
 
 /* 4. Contact Strip */
 .contact-strip {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-top: 5px;
+    gap: 15px;
+    margin-top: 10px;
 }
 
 .shiny-gold-icon {
@@ -135,7 +138,7 @@
     background: linear-gradient(135deg, #FCE205, #C5A059);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.6));
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));
 }
 
 .gold-number {
@@ -147,179 +150,110 @@
 }
 
 /* =========================================
-   ANIMATIONS (Kept the same)
+   ANIMATIONS (Extreme Entry)
    ========================================= */
-/* ... (Animations remain exactly as they were in the previous version) ... */
-/* 1. Left Dress: Fly in from Left */
+
+/* 1. Left Dress: Fly in from EXTREME Left */
 .animate-fly-left {
-    animation: flyInLeft 1.2s ease-out forwards;
+    animation: flyInLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
 }
 @keyframes flyInLeft {
-    0% { transform: translateX(-80px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
+    0% { transform: translate(-100vw, -50%); opacity: 0; }
+    100% { transform: translate(0, -50%); opacity: 1; }
 }
 
-/* 2. Right Dress: Fly in from Right */
+/* 2. Right Dress: Fly in from EXTREME Right */
 .animate-fly-right {
-    animation: flyInRight 1.2s ease-out forwards;
+    animation: flyInRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0;
 }
 @keyframes flyInRight {
-    0% { transform: translateX(80px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
+    0% { transform: translate(100vw, -50%); opacity: 0; }
+    100% { transform: translate(0, -50%); opacity: 1; }
 }
 
-/* 3. Text Reveal */
-.animate-text-reveal {
-    animation: textSlideIn 1s ease-out forwards;
-    opacity: 0;
-    animation-delay: 0.8s;
-}
-@keyframes textSlideIn {
-    0% { transform: translateX(-30px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
-}
+/* Other animations remain the same */
+.animate-text-reveal { animation: fadeIn 1s ease forwards 0.8s; opacity: 0; }
+.animate-spin-logo { animation: spinReveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards 1.2s; opacity: 0; transform-origin: center; }
+.animate-fade-in { animation: fadeIn 1s ease forwards 1.5s; opacity: 0; }
+.animate-dissolve { animation: dissolveEmerge 1.5s ease forwards 1.8s; opacity: 0; }
+.animate-angle-top { animation: diagonalTop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 2.2s; opacity: 0; }
+.animate-angle-bottom { animation: diagonalBottom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 2.2s; opacity: 0; }
+.animate-rotate-icon { animation: rotateIcon 1s ease-out forwards 2.8s; opacity: 0; }
+.animate-wave-text { display: inline-block; animation: fadeIn 0.5s forwards 2.8s, seashoreWave 3s ease-in-out infinite 3.5s; opacity: 0; }
 
-/* 4. Logo Spin */
-.animate-spin-logo {
-    animation: spinReveal 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    opacity: 0;
-    transform-origin: center;
-    animation-delay: 1.2s;
-}
-@keyframes spinReveal {
-    0% { transform: scale(0) rotate(180deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-/* 5. Brand Fade */
-.animate-fade-in {
-    animation: fadeIn 1s ease forwards;
-    opacity: 0;
-    animation-delay: 1.5s;
-}
 @keyframes fadeIn { to { opacity: 1; } }
-
-/* 6. QR Dissolve */
-.animate-dissolve {
-    animation: dissolveEmerge 1.5s ease forwards;
-    opacity: 0;
-    animation-delay: 1.8s;
-}
-@keyframes dissolveEmerge {
-    0% { opacity: 0; transform: scale(0.9) blur(5px); }
-    100% { opacity: 1; transform: scale(1) blur(0); }
-}
-
-/* 7. Angles Fly In */
-.animate-angle-top {
-    animation: diagonalTop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    opacity: 0;
-    animation-delay: 2.2s;
-}
-@keyframes diagonalTop {
-    0% { transform: translate(-30px, -30px) rotate(-45deg); opacity: 0; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-}
-
-.animate-angle-bottom {
-    animation: diagonalBottom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    opacity: 0;
-    animation-delay: 2.2s;
-}
-@keyframes diagonalBottom {
-    0% { transform: translate(30px, 30px) rotate(-45deg); opacity: 0; }
-    100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-}
-
-/* 8. WhatsApp Rotate */
-.animate-rotate-icon {
-    animation: rotateIcon 1s ease-out forwards;
-    opacity: 0;
-    animation-delay: 2.8s;
-}
-@keyframes rotateIcon {
-    0% { transform: rotate(-360deg) scale(0); opacity: 0; }
-    100% { transform: rotate(0deg) scale(1); opacity: 1; }
-}
-
-/* 9. Number Wave */
-.animate-wave-text {
-    display: inline-block;
-    animation: fadeIn 0.5s forwards 2.8s, seashoreWave 3s ease-in-out infinite 3.5s;
-    opacity: 0;
-}
-@keyframes seashoreWave {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); text-shadow: 0 5px 10px rgba(197, 160, 89, 0.5); }
-}
+@keyframes spinReveal { 0% { transform: scale(0) rotate(180deg); opacity: 0; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
+@keyframes dissolveEmerge { 0% { opacity: 0; transform: scale(0.9) blur(5px); } 100% { opacity: 1; transform: scale(1) blur(0); } }
+@keyframes diagonalTop { 0% { transform: translate(-30px, -30px) rotate(-45deg); opacity: 0; } 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; } }
+@keyframes diagonalBottom { 0% { transform: translate(30px, 30px) rotate(-45deg); opacity: 0; } 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; } }
+@keyframes rotateIcon { 0% { transform: rotate(-360deg) scale(0); opacity: 0; } 100% { transform: rotate(0deg) scale(1); opacity: 1; } }
+@keyframes seashoreWave { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); text-shadow: 0 5px 10px rgba(197, 160, 89, 0.5); } }
 
 
 /* =========================================
-   MEDIA QUERIES (Refined for new layout)
+   MEDIA QUERIES (RECALCULATED FOR MOBILE)
    ========================================= */
+
+/* ##Device = Desktops (1281px+) */
+@media (min-width: 1281px) { }
 
 /* ##Device = Laptops (1025px - 1280px) */
 @media (min-width: 1025px) and (max-width: 1280px) {
-    .center-stage { width: 380px; }
-    .side-dress { max-width: 25vw; }
-    .left-panel { margin-right: -40px; }
-    .right-panel { margin-left: -40px; }
+    .img-left { left: 5%; }
+    .img-right { right: 5%; }
+    .side-dress { height: 75vh; }
 }
 
 /* ##Device = Tablets (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-    .custom-hero-wrapper {
-        flex-direction: column;
-        padding-top: 120px;
-        justify-content: flex-start;
-    }
-    /* On tablets, place dresses closer to the card, flanking it */
-    .side-panel {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 0;
-        opacity: 0.6; /* Fade them out slightly so text is readable */
-    }
-    .left-panel { left: 5%; margin-right: 0; justify-content: flex-end; }
-    .right-panel { right: 5%; margin-left: 0; justify-content: flex-start; }
-    .side-dress { max-height: 60vh; max-width: 20vw; }
-    .center-stage { width: 60%; max-width: 400px; }
+    /* Bring dresses closer to frame the card */
+    .img-left { left: -10%; }
+    .img-right { right: -10%; }
+    .side-dress { height: 60vh; opacity: 0.6; }
+    .center-stage { width: 380px; }
 }
 
-/* ##Device = Mobile Landscape (481px - 767px) */
-@media (min-width: 481px) and (max-width: 767px) {
-    /* Hide dresses on short screens to prioritize content */
-    .side-panel { display: none; }
-    .custom-hero-wrapper { min-height: auto; padding: 100px 0 50px; }
-    .center-stage { width: 80%; }
-    .royal-art-text { font-size: 1.8rem; }
-    .brand-calligraphy { font-size: 2rem; }
-}
-
-/* ##Device = Mobile Portrait (320px - 480px) */
-@media (min-width: 320px) and (max-width: 480px) {
+/* ##Device = Mobile (All Sizes) */
+@media (max-width: 767px) {
     .custom-hero-wrapper {
-        flex-direction: column;
-        padding-top: 100px;
         min-height: auto;
-        padding-bottom: 50px;
+        padding: 100px 0 60px;
+        overflow: hidden; /* Crucial for keeping dresses contained */
     }
 
-    /* Keep dresses hidden on small mobile for readability as per previous agreement */
-    .side-panel { display: none; }
+    /* FIX: Make dresses visible but subtle frames */
+    .side-panel {
+        display: block; /* Force visible */
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0; left: 0;
+    }
 
+    .side-dress {
+        height: 50vh; /* Smaller height */
+        top: 55%; /* Align with card center */
+        opacity: 0.4; /* Fade out so text is readable */
+        z-index: 0; /* Behind card */
+    }
+
+    /* Position them to peek out */
+    .img-left { left: -15%; }
+    .img-right { right: -15%; }
+
+    /* Card Adjustments */
     .center-stage {
-        width: 95%;
-        padding: 25px 15px;
+        width: 85%;
+        padding: 20px;
+        background: rgba(0,0,0,0.85); /* More transparent to see dress behind */
+        border: 1px solid rgba(197, 160, 89, 0.3);
     }
 
+    /* Font Scaling */
     .royal-art-text { font-size: 1.8rem; }
-    .brand-calligraphy { font-size: 1.8rem; }
-    .qr-image { width: 130px; height: 130px; }
-    .gold-number { font-size: 1.2rem; }
-    .shiny-gold-icon { font-size: 2rem; }
-    .scan-me-label { font-size: 1.2rem; right: -15px; top: -10px; }
+    .brand-calligraphy { font-size: 1.8rem; margin-bottom: 20px; }
+    .qr-image { width: 120px; height: 120px; }
+    .gold-number { font-size: 1.1rem; }
 }
