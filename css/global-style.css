@@ -70,10 +70,15 @@ header {
     border-bottom: 1px solid rgba(197, 160, 89, 0.2); backdrop-filter: blur(10px);
 }
 
-.logo-container { display: flex; align-items: center; gap: 15px; }
+.logo-container { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    position: relative; 
+}
+
 .logo-img { height: 50px; width: auto; }
 .logo-text-group { display: flex; flex-direction: column; justify-content: center; line-height: 1; }
-.logo-gif { height: 40px; width: auto; margin-left: 5px; }
 
 /* Desktop Navigation */
 nav ul { display: flex; list-style: none; gap: 30px; }
@@ -102,11 +107,6 @@ nav a:hover, nav a.active { color: var(--primary-gold); }
 footer {
     padding: 30px; text-align: center; border-top: 1px solid var(--accent-bronze);
     font-size: 0.9rem; color: #666; background: #050505;
-}
-
-.floating-needle {
-    position: fixed; top: 20px; left: 20px; width: 60px; z-index: 9999;
-    pointer-events: none; transition: transform 0.1s linear;
 }
 
 .whatsapp-float {
@@ -256,7 +256,7 @@ body.hovering .cursor-circle {
     header { padding: 15px; }
     .logo-img { height: 35px; }
     .logo-text { font-size: 1rem !important; }
-    .logo-gif { display: none; }
+    /* .logo-gif { display: none; } <-- Removed this so it doesn't hide the new needle */
     
     .hamburger { display: block; }
     .nav-menu {
@@ -310,30 +310,22 @@ body.hovering .cursor-circle {
     .cursor-dot, .cursor-circle { display: none !important; }
     * { cursor: auto !important; }
 }
-/* ... existing styles ... */
 
-.logo-container { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    position: relative; /* Ensure context for any positioning */
-}
-
-/* NEW: Header Needle Style */
+/* =========================================
+   NEEDLE STYLING (NEW)
+   ========================================= */
 .header-needle-gif {
-    height: 50px; /* Match logo height */
+    height: 50px; 
     width: auto;
     margin-left: 10px; /* Space from the text */
     display: block;
-    mix-blend-mode: screen; /* Optional: Helps blend if gif has black bg */
+    mix-blend-mode: screen; /* Helps blend if gif has black bg */
 }
 
-/* Update Media Query for Mobile */
+/* Update Needle for Mobile */
 @media (max-width: 1024px) {
-    /* ... existing mobile styles ... */
-    
     .header-needle-gif {
-        height: 35px; /* Slightly smaller on mobile */
+        height: 35px;
         margin-left: 5px;
     }
 }
