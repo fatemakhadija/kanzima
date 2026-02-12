@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
-    injectGlobalIcons();   // Needle & WhatsApp
-    injectCustomCursor();  // <--- NEW: Auto-creates cursor on every page
+    injectGlobalIcons();   
+    injectCustomCursor();  // <--- Now works for BOTH existing and missing cursor divs
 
     // --- 2. LOAD COMPONENTS ---
     
@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(res => res.text())
             .then(data => {
                 customHeroContainer.innerHTML = data;
-                // Animations are handled via CSS classes in the loaded HTML
             })
             .catch(error => console.error("Error loading custom banner:", error));
     }
@@ -73,44 +72,51 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Global Custom Cursor Injection (The Fix)
+// 1. Global Custom Cursor Injection (FIXED LOGIC)
 function injectCustomCursor() {
-    // Check if cursor already exists, if not, create it
-    if (!document.querySelector('.cursor-dot')) {
-        const dot = document.createElement('div');
+    let dot = document.querySelector('.cursor-dot');
+    let circle = document.querySelector('.cursor-circle');
+
+    // Step 1: Create elements if they don't exist
+    if (!dot || !circle) {
+        dot = document.createElement('div');
         dot.className = 'cursor-dot';
         document.body.appendChild(dot);
 
-        const circle = document.createElement('div');
+        circle = document.createElement('div');
         circle.className = 'cursor-circle';
         document.body.appendChild(circle);
+    }
 
-        // Add Event Listeners only for Desktop
-        if (window.innerWidth > 768) {
-            window.addEventListener('mousemove', (e) => {
-                dot.style.left = `${e.clientX}px`;
-                dot.style.top = `${e.clientY}px`;
-                
-                // Smooth follow for the circle
-                circle.animate({ 
-                    left: `${e.clientX}px`, 
-                    top: `${e.clientY}px` 
-                }, { duration: 400, fill: "forwards" });
-            });
+    // Step 2: ALWAYS attach listeners (whether elements were created or already existed)
+    if (window.innerWidth > 768) {
+        // Show them (in case they were hidden by CSS defaults)
+        dot.style.display = 'block';
+        circle.style.display = 'block';
 
-            // Hover effect for interactive elements
-            document.body.addEventListener('mouseover', (e) => {
-                if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
-                    document.body.classList.add('hovering');
-                } else {
-                    document.body.classList.remove('hovering');
-                }
-            });
-        } else {
-            // Hide on mobile
-            dot.style.display = 'none';
-            circle.style.display = 'none';
-        }
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            
+            // Smooth follow for the circle
+            circle.animate({ 
+                left: `${e.clientX}px`, 
+                top: `${e.clientY}px` 
+            }, { duration: 400, fill: "forwards" });
+        });
+
+        // Hover effect for interactive elements
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
+                document.body.classList.add('hovering');
+            } else {
+                document.body.classList.remove('hovering');
+            }
+        });
+    } else {
+        // Hide on mobile
+        if(dot) dot.style.display = 'none';
+        if(circle) circle.style.display = 'none';
     }
 }
 
@@ -154,7 +160,7 @@ function injectGlobalIcons() {
     // Floating Needle
     if (!document.querySelector('.floating-needle')) {
         let needle = document.createElement('img');
-        needle.src = 'images/thread-needle.gif'; // Ensure this path is correct
+        needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
         needle.style.position = 'fixed';
@@ -193,7 +199,6 @@ function highlightCurrentPage() {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll("nav a");
     navLinks.forEach(link => {
-        // Simple check: if href matches filename
         if (link.getAttribute("href") === currentPage) {
             link.classList.add('active'); 
             link.style.color = "#C5A059"; 
