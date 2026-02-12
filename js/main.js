@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // --- 1. LOAD COMPONENTS ---
+    // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
+    injectGlobalIcons();   // Needle & WhatsApp
+    injectCustomCursor();  // <--- NEW: Auto-creates cursor on every page
+
+    // --- 2. LOAD COMPONENTS ---
     
     // Header
     const headerElement = document.querySelector("header");
@@ -24,7 +28,19 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading footer:", error));
     }
 
-    // HOME Banner (Ken Burns + Particles)
+    // Custom Banner (For Contact Page)
+    const customHeroContainer = document.getElementById("custom-hero-container");
+    if (customHeroContainer) {
+        fetch("pages/custom-banner.html")
+            .then(res => res.text())
+            .then(data => {
+                customHeroContainer.innerHTML = data;
+                // Animations are handled via CSS classes in the loaded HTML
+            })
+            .catch(error => console.error("Error loading custom banner:", error));
+    }
+
+    // Home Page Banner (Ken Burns)
     const bannerContainer = document.getElementById("banner-container");
     if (bannerContainer) {
         fetch("pages/banner.html")
@@ -41,21 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading home banner:", error));
     }
 
-    // --- NEW: CUSTOM BANNER INJECTION (For Contact Page) ---
-    // This looks for the ID we added to contact.html and injects the new 3-part banner
-    const customHeroContainer = document.getElementById("custom-hero-container");
-    if (customHeroContainer) {
-        fetch("pages/custom-banner.html")
-            .then(res => res.text())
-            .then(data => {
-                customHeroContainer.innerHTML = data;
-            })
-            .catch(error => console.error("Error loading custom banner:", error));
-    }
-
-    // --- 2. GLOBAL INJECTIONS ---
-    injectGlobalIcons();
-
     // --- 3. PRELOADER ---
     const preloader = document.getElementById("preloader");
     if (preloader) {
@@ -68,9 +69,52 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// --- HELPER FUNCTIONS ---
+// =========================================
+// HELPER FUNCTIONS
+// =========================================
 
-// 1. Mobile Menu Logic
+// 1. Global Custom Cursor Injection (The Fix)
+function injectCustomCursor() {
+    // Check if cursor already exists, if not, create it
+    if (!document.querySelector('.cursor-dot')) {
+        const dot = document.createElement('div');
+        dot.className = 'cursor-dot';
+        document.body.appendChild(dot);
+
+        const circle = document.createElement('div');
+        circle.className = 'cursor-circle';
+        document.body.appendChild(circle);
+
+        // Add Event Listeners only for Desktop
+        if (window.innerWidth > 768) {
+            window.addEventListener('mousemove', (e) => {
+                dot.style.left = `${e.clientX}px`;
+                dot.style.top = `${e.clientY}px`;
+                
+                // Smooth follow for the circle
+                circle.animate({ 
+                    left: `${e.clientX}px`, 
+                    top: `${e.clientY}px` 
+                }, { duration: 400, fill: "forwards" });
+            });
+
+            // Hover effect for interactive elements
+            document.body.addEventListener('mouseover', (e) => {
+                if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
+                    document.body.classList.add('hovering');
+                } else {
+                    document.body.classList.remove('hovering');
+                }
+            });
+        } else {
+            // Hide on mobile
+            dot.style.display = 'none';
+            circle.style.display = 'none';
+        }
+    }
+}
+
+// 2. Mobile Menu Logic
 function initMobileMenu() {
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
@@ -92,7 +136,7 @@ function initMobileMenu() {
     }
 }
 
-// 2. Ken Burns Banner Slider
+// 3. Ken Burns Banner Slider
 function startBannerSlider() {
     const slides = document.querySelectorAll('.slide');
     if (slides.length === 0) return;
@@ -105,12 +149,12 @@ function startBannerSlider() {
     }, intervalTime);
 }
 
-// 3. Inject Icons (Needle + WhatsApp)
+// 4. Inject Icons (Needle + WhatsApp)
 function injectGlobalIcons() {
-    // Needle
+    // Floating Needle
     if (!document.querySelector('.floating-needle')) {
         let needle = document.createElement('img');
-        needle.src = 'images/thread-needle.gif';
+        needle.src = 'images/thread-needle.gif'; // Ensure this path is correct
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
         needle.style.position = 'fixed';
@@ -133,7 +177,7 @@ function injectGlobalIcons() {
         });
     }
 
-    // WhatsApp
+    // WhatsApp Float
     if (!document.querySelector('.whatsapp-float')) {
         let whatsapp = document.createElement('a');
         whatsapp.href = 'https://wa.me/919307159339';
@@ -144,11 +188,12 @@ function injectGlobalIcons() {
     }
 }
 
-// 4. Highlight Active Page
+// 5. Highlight Active Page
 function highlightCurrentPage() {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
     const navLinks = document.querySelectorAll("nav a");
     navLinks.forEach(link => {
+        // Simple check: if href matches filename
         if (link.getAttribute("href") === currentPage) {
             link.classList.add('active'); 
             link.style.color = "#C5A059"; 
@@ -156,7 +201,7 @@ function highlightCurrentPage() {
     });
 }
 
-// --- MAGNETIC BUTTONS ---
+// --- MAGNETIC BUTTONS LOGIC ---
 document.addEventListener('mousemove', function(e) {
     if (e.target.closest('.lux-btn')) {
         const btn = e.target.closest('.lux-btn');
@@ -170,25 +215,9 @@ document.addEventListener('mousemove', function(e) {
         btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
     }
 });
+
 document.addEventListener('mouseout', function(e) {
     if (e.target.closest('.lux-btn')) {
         e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
     }
 });
-
-// --- CURSOR LOGIC ---
-if (window.innerWidth > 768) {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorCircle = document.querySelector('.cursor-circle');
-    if (cursorDot && cursorCircle) {
-        window.addEventListener('mousemove', (e) => {
-            cursorDot.style.left = `${e.clientX}px`;
-            cursorDot.style.top = `${e.clientY}px`;
-            cursorCircle.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 400, fill: "forwards" });
-        });
-        document.body.addEventListener('mouseover', (e) => {
-            if (e.target.closest('a, button, .card, .art-image')) document.body.classList.add('hovering');
-            else document.body.classList.remove('hovering');
-        });
-    }
-}
