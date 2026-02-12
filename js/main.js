@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Inject Icons (Needle + WhatsApp) - STATIC POSITION
+// 1. Inject Icons (Needle + WhatsApp) - FIXED ANIMATION
 function injectGlobalIcons() {
     // Floating Needle
     if (!document.querySelector('.floating-needle')) {
@@ -79,16 +79,41 @@ function injectGlobalIcons() {
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
         
-        // STATIC POSITION (No Scrolling Animation)
+        // Initial Style (Handled by CSS, but reinforced here)
         needle.style.position = 'fixed';
-        needle.style.top = '10px'; 
-        needle.style.left = '50%';         // Center of header
-        needle.style.transform = 'translateX(-50%)'; // Center alignment
-        needle.style.width = '60px'; 
         needle.style.zIndex = '9999';
         needle.style.pointerEvents = 'none';
         
         document.body.appendChild(needle);
+
+        // Scroll Logic: Center Top -> Bottom Right
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            
+            // Safety check for short pages
+            let scrollPercent = (docHeight > 0) ? scrollTop / docHeight : 0;
+            if (scrollPercent > 1) scrollPercent = 1;
+
+            // Start Position (Top Center)
+            const startX = window.innerWidth / 2; // Middle of screen
+            const startY = 20; // Top of screen
+
+            // End Position (Bottom Right)
+            const endX = window.innerWidth - 70; 
+            const endY = window.innerHeight - 80;
+
+            // Calculate Current Position
+            const currentX = startX + (endX - startX) * scrollPercent;
+            const currentY = startY + (endY - startY) * scrollPercent;
+
+            // Apply
+            needle.style.left = currentX + 'px';
+            needle.style.top = currentY + 'px';
+        });
+        
+        // Trigger once to set initial position
+        window.dispatchEvent(new Event('scroll'));
     }
 
     // WhatsApp Float
