@@ -180,70 +180,79 @@
 
 
 /* =========================================
-   MEDIA QUERIES (RESIZED & TIGHTENED FOR MOBILE)
+   MEDIA QUERIES (EXTREMELY COMPACT FOR MOBILE)
    ========================================= */
 @media (max-width: 768px) {
     .custom-hero-wrapper {
         min-height: 100vh;
-        padding: 40px 0; /* Reduced padding */
+        padding: 30px 0; /* Minimal padding */
+        display: flex;
+        flex-direction: column; /* Ensure vertical stacking logic if needed */
+        justify-content: center;
     }
 
-    /* 1. VISIBLE DRESSES (Much Smaller & Closer) */
+    /* 1. VISIBLE DRESSES (Pulled very close) */
     .side-panel { display: block; }
     
     .side-dress {
-        height: 35vh; /* Much smaller height */
-        top: 55%;     /* Vertically centered relative to text */
-        opacity: 0.5; /* Fade so text is readable */
+        height: 30vh; /* Small dresses */
+        top: 60%;     /* Positioned near the bottom half where QR is */
+        opacity: 0.6;
     }
 
-    /* PULL THEM IN CLOSER (Negative values bring them inward) */
-    .img-left { left: -10%; } 
-    .img-right { right: -10%; }
+    /* POSITIONS: Bring them almost touching the center content */
+    .img-left { left: -5%; } 
+    .img-right { right: -5%; }
 
-    /* 2. CENTER STAGE (Compact) */
+    /* 2. CENTER STAGE (Shrunk) */
     .center-stage {
         width: 100%;
-        padding: 10px 5px; /* Minimal padding */
+        max-width: 320px; /* Force width constraint */
+        padding: 5px;
         background: transparent;
         border: none;
         box-shadow: none;
     }
 
-    /* 3. AGGRESSIVELY RESIZED FONTS & ELEMENTS */
+    /* 3. TINY ELEMENTS to fit smoothly */
     .royal-art-text { 
-        font-size: 1.5rem; /* Smaller */
-        margin-bottom: 10px; 
+        font-size: 1.4rem; 
+        margin-bottom: 5px; 
     }
     
     .dress-logo { 
-        width: 60px; /* Smaller Logo */
+        width: 50px; 
         margin-bottom: 5px;
     }
     
     .brand-calligraphy { 
-        font-size: 1.8rem; /* Compact Brand Name */
-        margin-bottom: 15px; 
+        font-size: 1.6rem; 
+        margin-bottom: 10px; 
         letter-spacing: 1px;
     }
     
+    /* QR Section Compact */
     .qr-frame-container { 
-        padding: 10px; 
-        margin-bottom: 15px; 
+        padding: 8px; 
+        margin-bottom: 10px; 
+        /* Ensure QR isn't overlapping dresses too much */
+        z-index: 20; 
+        background: rgba(0,0,0,0.5); /* Slight backing to pop from dresses */
+        border-radius: 10px;
     }
     .qr-image { 
-        width: 100px; /* Smaller QR */
-        height: 100px; 
+        width: 90px; 
+        height: 90px; 
     }
     .scan-me-label { 
-        font-size: 0.9rem; 
-        top: -12px; 
-        right: -10px; 
+        font-size: 0.8rem; 
+        top: -10px; 
+        right: -5px; 
     }
-    .angle-icon { width: 30px; }
+    .angle-icon { width: 25px; }
     
-    /* Contact Strip Compact */
-    .contact-strip { gap: 8px; margin-top: 5px; }
-    .gold-number { font-size: 1.2rem; }
-    .shiny-gold-icon { font-size: 1.8rem; }
+    /* Contact Strip */
+    .contact-strip { gap: 5px; margin-top: 5px; }
+    .gold-number { font-size: 1.1rem; }
+    .shiny-gold-icon { font-size: 1.6rem; }
 }
