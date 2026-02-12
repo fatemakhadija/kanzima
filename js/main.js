@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
     injectGlobalIcons();   
-    injectCustomCursor();  // <--- Now works for BOTH existing and missing cursor divs
+    injectCustomCursor();  // <--- This now works for ALL pages (Index + Contact)
 
     // --- 2. LOAD COMPONENTS ---
     
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading footer:", error));
     }
 
-    // Custom Banner (For Contact Page)
+    // Custom Banner (Contact Page)
     const customHeroContainer = document.getElementById("custom-hero-container");
     if (customHeroContainer) {
         fetch("pages/custom-banner.html")
@@ -72,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Global Custom Cursor Injection (FIXED LOGIC)
+// 1. Global Custom Cursor Injection (FIXED)
 function injectCustomCursor() {
     let dot = document.querySelector('.cursor-dot');
     let circle = document.querySelector('.cursor-circle');
 
-    // Step 1: Create elements if they don't exist
+    // Create if missing
     if (!dot || !circle) {
         dot = document.createElement('div');
         dot.className = 'cursor-dot';
@@ -88,9 +88,8 @@ function injectCustomCursor() {
         document.body.appendChild(circle);
     }
 
-    // Step 2: ALWAYS attach listeners (whether elements were created or already existed)
+    // Attach Listeners
     if (window.innerWidth > 768) {
-        // Show them (in case they were hidden by CSS defaults)
         dot.style.display = 'block';
         circle.style.display = 'block';
 
@@ -98,14 +97,12 @@ function injectCustomCursor() {
             dot.style.left = `${e.clientX}px`;
             dot.style.top = `${e.clientY}px`;
             
-            // Smooth follow for the circle
             circle.animate({ 
                 left: `${e.clientX}px`, 
                 top: `${e.clientY}px` 
             }, { duration: 400, fill: "forwards" });
         });
 
-        // Hover effect for interactive elements
         document.body.addEventListener('mouseover', (e) => {
             if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
                 document.body.classList.add('hovering');
@@ -132,7 +129,6 @@ function initMobileMenu() {
             navMenu.classList.toggle("active");
         });
 
-        // Close menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener("click", () => {
                 hamburger.classList.remove("active");
@@ -157,7 +153,6 @@ function startBannerSlider() {
 
 // 4. Inject Icons (Needle + WhatsApp)
 function injectGlobalIcons() {
-    // Floating Needle
     if (!document.querySelector('.floating-needle')) {
         let needle = document.createElement('img');
         needle.src = 'images/thread-needle.gif';
@@ -172,7 +167,6 @@ function injectGlobalIcons() {
         needle.style.transition = 'transform 0.1s linear';
         document.body.appendChild(needle);
 
-        // Scroll Logic for Needle
         window.addEventListener('scroll', function() {
             const scrollTop = window.scrollY;
             const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -183,7 +177,6 @@ function injectGlobalIcons() {
         });
     }
 
-    // WhatsApp Float
     if (!document.querySelector('.whatsapp-float')) {
         let whatsapp = document.createElement('a');
         whatsapp.href = 'https://wa.me/919307159339';
@@ -206,7 +199,7 @@ function highlightCurrentPage() {
     });
 }
 
-// --- MAGNETIC BUTTONS LOGIC ---
+// --- MAGNETIC BUTTONS ---
 document.addEventListener('mousemove', function(e) {
     if (e.target.closest('.lux-btn')) {
         const btn = e.target.closest('.lux-btn');
@@ -220,7 +213,6 @@ document.addEventListener('mousemove', function(e) {
         btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
     }
 });
-
 document.addEventListener('mouseout', function(e) {
     if (e.target.closest('.lux-btn')) {
         e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
