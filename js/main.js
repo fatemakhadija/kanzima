@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
-    injectWhatsAppOnly(); // <--- Renamed function, removed needle logic
+    injectWhatsAppOnly(); 
     injectCustomCursor();  
 
     // --- 2. LOAD COMPONENTS ---
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(data => {
                 headerElement.innerHTML = data;
                 highlightCurrentPage(); 
-                initMobileMenu(); 
+                initMobileMenu(); // <--- CRITICAL: Initializes menu after loading
             })
             .catch(error => console.error("Error loading header:", error));
     }
@@ -70,9 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Inject Icons (WhatsApp Only - Needle is now in HTML)
+// 1. Inject Icons (WhatsApp Only)
 function injectWhatsAppOnly() {
-    // WhatsApp Float
     if (!document.querySelector('.whatsapp-float')) {
         let whatsapp = document.createElement('a');
         whatsapp.href = 'https://wa.me/919307159339';
@@ -88,7 +87,6 @@ function injectCustomCursor() {
     let dot = document.querySelector('.cursor-dot');
     let circle = document.querySelector('.cursor-circle');
 
-    // Create if missing
     if (!dot || !circle) {
         dot = document.createElement('div');
         dot.className = 'cursor-dot';
@@ -99,7 +97,6 @@ function injectCustomCursor() {
         document.body.appendChild(circle);
     }
 
-    // Attach Listeners (Desktop Only)
     if (window.innerWidth > 768) {
         dot.style.display = 'block';
         circle.style.display = 'block';
@@ -122,7 +119,6 @@ function injectCustomCursor() {
             }
         });
     } else {
-        // Hide on mobile
         if(dot) dot.style.display = 'none';
         if(circle) circle.style.display = 'none';
     }
