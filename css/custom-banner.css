@@ -22,7 +22,7 @@
     height: 100%;
     width: 100%; 
     pointer-events: none; 
-    z-index: 1; /* Dresses sit here */
+    z-index: 1;
 }
 
 .side-dress {
@@ -42,16 +42,11 @@
 /* --- CENTER STAGE --- */
 .center-stage {
     position: relative;
-    z-index: 10; /* Content sits on top */
+    z-index: 10;
     width: 450px;
     padding: 40px 30px;
-    
-    /* Desktop: Subtle radial backing to make text pop */
     background: radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 80%);
-    
-    /* BORDER REMOVED based on "No Card" look preference */
     border: none; 
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,31 +55,33 @@
 
 /* 1. Typography */
 .royal-art-text {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.2rem;
     color: #C5A059;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 400;
+    letter-spacing: 1px;
     line-height: 1.2;
     text-shadow: 0 2px 10px rgba(0,0,0,1);
 }
 
 .brand-calligraphy {
-    font-family: 'Cinzel Decorative', serif;
-    font-size: 2.8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
     font-weight: 700;
     background: linear-gradient(to right, #C5A059, #FFFACD, #C5A059);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 30px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
 }
 
 /* 2. Logo */
 .dress-logo {
-    width: 100px;
+    width: 90px;
     height: auto;
     margin-bottom: 10px;
 }
@@ -113,9 +110,10 @@
     position: absolute;
     top: -20px;
     right: -30px;
-    font-family: 'Pinyon Script', cursive;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
     color: #C5A059;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     transform: rotate(15deg);
     text-shadow: 0 2px 4px rgba(0,0,0,1);
 }
@@ -146,8 +144,8 @@
 }
 
 .gold-number {
-    font-family: 'Cinzel', serif;
-    font-size: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
     color: #C5A059;
     letter-spacing: 1px;
     font-weight: 700;
@@ -155,7 +153,7 @@
 }
 
 /* =========================================
-   ANIMATIONS (Extreme Entry)
+   ANIMATIONS
    ========================================= */
 .animate-fly-left { animation: flyInLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
 @keyframes flyInLeft { 0% { transform: translate(-100vw, -50%); opacity: 0; } 100% { transform: translate(0, -50%); opacity: 1; } }
@@ -182,53 +180,70 @@
 
 
 /* =========================================
-   MEDIA QUERIES (Mobile Fixes)
+   MEDIA QUERIES (RESIZED & TIGHTENED FOR MOBILE)
    ========================================= */
-
-/* ##Device = Mobile (All Sizes) */
 @media (max-width: 768px) {
     .custom-hero-wrapper {
-        min-height: 100vh; /* Keep full height */
-        padding: 60px 0;
+        min-height: 100vh;
+        padding: 40px 0; /* Reduced padding */
     }
 
-    /* 1. VISIBLE DRESSES (Flanking the content) */
+    /* 1. VISIBLE DRESSES (Much Smaller & Closer) */
     .side-panel { display: block; }
     
     .side-dress {
-        height: 45vh; /* Scaled down */
-        top: 50%;
-        opacity: 0.6; /* Slightly transparent to blend */
+        height: 35vh; /* Much smaller height */
+        top: 55%;     /* Vertically centered relative to text */
+        opacity: 0.5; /* Fade so text is readable */
     }
 
-    /* Position dresses at edges */
-    .img-left { left: -25%; }
-    .img-right { right: -25%; }
+    /* PULL THEM IN CLOSER (Negative values bring them inward) */
+    .img-left { left: -10%; } 
+    .img-right { right: -10%; }
 
-    /* 2. CENTER STAGE (Transparent & Resized) */
+    /* 2. CENTER STAGE (Compact) */
     .center-stage {
         width: 100%;
-        padding: 10px;
-        background: transparent; /* No box behind text */
+        padding: 10px 5px; /* Minimal padding */
+        background: transparent;
         border: none;
         box-shadow: none;
     }
 
-    /* 3. RESIZED ELEMENTS TO FIT SCREEN */
-    .royal-art-text { font-size: 1.8rem; margin-bottom: 15px; }
-    
-    .dress-logo { width: 70px; }
-    
-    .brand-calligraphy { 
-        font-size: 2rem; 
-        margin-bottom: 20px; 
+    /* 3. AGGRESSIVELY RESIZED FONTS & ELEMENTS */
+    .royal-art-text { 
+        font-size: 1.5rem; /* Smaller */
+        margin-bottom: 10px; 
     }
     
-    .qr-frame-container { padding: 15px; margin-bottom: 20px; }
-    .qr-image { width: 130px; height: 130px; }
-    .scan-me-label { font-size: 1.2rem; top: -15px; right: -15px; }
-    .angle-icon { width: 35px; }
+    .dress-logo { 
+        width: 60px; /* Smaller Logo */
+        margin-bottom: 5px;
+    }
     
-    .gold-number { font-size: 1.3rem; }
-    .shiny-gold-icon { font-size: 2rem; }
+    .brand-calligraphy { 
+        font-size: 1.8rem; /* Compact Brand Name */
+        margin-bottom: 15px; 
+        letter-spacing: 1px;
+    }
+    
+    .qr-frame-container { 
+        padding: 10px; 
+        margin-bottom: 15px; 
+    }
+    .qr-image { 
+        width: 100px; /* Smaller QR */
+        height: 100px; 
+    }
+    .scan-me-label { 
+        font-size: 0.9rem; 
+        top: -12px; 
+        right: -10px; 
+    }
+    .angle-icon { width: 30px; }
+    
+    /* Contact Strip Compact */
+    .contact-strip { gap: 8px; margin-top: 5px; }
+    .gold-number { font-size: 1.2rem; }
+    .shiny-gold-icon { font-size: 1.8rem; }
 }
