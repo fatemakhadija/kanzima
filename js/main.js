@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
-    injectGlobalIcons();   
+    injectWhatsAppOnly(); // <--- Renamed function, removed needle logic
     injectCustomCursor();  
 
     // --- 2. LOAD COMPONENTS ---
     
-    // Header (This loads the Menu)
+    // Header
     const headerElement = document.querySelector("header");
     if (headerElement) {
         fetch("pages/header.html")
@@ -70,26 +70,8 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Inject Icons (Needle + WhatsApp) - STATIC POSITION
-function injectGlobalIcons() {
-    // Floating Needle
-    if (!document.querySelector('.floating-needle')) {
-        let needle = document.createElement('img');
-        needle.src = 'images/thread-needle.gif';
-        needle.className = 'floating-needle';
-        needle.alt = 'Sewing Animation';
-        
-        // STATIC POSITION: Center of Header (slightly to the right to avoid text)
-        needle.style.position = 'fixed';
-        needle.style.top = '15px'; 
-        needle.style.left = '55%'; /* Pushed slightly right of center */
-        needle.style.width = '50px'; 
-        needle.style.zIndex = '9999';
-        needle.style.pointerEvents = 'none';
-        
-        document.body.appendChild(needle);
-    }
-
+// 1. Inject Icons (WhatsApp Only - Needle is now in HTML)
+function injectWhatsAppOnly() {
     // WhatsApp Float
     if (!document.querySelector('.whatsapp-float')) {
         let whatsapp = document.createElement('a');
