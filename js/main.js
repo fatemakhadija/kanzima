@@ -118,4 +118,87 @@ function injectCustomCursor() {
     }
 
     if (window.innerWidth > 768) {
-        dot.style.display =
+        dot.style.display = 'block';
+        circle.style.display = 'block';
+
+        window.addEventListener('mousemove', (e) => {
+            dot.style.left = `${e.clientX}px`;
+            dot.style.top = `${e.clientY}px`;
+            circle.animate({ 
+                left: `${e.clientX}px`, 
+                top: `${e.clientY}px` 
+            }, { duration: 400, fill: "forwards" });
+        });
+
+        document.body.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
+                document.body.classList.add('hovering');
+            } else {
+                document.body.classList.remove('hovering');
+            }
+        });
+    } else {
+        if(dot) dot.style.display = 'none';
+        if(circle) circle.style.display = 'none';
+    }
+}
+
+// 3. Mobile Menu Logic
+function initMobileMenu() {
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = document.querySelectorAll(".nav-menu a");
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    }
+}
+
+// 4. Ken Burns Slider
+function startBannerSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
+    let current = 0;
+    setInterval(() => {
+        slides[current].classList.remove('active');
+        current = (current + 1) % slides.length;
+        slides[current].classList.add('active');
+    }, 7000);
+}
+
+// 5. Highlight Page
+function highlightCurrentPage() {
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("nav a").forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add('active'); 
+            link.style.color = "#C5A059"; 
+        }
+    });
+}
+
+// --- MAGNETIC BUTTONS ---
+document.addEventListener('mousemove', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        const btn = e.target.closest('.lux-btn');
+        const rect = btn.getBoundingClientRect();
+        const deltaX = (e.clientX - rect.left - rect.width / 2) * 0.3;
+        const deltaY = (e.clientY - rect.top - rect.height / 2) * 0.3;
+        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    }
+});
+document.addEventListener('mouseout', function(e) {
+    if (e.target.closest('.lux-btn')) {
+        e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
+    }
+});
