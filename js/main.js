@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // --- 1. GLOBAL INJECTIONS (Run Immediately) ---
     injectGlobalIcons();   
-    injectCustomCursor();  // <--- This now works for ALL pages (Index + Contact)
+    injectCustomCursor();  
 
     // --- 2. LOAD COMPONENTS ---
     
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading footer:", error));
     }
 
-    // Custom Banner (Contact Page)
+    // Custom Banner (For Contact Page)
     const customHeroContainer = document.getElementById("custom-hero-container");
     if (customHeroContainer) {
         fetch("pages/custom-banner.html")
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading custom banner:", error));
     }
 
-    // Home Page Banner (Ken Burns)
+    // Home Page Banner
     const bannerContainer = document.getElementById("banner-container");
     if (bannerContainer) {
         fetch("pages/banner.html")
@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 startBannerSlider(); 
                 if (typeof startParticles === "function") {
                     startParticles();
-                } else {
-                    console.warn("Particles function not found.");
                 }
             })
             .catch(error => console.error("Error loading home banner:", error));
@@ -72,111 +70,28 @@ document.addEventListener("DOMContentLoaded", function() {
 // HELPER FUNCTIONS
 // =========================================
 
-// 1. Global Custom Cursor Injection (FIXED)
-function injectCustomCursor() {
-    let dot = document.querySelector('.cursor-dot');
-    let circle = document.querySelector('.cursor-circle');
-
-    // Create if missing
-    if (!dot || !circle) {
-        dot = document.createElement('div');
-        dot.className = 'cursor-dot';
-        document.body.appendChild(dot);
-
-        circle = document.createElement('div');
-        circle.className = 'cursor-circle';
-        document.body.appendChild(circle);
-    }
-
-    // Attach Listeners
-    if (window.innerWidth > 768) {
-        dot.style.display = 'block';
-        circle.style.display = 'block';
-
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = `${e.clientX}px`;
-            dot.style.top = `${e.clientY}px`;
-            
-            circle.animate({ 
-                left: `${e.clientX}px`, 
-                top: `${e.clientY}px` 
-            }, { duration: 400, fill: "forwards" });
-        });
-
-        document.body.addEventListener('mouseover', (e) => {
-            if (e.target.closest('a, button, .card, .art-image, .lux-btn')) {
-                document.body.classList.add('hovering');
-            } else {
-                document.body.classList.remove('hovering');
-            }
-        });
-    } else {
-        // Hide on mobile
-        if(dot) dot.style.display = 'none';
-        if(circle) circle.style.display = 'none';
-    }
-}
-
-// 2. Mobile Menu Logic
-function initMobileMenu() {
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector(".nav-menu");
-    const navLinks = document.querySelectorAll(".nav-menu a");
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                hamburger.classList.remove("active");
-                navMenu.classList.remove("active");
-            });
-        });
-    }
-}
-
-// 3. Ken Burns Banner Slider
-function startBannerSlider() {
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length === 0) return;
-    let current = 0;
-    const intervalTime = 7000;
-    setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, intervalTime);
-}
-
-// 4. Inject Icons (Needle + WhatsApp)
+// 1. Inject Icons (Needle + WhatsApp) - STATIC POSITION
 function injectGlobalIcons() {
+    // Floating Needle
     if (!document.querySelector('.floating-needle')) {
         let needle = document.createElement('img');
         needle.src = 'images/thread-needle.gif';
         needle.className = 'floating-needle';
         needle.alt = 'Sewing Animation';
+        
+        // STATIC POSITION (No Scrolling Animation)
         needle.style.position = 'fixed';
-        needle.style.top = '20px';
-        needle.style.left = '20px';
-        needle.style.width = '60px';
+        needle.style.top = '10px'; 
+        needle.style.left = '50%';         // Center of header
+        needle.style.transform = 'translateX(-50%)'; // Center alignment
+        needle.style.width = '60px'; 
         needle.style.zIndex = '9999';
         needle.style.pointerEvents = 'none';
-        needle.style.transition = 'transform 0.1s linear';
+        
         document.body.appendChild(needle);
-
-        window.addEventListener('scroll', function() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollTop / docHeight;
-            const maxX = window.innerWidth - 80;
-            const maxY = window.innerHeight - 100;
-            needle.style.transform = `translate(${scrollPercent * maxX}px, ${scrollPercent * maxY}px)`;
-        });
     }
 
+    // WhatsApp Float
     if (!document.querySelector('.whatsapp-float')) {
         let whatsapp = document.createElement('a');
         whatsapp.href = 'https://wa.me/919307159339';
@@ -187,34 +102,20 @@ function injectGlobalIcons() {
     }
 }
 
-// 5. Highlight Active Page
-function highlightCurrentPage() {
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-    const navLinks = document.querySelectorAll("nav a");
-    navLinks.forEach(link => {
-        if (link.getAttribute("href") === currentPage) {
-            link.classList.add('active'); 
-            link.style.color = "#C5A059"; 
-        }
-    });
-}
+// 2. Global Custom Cursor
+function injectCustomCursor() {
+    let dot = document.querySelector('.cursor-dot');
+    let circle = document.querySelector('.cursor-circle');
 
-// --- MAGNETIC BUTTONS ---
-document.addEventListener('mousemove', function(e) {
-    if (e.target.closest('.lux-btn')) {
-        const btn = e.target.closest('.lux-btn');
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const deltaX = (x - centerX) * 0.3;
-        const deltaY = (y - centerY) * 0.3;
-        btn.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+    if (!dot || !circle) {
+        dot = document.createElement('div');
+        dot.className = 'cursor-dot';
+        document.body.appendChild(dot);
+
+        circle = document.createElement('div');
+        circle.className = 'cursor-circle';
+        document.body.appendChild(circle);
     }
-});
-document.addEventListener('mouseout', function(e) {
-    if (e.target.closest('.lux-btn')) {
-        e.target.closest('.lux-btn').style.transform = `translate(0px, 0px)`;
-    }
-});
+
+    if (window.innerWidth > 768) {
+        dot.style.display =
